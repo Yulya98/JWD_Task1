@@ -3,13 +3,15 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 /**
  * Created by Yulya Kukareko, February, 2019, e-mail: yulya.kukareko@mail.ru
  */
-public class Instractions extends  Book{
+public class Instractions extends Technical {
 
     private String subject;
 
-    public Instractions(int pageCount, String name, int font, String author,
-                        String publishing, String subject) {
-        super(pageCount, name, font, author, publishing);
+    public Instractions() {
+    }
+
+    public Instractions(int pageCount, String name, int font, String author, String publishing, String level, String subject) {
+        super(pageCount, name, font, author, publishing, level);
         this.subject = subject;
     }
 

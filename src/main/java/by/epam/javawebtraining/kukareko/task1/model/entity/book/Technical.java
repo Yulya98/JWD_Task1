@@ -8,6 +8,9 @@ public class Technical extends Book {
     private String subjectArea;
     private String level;
 
+    public Technical() {
+    }
+
     public Technical(int pageCount, String name, int font, String author, String publishing, String level) {
         super(pageCount, name, font, author, publishing);
         this.level = level;

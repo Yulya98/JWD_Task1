@@ -8,6 +8,9 @@ public class Musical extends Magazine {
     private String kindMusical;
     private boolean haveDisk;
 
+    public Musical() {
+    }
+
     public Musical(int pageCount, String name, int font, String publishing, int countAriticles,
                    String kindMusical, boolean haveDisk) {
         super(pageCount, name, font, publishing, countAriticles);

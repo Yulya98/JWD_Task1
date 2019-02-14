@@ -7,6 +7,9 @@ public class Science extends Magazine {
 
     private String subjectArea;
 
+    public Science() {
+    }
+
     public Science(int pageCount, String name, int font, String publishing,
                    int countAriticles, String subjectArea) {
         super(pageCount, name, font, publishing, countAriticles);

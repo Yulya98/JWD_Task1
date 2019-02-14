@@ -9,6 +9,9 @@ public class Album extends Publication {
 
     private  String format;
 
+    public Album() {
+    }
+
     public Album(int pageCount, String name, int font, String publishing, String format) {
         super(pageCount, name, font, publishing);
         this.format = format;

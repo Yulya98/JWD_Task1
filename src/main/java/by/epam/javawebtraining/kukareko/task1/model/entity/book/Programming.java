@@ -7,6 +7,9 @@ public class Programming extends Technical {
 
     private String language;
 
+    public Programming() {
+    }
+
     public Programming(int pageCount, String name, int font, String author, String publishing,
                        String level, String language) {
         super(pageCount, name, font, author, publishing, level);

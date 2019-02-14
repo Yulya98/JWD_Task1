@@ -9,6 +9,9 @@ public class Book extends Publication {
 
     private String author;
 
+    public Book() {
+    }
+
     public Book(int pageCount, String name, int font, String author, String publishing) {
         super(pageCount, name, font, publishing);
         this.author = author;
