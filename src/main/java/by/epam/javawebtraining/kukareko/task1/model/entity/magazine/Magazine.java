@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 
 /**
  * @author Yulya Kukareko
@@ -17,6 +18,14 @@ public class Magazine extends Publication {
     public Magazine(int pageCount, String name, int font, String publishing, int countAriticles,
                     int circulation, long id) {
         super(pageCount, name, font, publishing, circulation, id);
+        this.countAriticles = countAriticles;
+    }
+
+    public int getCountAriticles() {
+        return countAriticles;
+    }
+
+    public void setCountAriticles(int countAriticles) {
         this.countAriticles = countAriticles;
     }
 
