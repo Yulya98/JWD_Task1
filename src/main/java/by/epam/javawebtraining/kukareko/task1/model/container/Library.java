@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Library {
+public class Library implements Iterable<Publication> {
 
     private static Publication[] publications;
     private int index;
@@ -47,5 +47,10 @@ public class Library {
 
     public static Publication[] getPublications() {
         return publications;
+    }
+
+    @Override
+    public Iterator<Publication> iterator() {
+        return new PublicationIterator(publications);
     }
 }
