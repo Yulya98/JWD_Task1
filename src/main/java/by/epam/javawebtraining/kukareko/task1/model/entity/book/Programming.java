@@ -1,7 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
 /**
- * Created by Yulya Kukareko, February, 2019, e-mail: yulya.kukareko@mail.ru
+ * @author Yulya Kukareko
+ * @version 1.0 15 Feb 2019
  */
 public class Programming extends Technical {
 
