@@ -12,8 +12,8 @@ public class Book extends Publication {
     public Book() {
     }
 
-    public Book(int pageCount, String name, int font, String author, String publishing) {
-        super(pageCount, name, font, publishing);
+    public Book(int pageCount, String name, int font, String author, String publishing, int circulation) {
+        super(pageCount, name, font, publishing, circulation);
         this.author = author;
     }
 

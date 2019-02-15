@@ -13,13 +13,13 @@ public class Magazine extends Publication {
         countAriticles = 1;
     }
 
-    public Magazine(int pageCount, String name, int font, String publishing, int countAriticles) {
-        super(pageCount, name, font, publishing);
+    public Magazine(int pageCount, String name, int font, String publishing, int countAriticles, int circulation) {
+        super(pageCount, name, font, publishing, circulation);
         this.countAriticles = countAriticles;
     }
 
     @Override
     public String toString() {
-        return "countArticles = " + countAriticles + ", " + super.toString();
+        return "countArticles = " + this.countAriticles + ", " + super.toString();
     }
 }

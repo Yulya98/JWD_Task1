@@ -11,13 +11,13 @@ public class Science extends Magazine {
     }
 
     public Science(int pageCount, String name, int font, String publishing,
-                   int countAriticles, String subjectArea) {
-        super(pageCount, name, font, publishing, countAriticles);
+                   int countAriticles, String subjectArea, int circulation) {
+        super(pageCount, name, font, publishing, countAriticles, circulation);
         this.subjectArea = subjectArea;
     }
 
     @Override
     public String toString() {
-        return this.getClass() + ": subjectArea: " + subjectArea + ", " + super.toString();
+        return this.getClass() + ": subjectArea: " + this.subjectArea + ", " + super.toString();
     }
 }

@@ -11,8 +11,9 @@ public class Technical extends Book {
     public Technical() {
     }
 
-    public Technical(int pageCount, String name, int font, String author, String publishing, String level) {
-        super(pageCount, name, font, author, publishing);
+    public Technical(int pageCount, String name, int font, String author, String publishing,
+                     String level, int circulation) {
+        super(pageCount, name, font, author, publishing, circulation);
         this.level = level;
     }
 

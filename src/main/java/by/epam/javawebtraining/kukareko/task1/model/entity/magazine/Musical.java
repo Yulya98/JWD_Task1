@@ -12,8 +12,8 @@ public class Musical extends Magazine {
     }
 
     public Musical(int pageCount, String name, int font, String publishing, int countAriticles,
-                   String kindMusical, boolean haveDisk) {
-        super(pageCount, name, font, publishing, countAriticles);
+                   String kindMusical, boolean haveDisk, int circulation) {
+        super(pageCount, name, font, publishing, countAriticles, circulation);
         this.kindMusical = kindMusical;
         this.haveDisk = haveDisk;
     }
@@ -33,6 +33,8 @@ public class Musical extends Magazine {
     public void setHaveDisk(boolean haveDisk) {
         this.haveDisk = haveDisk;
     }
+
+
 
     @Override
     public String toString() {

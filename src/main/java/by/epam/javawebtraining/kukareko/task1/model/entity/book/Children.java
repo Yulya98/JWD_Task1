@@ -10,8 +10,9 @@ public class Children extends Book {
     public Children() {
     }
 
-    public Children(int pageCount, String name, int font, String author, String publishing, String recommendAge) {
-        super(pageCount, name, font, author, publishing);
+    public Children(int pageCount, String name, int font, String author, String publishing,
+                    String recommendAge, int circulation) {
+        super(pageCount, name, font, author, publishing, circulation);
         this.recommendAge = recommendAge;
     }
 
@@ -25,6 +26,6 @@ public class Children extends Book {
 
     @Override
     public String toString() {
-        return this.getClass() + ": recommendAge: " + recommendAge + ", " + super.toString();
+        return this.getClass() + ": recommendAge: " + this.recommendAge + ", " + super.toString();
     }
 }
