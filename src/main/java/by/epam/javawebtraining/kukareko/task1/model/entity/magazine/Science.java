@@ -17,6 +17,14 @@ public class Science extends Magazine {
         this.subjectArea = subjectArea;
     }
 
+    public String getSubjectArea() {
+        return subjectArea;
+    }
+
+    public void setSubjectArea(String subjectArea) {
+        this.subjectArea = subjectArea;
+    }
+
     @Override
     public String toString() {
         return this.getClass() + ": subjectArea: " + this.subjectArea + ", " + super.toString();
