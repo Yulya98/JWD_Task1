@@ -12,8 +12,8 @@ public class Children extends Book {
     }
 
     public Children(int pageCount, String name, int font, String author, String publishing,
-                    String recommendAge, int circulation) {
-        super(pageCount, name, font, author, publishing, circulation);
+                    String recommendAge, int circulation, long id) {
+        super(pageCount, name, font, author, publishing, circulation, id);
         this.recommendAge = recommendAge;
     }
 

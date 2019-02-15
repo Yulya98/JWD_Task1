@@ -13,8 +13,9 @@ public class Album extends Publication {
     public Album() {
     }
 
-    public Album(int pageCount, String name, int font, String publishing, String format, int circulation) {
-        super(pageCount, name, font, publishing, circulation);
+    public Album(int pageCount, String name, int font, String publishing, String format,
+                 int circulation, long id) {
+        super(pageCount, name, font, publishing, circulation, id);
         this.format = format;
     }
 

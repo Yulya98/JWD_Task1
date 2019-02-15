@@ -12,8 +12,8 @@ public class Instractions extends Technical {
     }
 
     public Instractions(int pageCount, String name, int font, String author, String publishing,
-                        String level, String subject, int circulation) {
-        super(pageCount, name, font, author, publishing, level, circulation);
+                        String level, String subject, int circulation, long id) {
+        super(pageCount, name, font, author, publishing, level, circulation, id);
         this.subject = subject;
     }
 

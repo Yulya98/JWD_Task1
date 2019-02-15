@@ -6,6 +6,7 @@ package by.epam.javawebtraining.kukareko.task1.model.entity;
  */
 public class Publication {
 
+    private long id;
     private int pageCount;
     private String name;
     private int font;
@@ -19,12 +20,29 @@ public class Publication {
         this.circulation = 1;
     }
 
-    public Publication(int pageCount, String name, int font, String publishing, int circulation) {
+    public Publication(int pageCount, String name, int font, String publishing, int circulation, long id) {
         this.pageCount = pageCount;
         this.name = name;
         this.font = font;
         this.publishing = publishing;
         this.circulation = circulation;
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public int getPageCount() {
@@ -81,7 +99,7 @@ public class Publication {
 
     @Override
     public String toString() {
-        return "page count = " + this.pageCount + ", name = " + this.name + ", font = " + this.font +
+        return "long: " + this.id + "page count = " + this.pageCount + ", name = " + this.name + ", font = " + this.font +
                 ", publishing = " + this.publishing + ", circulation = " + this.circulation + "rating = " +this.rating;
     }
 }

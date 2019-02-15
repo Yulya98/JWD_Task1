@@ -13,8 +13,8 @@ public class Technical extends Book {
     }
 
     public Technical(int pageCount, String name, int font, String author, String publishing,
-                     String level, int circulation) {
-        super(pageCount, name, font, author, publishing, circulation);
+                     String level, int circulation, long id) {
+        super(pageCount, name, font, author, publishing, circulation, id);
         this.level = level;
     }
 

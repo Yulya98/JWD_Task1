@@ -14,8 +14,9 @@ public class Magazine extends Publication {
         countAriticles = 1;
     }
 
-    public Magazine(int pageCount, String name, int font, String publishing, int countAriticles, int circulation) {
-        super(pageCount, name, font, publishing, circulation);
+    public Magazine(int pageCount, String name, int font, String publishing, int countAriticles,
+                    int circulation, long id) {
+        super(pageCount, name, font, publishing, circulation, id);
         this.countAriticles = countAriticles;
     }
 

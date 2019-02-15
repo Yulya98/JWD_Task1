@@ -12,8 +12,8 @@ public class Programming extends Technical {
     }
 
     public Programming(int pageCount, String name, int font, String author, String publishing,
-                       String level, String language, int circulation) {
-        super(pageCount, name, font, author, publishing, level, circulation);
+                       String level, String language, int circulation, long id) {
+        super(pageCount, name, font, author, publishing, level, circulation, id);
         this.language = language;
     }
 
