@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.logic.iterator;
+package by.epam.javawebtraining.kukareko.task1.model.logic.iterator;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 

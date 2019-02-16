@@ -1,6 +1,6 @@
-package by.epam.javawebtraining.kukareko.task1.logic.finder;
+package by.epam.javawebtraining.kukareko.task1.model.logic.finder;
 
-import by.epam.javawebtraining.kukareko.task1.logic.sorter.PublicationSorter;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 /**
@@ -35,4 +35,6 @@ public class PublicationFinder {
         return sortOrder.equals("ACK") ? publications[0] : publications[publications.length - 1];
     }
 }
+
+
 

@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.logic.sorter;
+package by.epam.javawebtraining.kukareko.task1.model.logic.sorter;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
