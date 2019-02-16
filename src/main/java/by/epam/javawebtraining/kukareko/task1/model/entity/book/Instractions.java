@@ -25,7 +25,7 @@ public class Instractions extends Technical {
 
     @Override
     public String toString() {
-        return getClass() + ": subject: " + subject + ", " + super.toString();
+        return getClass().getSimpleName() + ": subject: " + subject + ", " + super.toString();
     }
 
     @Override

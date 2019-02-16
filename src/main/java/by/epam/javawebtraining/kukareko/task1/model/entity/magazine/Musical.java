@@ -31,7 +31,7 @@ public class Musical extends Magazine {
 
     @Override
     public String toString() {
-        return this.getClass() + ": kindMusical: " + kindMusical +
+        return getClass().getSimpleName() + ": kindMusical: " + kindMusical +
                 ", haveDisk" + haveDisk + ", " + super.toString();
     }
 

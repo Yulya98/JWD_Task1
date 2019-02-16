@@ -31,7 +31,7 @@ public class Technical extends Book {
 
     @Override
     public String toString() {
-        return this.getClass() + ": subjectArea: " + subjectArea +
+        return getClass().getSimpleName() + ": subjectArea: " + subjectArea +
                 ", level: " + level + ", " + super.toString();
     }
 

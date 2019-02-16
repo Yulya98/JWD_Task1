@@ -27,7 +27,7 @@ public class Album extends Publication {
 
     @Override
     public String toString() {
-        return getClass() + ": format" + format + ", " + super.toString();
+        return ", format" + format + ", " + super.toString();
     }
 
     @Override

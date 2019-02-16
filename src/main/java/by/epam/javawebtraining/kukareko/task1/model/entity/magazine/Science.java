@@ -25,7 +25,7 @@ public class Science extends Magazine {
 
     @Override
     public String toString() {
-        return this.getClass() + ": subjectArea: " + subjectArea + ", " + super.toString();
+        return getClass().getSimpleName() + ": subjectArea: " + subjectArea + ", " + super.toString();
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Programming extends Technical {
 
     @Override
     public String toString() {
-        return getClass() + ": language: " + this.language + ", " + super.toString();
+        return getClass().getSimpleName() + ": language: " + this.language + ", " + super.toString();
     }
 
     @Override
