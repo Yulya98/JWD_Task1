@@ -7,11 +7,11 @@ import java.util.NoSuchElementException;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 15 Feb 2019
+ * @version 1.0 16 Feb 2019
  */
 public class PublicationIterator implements Iterator<Publication> {
     private Publication[] publications;
-    int nextElem = 0;
+    private int nextElem = 0;
 
     public PublicationIterator(Publication[] publications) {
         this.publications = publications;

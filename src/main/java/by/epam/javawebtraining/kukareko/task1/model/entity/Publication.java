@@ -22,13 +22,15 @@ public class Publication {
         this.circulation = 1;
     }
 
-    public Publication(int pageCount, String name, int font, String publishing, int circulation, long id) {
+    public Publication(long id, int pageCount, String name, int font, String publishing,
+                       int circulation, int rating) {
         this.pageCount = pageCount;
         this.name = name;
         this.font = font;
         this.publishing = publishing;
         this.circulation = circulation;
         this.id = id;
+        this.rating = rating;
     }
 
     public long getId() {
@@ -44,7 +46,7 @@ public class Publication {
     }
 
     public void setRating(int rating) {
-        if(rating >= 0) {
+        if (rating >= 0) {
             this.rating = rating;
         }
     }
@@ -58,13 +60,13 @@ public class Publication {
     }
 
     public void setPageCount(int pageCount) {
-        if(pageCount > 0) {
+        if (pageCount > 0) {
             this.pageCount = pageCount;
         }
     }
 
     public void setRaiting(int raiting) {
-        if(raiting > 0) {
+        if (raiting > 0) {
             this.rating = raiting;
         }
     }
@@ -86,16 +88,16 @@ public class Publication {
     }
 
     public void setCirculation(int circulation) {
-        if(circulation > 0) {
+        if (circulation > 0) {
             this.circulation = circulation;
         }
     }
 
     @Override
     public String toString() {
-        return "long: " + id + "page count = " + pageCount + ", name = " + name
+        return "long: " + id + " page count = " + pageCount + ", name = " + name
                 + ", font = " + font + ", publishing = " + publishing
-                + ", circulation = " + circulation + "rating = " + rating;
+                + ", circulation = " + circulation + " rating = " + rating;
     }
 
     @Override

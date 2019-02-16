@@ -13,9 +13,9 @@ public class Science extends Magazine {
     public Science() {
     }
 
-    public Science(int pageCount, String name, int font, String publishing,
-                   int countAriticles, String subjectArea, int circulation, long id) {
-        super(pageCount, name, font, publishing, countAriticles, circulation, id);
+    public Science(long id, int pageCount, String name, int font, String publishing,
+                   int circulation, int rating, int countAriticles, String subjectArea) {
+        super(id, pageCount, name, font, publishing, circulation, rating, countAriticles);
         this.subjectArea = subjectArea;
     }
 

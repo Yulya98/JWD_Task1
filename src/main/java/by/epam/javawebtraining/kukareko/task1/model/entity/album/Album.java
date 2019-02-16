@@ -15,9 +15,9 @@ public class Album extends Publication {
     public Album() {
     }
 
-    public Album(int pageCount, String name, int font, String publishing, String format,
-                 int circulation, long id) {
-        super(pageCount, name, font, publishing, circulation, id);
+    public Album(long id, int pageCount, String name, int font, String publishing,
+                 int circulation, int rating, String format) {
+        super(id, pageCount, name, font, publishing, circulation, rating);
         this.format = format;
     }
 
@@ -44,3 +44,4 @@ public class Album extends Publication {
         return Objects.hash(super.hashCode(), format);
     }
 }
+

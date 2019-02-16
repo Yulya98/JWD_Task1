@@ -11,9 +11,9 @@ public class Sport extends Magazine {
     public Sport() {
     }
 
-    public Sport(int pageCount, String name, int font, String publishing,
-                 int countAriticles, String kindSport, int circulation, long id) {
-        super(pageCount, name, font, publishing, countAriticles, circulation, id);
+    public Sport(long id, int pageCount, String name, int font, String publishing, int circulation,
+                 int rating, int countAriticles, String kindSport) {
+        super(id, pageCount, name, font, publishing, circulation, rating, countAriticles);
         this.kindSport = kindSport;
     }
 
@@ -28,7 +28,7 @@ public class Sport extends Magazine {
 
     @Override
     public boolean equals(Object o) {
-        if(o instanceof Sport){
+        if (o instanceof Sport) {
             Sport other = (Sport) o;
             return super.equals(o) && kindSport.equals(other.getKindSport());
         }

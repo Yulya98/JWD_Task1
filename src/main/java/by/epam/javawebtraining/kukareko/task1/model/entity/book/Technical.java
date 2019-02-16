@@ -14,9 +14,10 @@ public class Technical extends Book {
     public Technical() {
     }
 
-    public Technical(int pageCount, String name, int font, String author, String publishing,
-                     String level, int circulation, long id) {
-        super(pageCount, name, font, author, publishing, circulation, id);
+    public Technical(long id, int pageCount, String name, int font, String publishing,
+                     int circulation, int rating, String author, String subjectArea, String level) {
+        super(id, pageCount, name, font, publishing, circulation, rating, author);
+        this.subjectArea = subjectArea;
         this.level = level;
     }
 
@@ -31,7 +32,7 @@ public class Technical extends Book {
     @Override
     public String toString() {
         return this.getClass() + ": subjectArea: " + subjectArea +
-                ", level: " + level + ", "  + super.toString();
+                ", level: " + level + ", " + super.toString();
     }
 
     @Override
