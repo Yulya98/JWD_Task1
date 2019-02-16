@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import java.util.Objects;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
@@ -23,23 +25,28 @@ public class Musical extends Magazine {
         return kindMusical;
     }
 
-    public void setKindMusical(String kindMusical) {
-        this.kindMusical = kindMusical;
-    }
-
     public boolean isHaveDisk() {
         return haveDisk;
     }
 
-    public void setHaveDisk(boolean haveDisk) {
-        this.haveDisk = haveDisk;
-    }
-
-
-
     @Override
     public String toString() {
-        return this.getClass() + ": kindMusical: " + this.kindMusical +
-                ", haveDisk" + this.haveDisk + ", " + super.toString();
+        return this.getClass() + ": kindMusical: " + kindMusical +
+                ", haveDisk" + haveDisk + ", " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Musical musical = (Musical) o;
+        return haveDisk == musical.haveDisk &&
+                Objects.equals(kindMusical, musical.kindMusical);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), kindMusical, haveDisk);
     }
 }

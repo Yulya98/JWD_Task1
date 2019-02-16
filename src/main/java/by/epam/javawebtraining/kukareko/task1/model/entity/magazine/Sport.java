@@ -17,8 +17,27 @@ public class Sport extends Magazine {
         this.kindSport = kindSport;
     }
 
+    public String getKindSport() {
+        return kindSport;
+    }
+
     @Override
     public String toString() {
-        return this.getClass() + ": kindSport: " + this.kindSport + ", " + super.toString();
+        return getClass() + ": kindSport: " + kindSport + ", " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Sport){
+            Sport other = (Sport) o;
+            return super.equals(o) && kindSport.equals(other.getKindSport());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        final int coefficient = 21;
+        return coefficient * super.hashCode() + ((kindSport == null) ? 0 : kindSport.hashCode());
     }
 }

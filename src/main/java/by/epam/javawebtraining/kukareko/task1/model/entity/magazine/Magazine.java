@@ -1,7 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
+
+import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
@@ -25,12 +26,22 @@ public class Magazine extends Publication {
         return countAriticles;
     }
 
-    public void setCountAriticles(int countAriticles) {
-        this.countAriticles = countAriticles;
+    @Override
+    public String toString() {
+        return "countArticles = " + countAriticles + ", " + super.toString();
     }
 
     @Override
-    public String toString() {
-        return "countArticles = " + this.countAriticles + ", " + super.toString();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Magazine magazine = (Magazine) o;
+        return countAriticles == magazine.countAriticles;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), countAriticles);
     }
 }

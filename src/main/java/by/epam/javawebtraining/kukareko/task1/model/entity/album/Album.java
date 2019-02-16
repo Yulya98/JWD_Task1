@@ -2,13 +2,15 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.album;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
+import java.util.Objects;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
 public class Album extends Publication {
 
-    private  String format;
+    private String format;
 
     public Album() {
     }
@@ -23,12 +25,22 @@ public class Album extends Publication {
         return format;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    @Override
+    public String toString() {
+        return getClass() + ": format" + format + ", " + super.toString();
     }
 
     @Override
-    public String toString() {
-        return this.getClass() + ": format" + this.format + ", " + super.toString();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Album album = (Album) o;
+        return Objects.equals(format, album.format);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), format);
     }
 }

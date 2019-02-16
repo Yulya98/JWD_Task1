@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
+import java.util.Objects;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
@@ -22,21 +24,28 @@ public class Technical extends Book {
         return subjectArea;
     }
 
-    public void setSubjectArea(String subjectArea) {
-        this.subjectArea = subjectArea;
-    }
-
     public String getLevel() {
         return level;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    @Override
+    public String toString() {
+        return this.getClass() + ": subjectArea: " + subjectArea +
+                ", level: " + level + ", "  + super.toString();
     }
 
     @Override
-    public String toString() {
-        return this.getClass() + ": subjectArea: " + this.subjectArea +
-                ", level: " + this.level + ", "  + super.toString();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Technical technical = (Technical) o;
+        return Objects.equals(subjectArea, technical.subjectArea) &&
+                Objects.equals(level, technical.level);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), subjectArea, level);
     }
 }

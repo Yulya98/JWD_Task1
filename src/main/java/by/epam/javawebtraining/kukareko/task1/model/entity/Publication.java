@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity;
 
+import java.util.Objects;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
@@ -42,15 +44,13 @@ public class Publication {
     }
 
     public void setRating(int rating) {
-        this.rating = rating;
+        if(rating >= 0) {
+            this.rating = rating;
+        }
     }
 
     public int getPageCount() {
         return pageCount;
-    }
-
-    public final void increaseRating(){
-        this.rating += 1;
     }
 
     public int getRaiting() {
@@ -58,35 +58,27 @@ public class Publication {
     }
 
     public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
+        if(pageCount > 0) {
+            this.pageCount = pageCount;
+        }
     }
 
     public void setRaiting(int raiting) {
-        this.rating = raiting;
+        if(raiting > 0) {
+            this.rating = raiting;
+        }
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getFont() {
         return font;
     }
 
-    public void setFont(int font) {
-        this.font = font;
-    }
-
     public String getPublishing() {
         return publishing;
-    }
-
-    public void setPublishing(String publishing) {
-        this.publishing = publishing;
     }
 
     public int getCirculation() {
@@ -94,12 +86,34 @@ public class Publication {
     }
 
     public void setCirculation(int circulation) {
-        this.circulation = circulation;
+        if(circulation > 0) {
+            this.circulation = circulation;
+        }
     }
 
     @Override
     public String toString() {
-        return "long: " + this.id + "page count = " + this.pageCount + ", name = " + this.name + ", font = " + this.font +
-                ", publishing = " + this.publishing + ", circulation = " + this.circulation + "rating = " +this.rating;
+        return "long: " + id + "page count = " + pageCount + ", name = " + name
+                + ", font = " + font + ", publishing = " + publishing
+                + ", circulation = " + circulation + "rating = " + rating;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publication that = (Publication) o;
+        return id == that.id &&
+                pageCount == that.pageCount &&
+                font == that.font &&
+                circulation == that.circulation &&
+                rating == that.rating &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(publishing, that.publishing);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pageCount, name, font, publishing, circulation, rating);
     }
 }

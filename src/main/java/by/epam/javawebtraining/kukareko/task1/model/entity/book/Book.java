@@ -2,6 +2,8 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
+import java.util.Objects;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
@@ -22,12 +24,22 @@ public class Book extends Publication {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    @Override
+    public String toString() {
+        return getClass() + ": author: " + author + ", " + super.toString() ;
     }
 
     @Override
-    public String toString() {
-        return this.getClass() + ": author: " + this.author + ", " + super.toString() ;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Book book = (Book) o;
+        return Objects.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), author);
     }
 }

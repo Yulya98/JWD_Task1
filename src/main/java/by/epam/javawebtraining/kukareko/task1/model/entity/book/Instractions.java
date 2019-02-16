@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
+import java.util.Objects;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
@@ -21,12 +23,22 @@ public class Instractions extends Technical {
         return subject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    @Override
+    public String toString() {
+        return getClass() + ": subject: " + subject + ", " + super.toString();
     }
 
     @Override
-    public String toString() {
-        return this.getClass() + ": subject: " + this.subject + ", " + super.toString();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Instractions that = (Instractions) o;
+        return Objects.equals(subject, that.subject);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), subject);
     }
 }
