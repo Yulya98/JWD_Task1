@@ -17,7 +17,7 @@ public class Controller {
         Library library = new Library(5);
         StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
-        for(int i = 0; i < library.getPublications().length; i++){
+        for (int i = 0; i < library.getPublications().length; i++) {
             Publication publication1 = PublicationCreator.create();
             library.getPublications()[i] = publication1;
         }

@@ -22,7 +22,7 @@ public class PublicationIterator implements Iterator<Publication> {
     }
 
     public Publication next() {
-        if(!hasNext()){
+        if (!hasNext()) {
             throw new NoSuchElementException("No more elements");
         }
 
