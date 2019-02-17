@@ -15,6 +15,9 @@ import by.epam.javawebtraining.kukareko.task1.view.StandardOutPublicationsRender
 public class Controller {
     public static void main(String[] args) {
         try {
+
+            //<editor-fold desc="Initialization publications array">
+
             Library library = new Library(5);
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
@@ -23,8 +26,16 @@ public class Controller {
                 library.getPublications()[i] = publication1;
             }
 
+            //</editor-fold>
+
+            //<editor-fold desc="Check add/remove methods of publications array">
+
             library.add(PublicationCreator.create());
             library.remove(2);
+
+            //</editor-fold>
+
+            //<editor-fold desc="Check sorted methods of publications array">
 
             PublicationSorter.sortedByRating(library.getPublications(), 0,
                     library.getPublications().length - 1);
@@ -34,6 +45,10 @@ public class Controller {
             PublicationSorter.sortedByCirculationAndPageCount(library.getPublications());
             publicationsRender.messageRender("Sorting by Circulation and page count: ");
             publicationsRender.renderArray(library.getPublications());
+
+            //</editor-fold>
+
+            //<editor-fold desc="Check find extremes methods of publications array">
 
             PublicationFinder.findExtremumByRating(library.getPublications(), "ACK");
             publicationsRender.messageRender("Find extremum element by rating: ");
@@ -50,9 +65,18 @@ public class Controller {
             publicationsRender.renderElement(PublicationFinder.findExtremumByRating(library.getPublications(),
                     "ACK"));
 
+            //</editor-fold>
+
+            //<editor-fold desc="Check finder method of publications array">
+
             publicationsRender.messageRender("Find Publication by param: ");
 
-            publicationsRender.renderElement(PublicationFinder.findByParam(library.getPublications(), 13, 10, 1));
+            publicationsRender.renderElement(PublicationFinder.findByParam(library.getPublications(), 13,
+                    10, 1));
+
+            //</editor-fold>
+
+            //<editor-fold desc="Check counter methods of publications array">
 
             publicationsRender.messageRender("Books count = "
                     + checkCount(PublicationCounter.countBooks(library.getPublications())));
@@ -62,6 +86,8 @@ public class Controller {
 
             publicationsRender.messageRender("Albums count = "
                     + checkCount(PublicationCounter.countAlbums(library.getPublications())));
+
+            //</editor-fold>
 
         } catch (Exception ex){
             ex.printStackTrace();
