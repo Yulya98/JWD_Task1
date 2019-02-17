@@ -12,7 +12,11 @@ import java.util.Iterator;
  */
 public class Library implements Iterable<Publication> {
 
-    private static Publication[] publications;
+    private Publication[] publications;
+
+    public Library() {
+        publications = new Publication[7];
+    }
 
     public Library(int size) {
         publications = new Publication[size];
@@ -40,12 +44,12 @@ public class Library implements Iterable<Publication> {
         return null;
     }
 
-    public static Publication[] getPublications() {
-        return publications;
+    public Publication[] getPublications() {
+        return this.publications;
     }
 
-    public static void setPublications(Publication[] publications) {
-        Library.publications = publications;
+    public void setPublications(Publication[] publications) {
+        this.publications = publications;
     }
 
     @Override
