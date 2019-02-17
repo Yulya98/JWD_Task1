@@ -23,15 +23,15 @@ public class Library implements Iterable<Publication> {
     }
 
     public void add(Publication publication) {
-        Arrays.copyOf(publications, publications.length + 1);
+        publications = Arrays.copyOf(publications, publications.length + 1);
         publications[publications.length - 1] = publication;
     }
 
     public void remove(int remIndex) {
-        for (int i = remIndex; i < publications.length; i++) {
+        for (int i = remIndex; i < publications.length - 1; i++) {
             publications[i] = publications[i + 1];
         }
-        System.arraycopy(publications, 0, publications, 0, publications.length - 1);
+        publications = Arrays.copyOf(publications, publications.length - 1);
     }
 
     public Publication update(Publication publication) {
