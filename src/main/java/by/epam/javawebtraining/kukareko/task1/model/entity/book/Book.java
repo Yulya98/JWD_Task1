@@ -27,7 +27,7 @@ public class Book extends Publication {
 
     @Override
     public String toString() {
-        return ", author: " + author
+        return getClass().getSimpleName() + ": author: " + author
                 + ", " + super.toString();
     }
 
