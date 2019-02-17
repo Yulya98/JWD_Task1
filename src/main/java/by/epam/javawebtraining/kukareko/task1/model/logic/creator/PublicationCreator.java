@@ -26,15 +26,7 @@ public class PublicationCreator {
         random = new Random();
     }
 
-    public static Publication[] create(int size){
-        Publication[] publications = new Publication[size];
-        for(int i = 0; i < publications.length; i++){
-            publications[i] = createEntity();
-        }
-        return publications;
-    }
-
-    private static Publication createEntity() {
+    private static Publication create() {
         newId++;
         int newClass = random.nextInt(8);
         switch (newClass) {
