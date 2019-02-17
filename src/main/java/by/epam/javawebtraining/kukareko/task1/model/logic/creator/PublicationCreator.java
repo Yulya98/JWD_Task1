@@ -20,47 +20,55 @@ import java.util.UUID;
 public class PublicationCreator {
 
     private static Random random;
-    private static long index;
+    private static long newId;
 
     static {
         random = new Random();
     }
 
-    public static Publication creator() {
-        index++;
+    public static Publication[] create(int size){
+        Publication[] publications = new Publication[size];
+        for(int i = 0; i < publications.length; i++){
+            publications[i] = createEntity();
+        }
+        return publications;
+    }
+
+    private static Publication createEntity() {
+        newId++;
         int newClass = random.nextInt(8);
         switch (newClass) {
+            case 0:
+                return new Sport(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+                        UUID.randomUUID().toString(), random.nextInt(100000), random.nextInt(100),
+                        random.nextInt(30), UUID.randomUUID().toString());
             case 1:
-                return new Sport(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+                return new Science(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
                         UUID.randomUUID().toString(), random.nextInt(100000), random.nextInt(100),
                         random.nextInt(30), UUID.randomUUID().toString());
             case 2:
-                return new Science(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
-                        UUID.randomUUID().toString(), random.nextInt(100000), random.nextInt(100),
-                        random.nextInt(30), UUID.randomUUID().toString());
-            case 3:
-                return new Musical(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+                return new Musical(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
                         UUID.randomUUID().toString(), random.nextInt(100000), random.nextInt(100),
                         random.nextInt(30), UUID.randomUUID().toString(), true);
-            case 4:
-                return new Technical(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+            case 3:
+                return new Technical(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
                         UUID.randomUUID().toString(), random.nextInt(100000), random.nextInt(100),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 5:
-                return new Programming(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+            case 4:
+                return new Programming(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
                         UUID.randomUUID().toString(), random.nextInt(10000), random.nextInt(100), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 6:
-                return new Instractions(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+            case 5:
+                return new Instractions(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
                         UUID.randomUUID().toString(), random.nextInt(10000), random.nextInt(100),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 7:
-                return new Children(index, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
+            case 6:
+                return new Children(newId, random.nextInt(1000), UUID.randomUUID().toString(), random.nextInt(5),
                         UUID.randomUUID().toString(), random.nextInt(10000), random.nextInt(100),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 8:
-                return new Album(index, random.nextInt(1000), UUID.randomUUID().toString(),
+            case 7:
+                return new Album(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
                         random.nextInt(100), UUID.randomUUID().toString());
             default:
