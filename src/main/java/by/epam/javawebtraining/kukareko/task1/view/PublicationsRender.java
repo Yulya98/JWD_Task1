@@ -7,7 +7,8 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  * @version 1.0 16 Feb 2019
  */
 public interface PublicationsRender {
-    void render(Publication[] publication);
+    void renderArray(Publication[] publication, String message);
+    void renderElement(Publication publication, String message);
 }
 
 
