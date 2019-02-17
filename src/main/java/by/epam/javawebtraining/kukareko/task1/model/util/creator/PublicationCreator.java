@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.model.logic.creator;
+package by.epam.javawebtraining.kukareko.task1.model.util.creator;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
@@ -26,7 +26,7 @@ public class PublicationCreator {
         random = new Random();
     }
 
-    private static Publication create() {
+    public static Publication create() {
         newId++;
         int newClass = random.nextInt(8);
         switch (newClass) {
