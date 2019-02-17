@@ -20,8 +20,8 @@ public class PublicationFinder {
         return null;
     }
 
-    public static Publication findExtremumByRaiting(Publication[] publications, String sortOrder) {
-        PublicationSorter.sortedByRating(publications, 0, publications.length);
+    public static Publication findExtremumByRating(Publication[] publications, String sortOrder) {
+        PublicationSorter.sortedByRating(publications, 0, publications.length - 1);
         return sortOrder.equals("ACK") ? publications[0] : publications[publications.length - 1];
     }
 
