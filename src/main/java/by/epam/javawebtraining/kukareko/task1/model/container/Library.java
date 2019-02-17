@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Library  {
+public class Library {
 
     private Publication[] publications;
 
