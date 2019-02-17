@@ -11,7 +11,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine;
  */
 public class PublicationCounter {
 
-    public static int countBook(Publication[] publications) {
+    public static int countBooks(Publication[] publications) {
         int count = 0;
 
         for (Publication publication : publications) {
@@ -19,10 +19,10 @@ public class PublicationCounter {
                 count++;
             }
         }
-        return count;
+        return count == 0 ? -1 : count;
     }
 
-    public static int countMagazine(Publication[] publications) {
+    public static int countMagazines(Publication[] publications) {
         int count = 0;
 
         for (Publication publication : publications) {
@@ -30,10 +30,10 @@ public class PublicationCounter {
                 count++;
             }
         }
-        return count;
+        return count == 0 ? -1 : count;
     }
 
-    public static int countAlbum(Publication[] publications) {
+    public static int countAlbums(Publication[] publications) {
         int count = 0;
 
         for (Publication publication : publications) {
@@ -41,7 +41,7 @@ public class PublicationCounter {
                 count++;
             }
         }
-        return count;
+        return count == 0 ? -1 : count;
     }
 }
 

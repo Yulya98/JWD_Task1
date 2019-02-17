@@ -1,16 +1,14 @@
 package by.epam.javawebtraining.kukareko.task1.model.container;
 
-import by.epam.javawebtraining.kukareko.task1.model.logic.iterator.PublicationIterator;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Library implements Iterable<Publication> {
+public class Library  {
 
     private Publication[] publications;
 
@@ -50,10 +48,5 @@ public class Library implements Iterable<Publication> {
 
     public void setPublications(Publication[] publications) {
         this.publications = publications;
-    }
-
-    @Override
-    public Iterator<Publication> iterator() {
-        return new PublicationIterator(publications);
     }
 }

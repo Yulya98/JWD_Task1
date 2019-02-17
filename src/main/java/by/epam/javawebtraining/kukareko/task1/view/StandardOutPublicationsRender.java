@@ -9,8 +9,13 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 public class StandardOutPublicationsRender implements PublicationsRender {
 
     @Override
-    public void renderArray(Publication[] publication, String message) {
+    public void messageRender(String message) {
         System.out.println(message);
+        System.out.println();
+    }
+
+    @Override
+    public void renderArray(Publication[] publication) {
         System.out.println();
         for (Publication item : publication) {
             System.out.println(item);
@@ -19,8 +24,7 @@ public class StandardOutPublicationsRender implements PublicationsRender {
     }
 
     @Override
-    public void renderElement(Publication publication, String message) {
-        System.out.println(message);
+    public void renderElement(Publication publication) {
         System.out.println();
         System.out.println(publication);
         System.out.println();

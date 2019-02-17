@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.model.util.creator;
+package by.epam.javawebtraining.kukareko.task1.util.creator;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;

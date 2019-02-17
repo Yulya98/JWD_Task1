@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.sorter;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsBookEmptyException;
 
 /**
  * @author Yulya Kukareko
@@ -8,40 +9,51 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  */
 public class PublicationSorter {
 
-    public static void sortedByRating(Publication[] publications, int first, int last) {
-        Publication p = publications[(last - first) / 2 + first];
-        Publication temp;
-        int i = first, j = last;
-        while (i <= j) {
-            while (publications[i].getRaiting() < p.getRaiting() && i <= last) i++;
-            while (publications[j].getRaiting() > p.getRaiting() && j >= first) j--;
-            if (i <= j) {
-                temp = publications[i];
-                publications[i] = publications[j];
-                publications[j] = temp;
-                i++;
-                j--;
+    public static void sortedByRating(Publication[] publications, int first, int last)
+            throws PublicationsBookEmptyException {
+        if (publications == null) {
+            throw new PublicationsBookEmptyException();
+        } else {
+
+            Publication p = publications[(last - first) / 2 + first];
+            Publication temp;
+            int i = first, j = last;
+            while (i <= j) {
+                while (publications[i].getRaiting() < p.getRaiting() && i <= last) i++;
+                while (publications[j].getRaiting() > p.getRaiting() && j >= first) j--;
+                if (i <= j) {
+                    temp = publications[i];
+                    publications[i] = publications[j];
+                    publications[j] = temp;
+                    i++;
+                    j--;
+                }
             }
+            if (j > first) sortedByRating(publications, first, j);
+            if (i < last) sortedByRating(publications, i, last);
         }
-        if (j > first) sortedByRating(publications, first, j);
-        if (i < last) sortedByRating(publications, i, last);
     }
 
-    public static void sortedByCirculationAndPageCount(Publication[] publications) {
-        Publication tmp;
-        int j;
-        int step = publications.length;
-        for (step /= 2; step > 0; step /= 2) {
-            for (int i = step; i < publications.length; i++) {
-                tmp = publications[i];
-                for (j = i; j >= step; j -= step) {
-                    if ((tmp.getPageCount() < publications[j - step].getPageCount()) &&
-                            (tmp.getCirculation() < publications[j - step].getCirculation())) {
-                        publications[j] = publications[j - step];
-                    } else
-                        break;
+    public static void sortedByCirculationAndPageCount(Publication[] publications)
+            throws PublicationsBookEmptyException {
+        if (publications == null) {
+            throw new PublicationsBookEmptyException();
+        } else {
+            Publication tmp;
+            int j;
+            int step = publications.length;
+            for (step /= 2; step > 0; step /= 2) {
+                for (int i = step; i < publications.length; i++) {
+                    tmp = publications[i];
+                    for (j = i; j >= step; j -= step) {
+                        if ((tmp.getPageCount() < publications[j - step].getPageCount()) &&
+                                (tmp.getCirculation() < publications[j - step].getCirculation())) {
+                            publications[j] = publications[j - step];
+                        } else
+                            break;
+                    }
+                    publications[j] = tmp;
                 }
-                publications[j] = tmp;
             }
         }
     }
