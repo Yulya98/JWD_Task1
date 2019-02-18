@@ -2,6 +2,7 @@ package by.epam.javawebtraining.kukareko.task1.controller;
 
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
@@ -86,6 +87,14 @@ public class Controller {
 
             publicationsRender.messageRender("Albums count = "
                     + checkCount(PublicationCounter.countAlbums(library.getPublications())));
+
+            //</editor-fold>
+
+            //<editor-fold desc="Check copy constructor">
+
+            Book book = new Book();
+            Book book2 = new Book(book);
+            System.out.println(book2);
 
             //</editor-fold>
 
