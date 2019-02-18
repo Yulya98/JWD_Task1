@@ -9,9 +9,8 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 public interface PublicationsRender {
     void messageRender(String message);
 
-    void renderArray(Publication[] publication);
-
     void renderElement(Publication publication);
 }
+
 
 

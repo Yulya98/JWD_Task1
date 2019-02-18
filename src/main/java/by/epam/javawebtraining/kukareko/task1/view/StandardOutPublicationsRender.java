@@ -15,15 +15,6 @@ public class StandardOutPublicationsRender implements PublicationsRender {
     }
 
     @Override
-    public void renderArray(Publication[] publication) {
-        System.out.println();
-        for (Publication item : publication) {
-            System.out.println(item);
-            System.out.println();
-        }
-    }
-
-    @Override
     public void renderElement(Publication publication) {
         System.out.println();
         System.out.println(publication);
