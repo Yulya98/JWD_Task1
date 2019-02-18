@@ -18,7 +18,6 @@ public class Controller {
         try {
 
             //<editor-fold desc="Initialization publications array">
-
             Library library = new Library(5);
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
@@ -26,31 +25,29 @@ public class Controller {
                 Publication publication1 = PublicationCreator.create();
                 library.getPublications()[i] = publication1;
             }
-
             //</editor-fold>
 
             //<editor-fold desc="Check add/remove methods of publications array">
-
             library.add(PublicationCreator.create());
             library.remove(2);
-
             //</editor-fold>
 
             //<editor-fold desc="Check sorted methods of publications array">
-
             PublicationSorter.sortedByRating(library.getPublications(), 0,
                     library.getPublications().length - 1);
             publicationsRender.messageRender("Sorting by rating: ");
-            publicationsRender.renderArray(library.getPublications());
+            for (Publication publication : library.getPublications()) {
+                publicationsRender.renderElement(publication);
+            }
 
             PublicationSorter.sortedByCirculationAndPageCount(library.getPublications());
             publicationsRender.messageRender("Sorting by Circulation and page count: ");
-            publicationsRender.renderArray(library.getPublications());
-
+            for (Publication publication : library.getPublications()) {
+                publicationsRender.renderElement(publication);
+            }
             //</editor-fold>
 
             //<editor-fold desc="Check find extremes methods of publications array">
-
             PublicationFinder.findExtremumByRating(library.getPublications(), "ACK");
             publicationsRender.messageRender("Find extremum element by rating: ");
             publicationsRender.renderElement(PublicationFinder.findExtremumByRating(library.getPublications(),
@@ -65,20 +62,16 @@ public class Controller {
             publicationsRender.messageRender("Find extremum element by page count: ");
             publicationsRender.renderElement(PublicationFinder.findExtremumByRating(library.getPublications(),
                     "ACK"));
-
             //</editor-fold>
 
             //<editor-fold desc="Check finder method of publications array">
-
             publicationsRender.messageRender("Find Publication by param: ");
 
             publicationsRender.renderElement(PublicationFinder.findByParam(library.getPublications(), 13,
                     10, 1));
-
             //</editor-fold>
 
             //<editor-fold desc="Check counter methods of publications array">
-
             publicationsRender.messageRender("Books count = "
                     + checkCount(PublicationCounter.countBooks(library.getPublications())));
 
@@ -87,23 +80,20 @@ public class Controller {
 
             publicationsRender.messageRender("Albums count = "
                     + checkCount(PublicationCounter.countAlbums(library.getPublications())));
-
             //</editor-fold>
 
             //<editor-fold desc="Check copy constructor">
-
             Book book = new Book();
             Book book2 = new Book(book);
-            System.out.println(book2);
-
+            publicationsRender.renderElement(book2);
             //</editor-fold>
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    private static String checkCount(int count){
+    private static String checkCount(int count) {
         return count == -1 ? "Not found" : String.valueOf(count);
     }
 }
