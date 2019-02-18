@@ -19,6 +19,10 @@ public class Children extends Book {
         this.recommendAge = recommendAge;
     }
 
+    public Children(Children children) {
+        this.recommendAge = children.recommendAge;
+    }
+
     public String getRecommendAge() {
         return recommendAge;
     }

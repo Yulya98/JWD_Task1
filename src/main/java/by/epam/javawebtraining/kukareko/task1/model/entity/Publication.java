@@ -33,6 +33,16 @@ public class Publication {
         this.rating = rating;
     }
 
+    public Publication(Publication obj) {
+        this.id = obj.id;
+        this.pageCount = obj.pageCount;
+        this.name = obj.name;
+        this.font = obj.font;
+        this.publishing = obj.publishing;
+        this.circulation = obj.circulation;
+        this.rating = obj.rating;
+    }
+
     public long getId() {
         return id;
     }

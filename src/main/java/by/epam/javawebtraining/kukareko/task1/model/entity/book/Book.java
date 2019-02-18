@@ -21,6 +21,10 @@ public class Book extends Publication {
         this.author = author;
     }
 
+    public Book(Book book) {
+        this.author = book.author;
+    }
+
     public String getAuthor() {
         return author;
     }
