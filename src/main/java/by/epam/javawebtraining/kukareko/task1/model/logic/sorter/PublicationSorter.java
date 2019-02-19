@@ -9,28 +9,12 @@ import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsBookEm
  */
 public class PublicationSorter {
 
-    public static void sortedByRating(Publication[] publications, int first, int last)
+    public static void sortedByRating(Publication[] publications)
             throws PublicationsBookEmptyException {
-        if (publications == null) {
-            throw new PublicationsBookEmptyException();
+        if (publications != null) {
+            sortedByRatingQuickSort(publications, 0, publications.length - 1);
         } else {
-
-            Publication p = publications[(last - first) / 2 + first];
-            Publication temp;
-            int i = first, j = last;
-            while (i <= j) {
-                while (publications[i].getRaiting() < p.getRaiting() && i <= last) i++;
-                while (publications[j].getRaiting() > p.getRaiting() && j >= first) j--;
-                if (i <= j) {
-                    temp = publications[i];
-                    publications[i] = publications[j];
-                    publications[j] = temp;
-                    i++;
-                    j--;
-                }
-            }
-            if (j > first) sortedByRating(publications, first, j);
-            if (i < last) sortedByRating(publications, i, last);
+            throw new PublicationsBookEmptyException();
         }
     }
 
@@ -81,6 +65,25 @@ public class PublicationSorter {
                 publications[j - 1] = elem;
             }
         }
+    }
+
+    private static void sortedByRatingQuickSort(Publication[] publications, int first, int last) {
+        Publication p = publications[(last - first) / 2 + first];
+        Publication temp;
+        int i = first, j = last;
+        while (i <= j) {
+            while (publications[i].getRaiting() < p.getRaiting() && i <= last) i++;
+            while (publications[j].getRaiting() > p.getRaiting() && j >= first) j--;
+            if (i <= j) {
+                temp = publications[i];
+                publications[i] = publications[j];
+                publications[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        if (j > first) sortedByRatingQuickSort(publications, first, j);
+        if (i < last) sortedByRatingQuickSort(publications, i, last);
     }
 }
 

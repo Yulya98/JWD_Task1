@@ -33,8 +33,7 @@ public class Controller {
             //</editor-fold>
 
             //<editor-fold desc="Check sorted methods of publications array">
-            PublicationSorter.sortedByRating(library.getPublications(), 0,
-                    library.getPublications().length - 1);
+            PublicationSorter.sortedByRating(library.getPublications());
             publicationsRender.messageRender("Sorting by rating: ");
             for (Publication publication : library.getPublications()) {
                 publicationsRender.renderElement(publication);

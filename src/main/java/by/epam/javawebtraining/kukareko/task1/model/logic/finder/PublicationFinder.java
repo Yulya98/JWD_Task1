@@ -26,7 +26,7 @@ public class PublicationFinder {
         if (publications == null) {
             throw new PublicationsBookEmptyException();
         } else {
-            PublicationSorter.sortedByRating(publications, 0, publications.length - 1);
+            PublicationSorter.sortedByRating(publications);
             return sortOrder.equals("ACK") ? publications[0] : publications[publications.length - 1];
         }
     }
