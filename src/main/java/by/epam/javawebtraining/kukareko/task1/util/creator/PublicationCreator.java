@@ -3,7 +3,7 @@ package by.epam.javawebtraining.kukareko.task1.util.creator;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
-import by.epam.javawebtraining.kukareko.task1.model.entity.book.Instractions;
+import by.epam.javawebtraining.kukareko.task1.model.entity.book.Instruction;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Technical;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical;
@@ -54,7 +54,7 @@ public class PublicationCreator {
                         random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
             case 5:
-                return new Instractions(newId, random.nextInt(1000), UUID.randomUUID().toString(),
+                return new Instruction(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
                         random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
