@@ -1,7 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.sorter;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsBookEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
 
 import java.util.Arrays;
 
@@ -13,24 +13,23 @@ import java.util.Arrays;
 public class PublicationSorter {
 
     public static Publication[] sortedByRating(Publication[] publications)
-            throws PublicationsBookEmptyException {
-        Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
+            throws PublicationsEmptyException {
+        Publication[] publicationsSorted;
 
         if (publications != null) {
+            publicationsSorted = Arrays.copyOf(publications, publications.length);
             sortedByRatingQuickSort(publicationsSorted, 0, publicationsSorted.length - 1);
+            return publicationsSorted;
         } else {
-            throw new PublicationsBookEmptyException();
+            throw new PublicationsEmptyException();
         }
-        return publicationsSorted;
     }
 
     public static Publication[] sortedByCirculationAndPageCount(Publication[] publications)
-            throws PublicationsBookEmptyException {
-        Publication[] publicationsSorted = null;
+            throws PublicationsEmptyException {
+        Publication[] publicationsSorted;
 
-        if (publications == null) {
-            throw new PublicationsBookEmptyException();
-        } else {
+        if (publications != null) {
             publicationsSorted = Arrays.copyOf(publications, publications.length);
             Publication tmp;
             int j;
@@ -48,8 +47,10 @@ public class PublicationSorter {
                     publicationsSorted[j] = tmp;
                 }
             }
+            return publicationsSorted;
+        } else {
+            throw new PublicationsEmptyException();
         }
-        return publicationsSorted;
     }
 
     public static Publication[] sortedByPageCount(Publication[] publications) {

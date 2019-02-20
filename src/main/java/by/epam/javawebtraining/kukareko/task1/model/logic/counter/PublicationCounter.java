@@ -4,6 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine;
+import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
 
 /**
  * @author Yulya Kukareko
@@ -14,9 +15,11 @@ public class PublicationCounter {
     public static int countBooks(Publication[] publications) {
         int count = 0;
 
-        for (Publication publication : publications) {
-            if (publication instanceof Book) {
-                count++;
+        if (publications != null) {
+            for (Publication publication : publications) {
+                if (publication instanceof Book) {
+                    count++;
+                }
             }
         }
         return count == 0 ? -1 : count;
@@ -25,9 +28,11 @@ public class PublicationCounter {
     public static int countMagazines(Publication[] publications) {
         int count = 0;
 
-        for (Publication publication : publications) {
-            if (publication instanceof Magazine) {
-                count++;
+        if (publications != null) {
+            for (Publication publication : publications) {
+                if (publication instanceof Magazine) {
+                    count++;
+                }
             }
         }
         return count == 0 ? -1 : count;
@@ -36,9 +41,11 @@ public class PublicationCounter {
     public static int countAlbums(Publication[] publications) {
         int count = 0;
 
-        for (Publication publication : publications) {
-            if (publication instanceof Album) {
-                count++;
+        if (publications != null) {
+            for (Publication publication : publications) {
+                if (publication instanceof Album) {
+                    count++;
+                }
             }
         }
         return count == 0 ? -1 : count;
