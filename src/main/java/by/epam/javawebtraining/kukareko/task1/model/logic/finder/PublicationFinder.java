@@ -12,9 +12,9 @@ public class PublicationFinder {
 
     public static Publication findByParam(Publication[] publications, int rating, int pageCount, int font) {
         for (Publication publication : publications) {
-            if ((publication.getRaiting() == rating) &&
-                    (publication.getPageCount() == pageCount) &&
-                    (publication.getFont() == font)) {
+            if ((publication.getRaiting() == rating)
+                    && (publication.getPageCount() == pageCount)
+                    && (publication.getFont() == font)) {
                 return publication;
             }
         }
@@ -26,8 +26,8 @@ public class PublicationFinder {
         if (publications == null) {
             throw new PublicationsBookEmptyException();
         } else {
-            PublicationSorter.sortedByRating(publications);
-            return sortOrder.equals("ACK") ? publications[0] : publications[publications.length - 1];
+            Publication[] publicationSorted = PublicationSorter.sortedByRating(publications);
+            return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
         }
     }
 
@@ -36,8 +36,8 @@ public class PublicationFinder {
         if (publications == null) {
             throw new PublicationsBookEmptyException();
         } else {
-            PublicationSorter.sortedByPageCount(publications);
-            return sortOrder.equals("ACK") ? publications[0] : publications[publications.length - 1];
+            Publication[] publicationSorted = PublicationSorter.sortedByPageCount(publications);
+            return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
         }
     }
 
@@ -46,8 +46,8 @@ public class PublicationFinder {
         if (publications == null) {
             throw new PublicationsBookEmptyException();
         } else {
-            PublicationSorter.sortedByFont(publications);
-            return sortOrder.equals("ACK") ? publications[0] : publications[publications.length - 1];
+            Publication[] publicationSorted = PublicationSorter.sortedByFont(publications);
+            return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
         }
     }
 }

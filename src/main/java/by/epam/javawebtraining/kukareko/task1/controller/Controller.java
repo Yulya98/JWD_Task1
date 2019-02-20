@@ -33,15 +33,19 @@ public class Controller {
             //</editor-fold>
 
             //<editor-fold desc="Check sorted methods of publications array">
-            PublicationSorter.sortedByRating(library.getPublications());
             publicationsRender.messageRender("Sorting by rating: ");
-            for (Publication publication : library.getPublications()) {
+            Publication[] publicationsSortByRating = PublicationSorter
+                    .sortedByRating(library.getPublications());
+
+            for (Publication publication : publicationsSortByRating) {
                 publicationsRender.renderElement(publication);
             }
 
-            PublicationSorter.sortedByCirculationAndPageCount(library.getPublications());
             publicationsRender.messageRender("Sorting by Circulation and page count: ");
-            for (Publication publication : library.getPublications()) {
+            Publication[] publicationSortedByTwoParam = PublicationSorter
+                    .sortedByCirculationAndPageCount(library.getPublications());
+
+            for (Publication publication : publicationSortedByTwoParam) {
                 publicationsRender.renderElement(publication);
             }
             //</editor-fold>
