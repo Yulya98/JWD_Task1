@@ -30,12 +30,6 @@ public class Musical extends Magazine {
     }
 
     @Override
-    public String toString() {
-        return getClass().getSimpleName() + ": kindMusical = " + kindMusical +
-                ", haveDisk " + haveDisk + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -48,5 +42,11 @@ public class Musical extends Magazine {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), kindMusical, haveDisk);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": kindMusical = " + kindMusical +
+                ", haveDisk " + haveDisk + ", " + super.toString();
     }
 }

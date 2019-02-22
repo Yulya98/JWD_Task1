@@ -26,11 +26,6 @@ public class Album extends Publication {
     }
 
     @Override
-    public String toString() {
-        return getClass().getSimpleName() + ": format" + format + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -42,6 +37,11 @@ public class Album extends Publication {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), format);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": format" + format + ", " + super.toString();
     }
 }
 

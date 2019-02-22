@@ -27,11 +27,6 @@ public class Magazine extends Publication {
     }
 
     @Override
-    public String toString() {
-        return "countArticles = " + countAriticles + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -43,5 +38,10 @@ public class Magazine extends Publication {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), countAriticles);
+    }
+
+    @Override
+    public String toString() {
+        return "countArticles = " + countAriticles + ", " + super.toString();
     }
 }

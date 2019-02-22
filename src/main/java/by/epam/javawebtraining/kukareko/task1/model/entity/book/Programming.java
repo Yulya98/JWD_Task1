@@ -24,11 +24,6 @@ public class Programming extends Technical {
     }
 
     @Override
-    public String toString() {
-        return getClass().getSimpleName() + ": language: " + this.language + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -40,5 +35,10 @@ public class Programming extends Technical {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), language);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": language: " + this.language + ", " + super.toString();
     }
 }

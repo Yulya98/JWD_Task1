@@ -24,12 +24,6 @@ public class Instruction extends Technical {
     }
 
     @Override
-    public String toString() {
-        return getClass().getSimpleName() + ": subject: "
-                + subject + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -41,5 +35,11 @@ public class Instruction extends Technical {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), subject);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": subject: "
+                + subject + ", " + super.toString();
     }
 }

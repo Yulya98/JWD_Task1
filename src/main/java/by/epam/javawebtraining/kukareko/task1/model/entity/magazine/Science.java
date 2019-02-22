@@ -24,11 +24,6 @@ public class Science extends Magazine {
     }
 
     @Override
-    public String toString() {
-        return getClass().getSimpleName() + ": subjectArea: " + subjectArea + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -40,5 +35,10 @@ public class Science extends Magazine {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), subjectArea);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": subjectArea: " + subjectArea + ", " + super.toString();
     }
 }

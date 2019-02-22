@@ -22,11 +22,6 @@ public class Sport extends Magazine {
     }
 
     @Override
-    public String toString() {
-        return getClass().getSimpleName() + ": kindSport: " + kindSport + ", " + super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o instanceof Sport) {
             Sport other = (Sport) o;
@@ -39,5 +34,10 @@ public class Sport extends Magazine {
     public int hashCode() {
         final int coefficient = 21;
         return coefficient * super.hashCode() + ((kindSport == null) ? 0 : kindSport.hashCode());
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": kindSport: " + kindSport + ", " + super.toString();
     }
 }

@@ -104,13 +104,6 @@ public class Publication {
     }
 
     @Override
-    public String toString() {
-        return "long: " + id + " page count = " + pageCount + ", name = " + name
-                + ", font = " + font + ", publishing = " + publishing
-                + ", circulation = " + circulation + " rating = " + rating;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -127,5 +120,12 @@ public class Publication {
     @Override
     public int hashCode() {
         return Objects.hash(id, pageCount, name, font, publishing, circulation, rating);
+    }
+
+    @Override
+    public String toString() {
+        return "long: " + id + " page count = " + pageCount + ", name = " + name
+                + ", font = " + font + ", publishing = " + publishing
+                + ", circulation = " + circulation + " rating = " + rating;
     }
 }
