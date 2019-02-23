@@ -10,8 +10,11 @@ import java.util.Arrays;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public class PublicationSorter {
+public class PublicationSorterImpl implements PublicationSorter {
 
+    /*
+    Sorted publications using Quick sort
+    */
     public Publication[] sortedByRating(Publication[] publications)
             throws PublicationsEmptyException {
         Publication[] publicationsSorted;
@@ -25,7 +28,9 @@ public class PublicationSorter {
         }
     }
 
-
+    /*
+    Sorted publications using Shell sort
+     */
     public Publication[] sortedByCirculationAndPageCount(Publication[] publications)
             throws PublicationsEmptyException {
         Publication[] publicationsSorted;
@@ -54,6 +59,9 @@ public class PublicationSorter {
         }
     }
 
+    /*
+    Sorted publications using Selection sort
+     */
     public Publication[] sortedByPageCount(Publication[] publications) {
         Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
@@ -72,6 +80,9 @@ public class PublicationSorter {
         return publicationsSorted;
     }
 
+    /*
+    Sorted publications using Insertion sort
+     */
     public Publication[] sortedByFont(Publication[] publications) {
         Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 

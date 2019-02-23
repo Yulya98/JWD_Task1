@@ -1,19 +1,19 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.finder;
 
 import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
-import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public class PublicationFinder {
+public class PublicationFinderImpl implements PublicationFinder {
 
-    private PublicationSorter publicationSorter;
+    private PublicationSorterImpl publicationSorter;
 
-    public PublicationFinder() {
-        publicationSorter = new PublicationSorter();
+    public PublicationFinderImpl() {
+        publicationSorter = new PublicationSorterImpl();
     }
 
     public Publication findByParam(Publication[] publications, int rating, int pageCount, int font) {

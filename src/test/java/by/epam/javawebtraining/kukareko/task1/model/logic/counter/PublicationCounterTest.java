@@ -19,55 +19,59 @@ import org.junit.Test;
 public class PublicationCounterTest {
 
     private static Publication[] publications;
+    private static PublicationCounter publicationCounter;
 
     @BeforeClass
     public static void init() {
+        publicationCounter = new PublicationCounterImpl();
         publications = new Publication[]{
-                new Programming(1L, 500, "Thinking in Java", 2, "Classical Computer Science",
-                        3000, 10, "Bruce Eckel", "Base programming knowledge ",
+                new Programming(1L, 500, "Thinking in Java", 2,
+                        "Classical Computer Science", 3000, 10, "Bruce Eckel",
+                        "Base programming knowledge ",
                         "Beginner/Middle", "Java"),
-                new Children(2L, 700, "Andersen's tales", 8, "Olimpia", 100000,
-                        8, "Hans Christian Andersen", "4+"),
+                new Children(2L, 700, "Andersen's tales", 8, "Olimpia",
+                        100000, 8, "Hans Christian Andersen", "4+"),
                 new Musical(3L, 15, "Alternative Press", 5, "Alternative Press Magazine",
-                        400, 7, 20, "Alternative", false),
-                new Science(4L, 40, " Scientific American", 4, "Springer Nature", 30050,
-                        9, 20, "Scientific research"),
-                new Sport(5L, 50, "Billiards sport", 6, "MFBS", 100, 6,
-                        30, "Billiards"),
-                new Album(6L, 70, "Historical album", 7, "Olimpia", 200, 7,
-                        "horizontal"),
-                new Instruction(7L, 30, "Car instruction manual Saturn", 3, "GM", 650,
-                        4, "-", "Automotive Equipment", "Beginner/Middle/Experienced", "Car instruction manual")
+                        400, 7, 20, Musical.KindMusic.values()[0], false),
+                new Science(4L, 40, " Scientific American", 4, "Springer Nature",
+                        30050, 9, 20, "Scientific research"),
+                new Sport(5L, 50, "Billiards sport", 6, "MFBS", 100,
+                        6, 30, "Billiards"),
+                new Album(6L, 70, "Historical album", 7, "Olimpia", 200,
+                        7, "horizontal"),
+                new Instruction(7L, 30, "Car instruction manual Saturn", 3, "GM",
+                        650, 4, "-", "Automotive Equipment",
+                        "Beginner/Middle/Experienced", "Car instruction manual")
         };
     }
 
     @Test
     public void countBooksTest() {
-        Assert.assertEquals(3, PublicationCounter.countBooks(publications));
+        Assert.assertEquals(3, publicationCounter.countBooks(publications));
     }
 
     @Test
     public void countMagazinesTest() {
-        Assert.assertEquals(3, PublicationCounter.countMagazines(publications));
+        Assert.assertEquals(3, publicationCounter.countMagazines(publications));
     }
 
     @Test
     public void countAlbumsTest() {
-        Assert.assertEquals(1, PublicationCounter.countAlbums(publications));
+        Assert.assertEquals(1, publicationCounter.countAlbums(publications));
     }
 
     @Test
     public void countBooksNullTest() {
-        Assert.assertEquals(-1, PublicationCounter.countBooks(null));
+        Assert.assertEquals(-1, publicationCounter.countBooks(null));
     }
 
     @Test
     public void countMagazineNullTest() {
-        Assert.assertEquals(-1, PublicationCounter.countMagazines(null));
+        Assert.assertEquals(-1, publicationCounter.countMagazines(null));
     }
 
     @Test
     public void countAlbumNullTest() {
-        Assert.assertEquals(-1, PublicationCounter.countAlbums(null));
+        Assert.assertEquals(-1, publicationCounter.countAlbums(null));
     }
 }

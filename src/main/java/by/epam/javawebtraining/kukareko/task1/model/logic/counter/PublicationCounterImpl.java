@@ -9,9 +9,9 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public class PublicationCounter {
+public class PublicationCounterImpl implements PublicationCounter {
 
-    public static int countBooks(Publication[] publications) {
+    public int countBooks(Publication[] publications) {
         int count = 0;
 
         if (publications != null) {
@@ -24,7 +24,7 @@ public class PublicationCounter {
         return count == 0 ? -1 : count;
     }
 
-    public static int countMagazines(Publication[] publications) {
+    public int countMagazines(Publication[] publications) {
         int count = 0;
 
         if (publications != null) {
@@ -37,7 +37,7 @@ public class PublicationCounter {
         return count == 0 ? -1 : count;
     }
 
-    public static int countAlbums(Publication[] publications) {
+    public int countAlbums(Publication[] publications) {
         int count = 0;
 
         if (publications != null) {
