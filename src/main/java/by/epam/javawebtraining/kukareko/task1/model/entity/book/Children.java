@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class Children extends Book {
 
-    private String recommendAge;
+    private String recommendedAge;
 
     public Children() {
     }
@@ -16,20 +16,20 @@ public class Children extends Book {
     public Children(long id, int pageCount, String name, int font, String publishing,
                     int circulation, int rating, String author, String recommendAge) {
         super(id, pageCount, name, font, publishing, circulation, rating, author);
-        this.recommendAge = recommendAge;
+        this.recommendedAge = recommendAge;
     }
 
     public Children(Children children) {
-        this.recommendAge = children.recommendAge;
+        this.recommendedAge = children.recommendedAge;
     }
 
     public String getRecommendAge() {
-        return recommendAge;
+        return recommendedAge;
     }
 
     public void setRecommendAge(String recommendAge) {
         if (recommendAge != null && !recommendAge.equals("")) {
-            this.recommendAge = recommendAge;
+            this.recommendedAge = recommendAge;
         }
     }
 
@@ -39,16 +39,16 @@ public class Children extends Book {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Children children = (Children) o;
-        return Objects.equals(recommendAge, children.recommendAge);
+        return Objects.equals(recommendedAge, children.recommendedAge);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), recommendAge);
+        return Objects.hash(super.hashCode(), recommendedAge);
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": recommendAge: " + recommendAge + ", " + super.toString();
+        return getClass().getSimpleName() + ": recommendAge: " + recommendedAge + ", " + super.toString();
     }
 }

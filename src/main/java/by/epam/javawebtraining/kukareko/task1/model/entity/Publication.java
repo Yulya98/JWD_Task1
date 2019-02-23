@@ -65,10 +65,6 @@ public class Publication {
         return pageCount;
     }
 
-    public int getRaiting() {
-        return rating;
-    }
-
     public void setPageCount(int pageCount) {
         if (pageCount > 0) {
             this.pageCount = pageCount;
