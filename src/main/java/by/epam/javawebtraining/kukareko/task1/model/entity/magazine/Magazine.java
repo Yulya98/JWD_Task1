@@ -10,20 +10,20 @@ import java.util.Objects;
  */
 public class Magazine extends Publication {
 
-    private int countAriticles;
+    private int countArticles;
 
     public Magazine() {
-        countAriticles = 1;
+        countArticles = 1;
     }
 
     public Magazine(long id, int pageCount, String name, int font, String publishing,
-                    int circulation, int rating, int countAriticles) {
+                    int circulation, int rating, int countArticles) {
         super(id, pageCount, name, font, publishing, circulation, rating);
-        this.countAriticles = countAriticles;
+        this.countArticles = countArticles;
     }
 
     public int getCountAriticles() {
-        return countAriticles;
+        return countArticles;
     }
 
     @Override
@@ -32,16 +32,16 @@ public class Magazine extends Publication {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Magazine magazine = (Magazine) o;
-        return countAriticles == magazine.countAriticles;
+        return countArticles == magazine.countArticles;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), countAriticles);
+        return Objects.hash(super.hashCode(), countArticles);
     }
 
     @Override
     public String toString() {
-        return "countArticles = " + countAriticles + ", " + super.toString();
+        return "countArticles = " + countArticles + ", " + super.toString();
     }
 }

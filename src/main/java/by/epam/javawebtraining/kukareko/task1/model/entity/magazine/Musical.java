@@ -8,20 +8,24 @@ import java.util.Objects;
  */
 public class Musical extends Magazine {
 
-    private String kindMusical;
+    private KindMusic kindMusical;
     private boolean haveDisk;
+
+    public enum KindMusic{
+        CLASSIC, POP, HIP_HOP, ROCK, ELECTRO, JAZZ, BLUES
+    }
 
     public Musical() {
     }
 
     public Musical(long id, int pageCount, String name, int font, String publishing, int circulation,
-                   int rating, int countAriticles, String kindMusical, boolean haveDisk) {
-        super(id, pageCount, name, font, publishing, circulation, rating, countAriticles);
+                   int rating, int countArticles, KindMusic kindMusical, boolean haveDisk) {
+        super(id, pageCount, name, font, publishing, circulation, rating, countArticles);
         this.kindMusical = kindMusical;
         this.haveDisk = haveDisk;
     }
 
-    public String getKindMusical() {
+    public KindMusic getKindMusical() {
         return kindMusical;
     }
 

@@ -39,9 +39,10 @@ public class PublicationCreator {
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
                         random.nextInt(100), random.nextInt(30), UUID.randomUUID().toString());
             case 2:
+                int x = Musical.KindMusic.values().length;
                 return new Musical(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
-                        random.nextInt(100), random.nextInt(30), UUID.randomUUID().toString(),
+                        random.nextInt(100), random.nextInt(30), Musical.KindMusic.values()[x],
                         true);
             case 3:
                 return new Technical(newId, random.nextInt(1000), UUID.randomUUID().toString(),

@@ -12,8 +12,8 @@ public class Sport extends Magazine {
     }
 
     public Sport(long id, int pageCount, String name, int font, String publishing, int circulation,
-                 int rating, int countAriticles, String kindSport) {
-        super(id, pageCount, name, font, publishing, circulation, rating, countAriticles);
+                 int rating, int countArticles, String kindSport) {
+        super(id, pageCount, name, font, publishing, circulation, rating, countArticles);
         this.kindSport = kindSport;
     }
 

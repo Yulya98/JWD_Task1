@@ -4,7 +4,6 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine;
-import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
 
 /**
  * @author Yulya Kukareko
