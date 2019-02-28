@@ -11,9 +11,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
 import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 /**
  * @author Yulya Kukareko
@@ -23,9 +21,6 @@ public class PublicationSorterTest {
 
     private static Publication[] publications;
     private static PublicationSorter publicationSorter;
-
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
 
     @BeforeClass
     public static void init() {
@@ -51,41 +46,62 @@ public class PublicationSorterTest {
     }
 
     @Test
-    public void sortedByRatingTest() throws PublicationsEmptyException {
-        Assert.assertArrayEquals(new Publication[]{publications[6], publications[4], publications[5], publications[2],
-                publications[1], publications[3], publications[0]}, publicationSorter.sortedByRating(publications));
+    public void testSortedByRating() throws PublicationsEmptyException {
+        Publication[] expected = new Publication[]{publications[6], publications[4], publications[5], publications[2],
+                publications[1], publications[3], publications[0]};
+
+        Assert.assertArrayEquals(expected, publicationSorter.sortedByRating(publications));
     }
 
     @Test
-    public void sortedByPageCountTest() {
-        Assert.assertArrayEquals(new Publication[]{publications[2], publications[6], publications[3], publications[4],
-                        publications[5], publications[0], publications[1]},
-                publicationSorter.sortedByPageCount(publications));
+    public void testSortedByPageCount() throws PublicationsEmptyException {
+        Publication[] expected = new Publication[]{publications[2], publications[6], publications[3], publications[4],
+                publications[5], publications[0], publications[1]};
+
+        Assert.assertArrayEquals(expected, publicationSorter.sortedByPageCount(publications));
     }
 
     @Test
-    public void sortedByFontTest() {
-        Assert.assertArrayEquals(new Publication[]{publications[0], publications[6], publications[3], publications[2],
-                        publications[4], publications[5], publications[1]},
-                publicationSorter.sortedByFont(publications));
+    public void testSortedByFont() throws PublicationsEmptyException {
+        Publication[] expected = new Publication[]{publications[0], publications[6], publications[3], publications[2],
+                publications[4], publications[5], publications[1]};
+
+        Assert.assertArrayEquals(expected, publicationSorter.sortedByFont(publications));
     }
 
     @Test
-    public void sortedByCirculationAndPageCountTest() throws PublicationsEmptyException {
-        Assert.assertArrayEquals(new Publication[]{publications[6], publications[4], publications[2], publications[5],
-                        publications[0], publications[3], publications[1]},
-                publicationSorter.sortedByCirculationAndPageCount(publications));
+    public void testSortedByCirculationAndPageCount() throws PublicationsEmptyException {
+        Publication[] expected = new Publication[]{publications[6], publications[4], publications[2], publications[5],
+                publications[0], publications[3], publications[1]};
+
+        Assert.assertArrayEquals(expected, publicationSorter.sortedByCirculationAndPageCount(publications));
     }
 
-    @Test
-    public void sortedByCirculationAndPageCountExceptionTest() throws PublicationsEmptyException {
-        thrown.expect(PublicationsEmptyException.class);
-        publicationSorter.sortedByCirculationAndPageCount(null);
+    @Test(expected = PublicationsEmptyException.class)
+    public void testSortedByCirculationAndPageCountException() throws PublicationsEmptyException {
+        Publication[] publications = null;
+
+        publicationSorter.sortedByCirculationAndPageCount(publications);
     }
 
-    @Test
-    public void sortedByRatingExceptionTest() throws PublicationsEmptyException {
-        thrown.expect(PublicationsEmptyException.class);
-        publicationSorter.sortedByRating(null);
+    @Test(expected = PublicationsEmptyException.class)
+    public void testSortedByRatingException() throws PublicationsEmptyException {
+        Publication[] publications = null;
+
+        publicationSorter.sortedByRating(publications);
+    }
+
+    @Test(expected = PublicationsEmptyException.class)
+    public void testSortedByFontException() throws PublicationsEmptyException {
+        Publication[] publications = null;
+
+        publicationSorter.sortedByFont(publications);
+    }
+
+    @Test(expected = PublicationsEmptyException.class)
+    public void testSortedByPageCountException() throws PublicationsEmptyException {
+        Publication[] publications = null;
+
+        publicationSorter.sortedByPageCount(publications);
     }
 }

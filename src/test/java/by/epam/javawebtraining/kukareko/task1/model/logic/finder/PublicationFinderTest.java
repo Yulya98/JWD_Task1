@@ -47,54 +47,89 @@ public class PublicationFinderTest {
     }
 
     @Test
-    public void findByParamTest() {
-        Assert.assertEquals(publications[0], publicationFinder.findByParam(publications, 10, 500, 6));
+    public void testFindByParam() {
+        Publication expected = publications[0];
+
+        Assert.assertEquals(expected, publicationFinder.findByParam(publications, 10, 500, 6));
     }
 
     @Test
-    public void findExtremumByRatingMaxTest() throws PublicationsEmptyException {
-        Assert.assertEquals(publications[0], publicationFinder.findExtremumByRating(publications, "DESC"));
+    public void testFindExtremumByRatingMax() throws PublicationsEmptyException {
+        Publication expected = publications[0];
+        String sortOrder = "DESC";
+
+        Assert.assertEquals(expected, publicationFinder.findExtremumByRating(publications, sortOrder));
     }
 
     @Test
-    public void findExtremumByRatingMinTest() throws PublicationsEmptyException {
-        Assert.assertEquals(publications[6], publicationFinder.findExtremumByRating(publications, "ACK"));
+    public void testFindExtremumByRatingMin() throws PublicationsEmptyException {
+        Publication expected = publications[6];
+        String sortOrder = "ACK";
+
+        Assert.assertEquals(expected, publicationFinder.findExtremumByRating(publications, sortOrder));
     }
 
     @Test
-    public void findByExtremumPageCountMaxTest() {
-        Assert.assertEquals(publications[1], publicationFinder.findByExtremumPageCount(publications, "DESC"));
+    public void testFindByExtremumPageCountMax() throws PublicationsEmptyException {
+        Publication expected = publications[1];
+        String sortOrder = "DESC";
 
+        Assert.assertEquals(expected, publicationFinder.findByExtremumPageCount(publications, sortOrder));
     }
 
     @Test
-    public void findByExtremumPageCountMinTest() {
-        Assert.assertEquals(publications[2], publicationFinder.findByExtremumPageCount(publications, "ACK"));
+    public void testFindByExtremumPageCountMin() throws PublicationsEmptyException {
+        Publication expected = publications[2];
+        String sortOrder = "ACK";
+
+        Assert.assertEquals(expected, publicationFinder.findByExtremumPageCount(publications, sortOrder));
     }
 
     @Test
-    public void findByExtremumFontMinTest() {
-        Assert.assertEquals(publications[4], publicationFinder.findByExtremumFont(publications, "ACK"));
+    public void testFindByExtremumFontMin() throws PublicationsEmptyException {
+        Publication expected = publications[4];
+        String sortOrder = "ACK";
+
+        Assert.assertEquals(expected, publicationFinder.findByExtremumFont(publications, sortOrder));
     }
 
     @Test
-    public void findByParamNullTest() {
-        Assert.assertNull(publicationFinder.findByParam(null, 0,
+    public void testFindByExtremumFontMax() throws PublicationsEmptyException {
+        Publication expected = publications[1];
+        String sortOrder = "DESC";
+
+        Assert.assertEquals(expected, publicationFinder.findByExtremumFont(publications, sortOrder));
+    }
+
+    @Test
+    public void testFindByParamNull() {
+        Publication[] publications = null;
+
+        Assert.assertNull(publicationFinder.findByParam(publications, 0,
                 0, 0));
     }
 
     @Test
-    public void findExtremumByRatingNullTest() throws PublicationsEmptyException {
-        Assert.assertNull(publicationFinder.findExtremumByRating(null, "ACK"));
+    public void testFindExtremumByRatingNull() throws PublicationsEmptyException {
+        Publication[] publications = null;
+        String sortOrder = "ACK";
+
+        Assert.assertNull(publicationFinder.findExtremumByRating(publications, sortOrder));
     }
 
     @Test
-    public void findByExtremumPageCountNullTest() {
-        Assert.assertNull(publicationFinder.findByExtremumPageCount(null, "ACK"));
+    public void testFindByExtremumPageCountNull() throws PublicationsEmptyException {
+        Publication[] publications = null;
+        String sortOrder = "ACK";
+
+        Assert.assertNull(publicationFinder.findByExtremumPageCount(publications, sortOrder));
     }
 
     @Test
-    public void findByExtremumFontNullTest() {
-        Assert.assertNull(publicationFinder.findByExtremumPageCount(null, "ACK"));
+    public void testFindByExtremumFontNull() throws PublicationsEmptyException {
+        Publication[] publications = null;
+        String sortOrder = "ACK";
+
+        Assert.assertNull(publicationFinder.findByExtremumPageCount(publications, sortOrder));
     }
 }

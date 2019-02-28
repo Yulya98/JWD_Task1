@@ -27,8 +27,7 @@ public class PublicationCounterTest {
         publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
                         "Classical Computer Science", 3000, 10, "Bruce Eckel",
-                        "Base programming knowledge ",
-                        "Beginner/Middle", "Java"),
+                        "Base programming knowledge ", "Beginner/Middle", "Java"),
                 new Children(2L, 700, "Andersen's tales", 8, "Olimpia",
                         100000, 8, "Hans Christian Andersen", "4+"),
                 new Musical(3L, 15, "Alternative Press", 5, "Alternative Press Magazine",
@@ -46,32 +45,47 @@ public class PublicationCounterTest {
     }
 
     @Test
-    public void countBooksTest() {
-        Assert.assertEquals(3, publicationCounter.countBooks(publications));
+    public void testCountBooks() {
+        int expected = 3;
+
+        Assert.assertEquals(expected, publicationCounter.countBooks(publications));
     }
 
     @Test
-    public void countMagazinesTest() {
-        Assert.assertEquals(3, publicationCounter.countMagazines(publications));
+    public void testCountMagazines() {
+        int expected = 3;
+
+        Assert.assertEquals(expected, publicationCounter.countMagazines(publications));
     }
 
     @Test
-    public void countAlbumsTest() {
-        Assert.assertEquals(1, publicationCounter.countAlbums(publications));
+    public void testCountAlbums() {
+        int expected = 1;
+
+        Assert.assertEquals(expected, publicationCounter.countAlbums(publications));
     }
 
     @Test
-    public void countBooksNullTest() {
-        Assert.assertEquals(-1, publicationCounter.countBooks(null));
+    public void testCountBooksNull() {
+        int expected = -1;
+        Publication[] publications = null;
+
+        Assert.assertEquals(expected, publicationCounter.countBooks(publications));
     }
 
     @Test
-    public void countMagazineNullTest() {
-        Assert.assertEquals(-1, publicationCounter.countMagazines(null));
+    public void testCountMagazineNull() {
+        int expected = -1;
+        Publication[] publications = null;
+
+        Assert.assertEquals(expected, publicationCounter.countMagazines(publications));
     }
 
     @Test
-    public void countAlbumNullTest() {
-        Assert.assertEquals(-1, publicationCounter.countAlbums(null));
+    public void testCountAlbumNull() {
+        int expected = -1;
+        Publication[] publications = null;
+
+        Assert.assertEquals(expected, publicationCounter.countAlbums(publications));
     }
 }
