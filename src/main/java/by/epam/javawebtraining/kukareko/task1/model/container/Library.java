@@ -21,25 +21,40 @@ public class Library {
     }
 
     public void add(Publication publication) {
-        publications = Arrays.copyOf(publications, publications.length + 1);
-        publications[publications.length - 1] = publication;
+        if(publication !=null) {
+            publications = Arrays.copyOf(publications, publications.length + 1);
+            publications[publications.length - 1] = publication;
+        }
     }
 
     public void remove(int remIndex) {
-        for (int i = remIndex; i < publications.length - 1; i++) {
-            publications[i] = publications[i + 1];
+        if(remIndex >= 0) {
+            for (int i = remIndex; i < publications.length - 1; i++) {
+                publications[i] = publications[i + 1];
+            }
+            publications = Arrays.copyOf(publications, publications.length - 1);
         }
-        publications = Arrays.copyOf(publications, publications.length - 1);
     }
 
     public Publication update(Publication publication) {
-        for (int i = 0; i < publications.length; i++) {
-            if (publications[i].getId() == publication.getId()) {
-                publications[i] = publication;
-                return publications[i];
+        if((publication != null) && !(checkNullValuePublications())) {
+            for (int i = 0; i < publications.length; i++) {
+                if (publications[i].getId() == publication.getId()) {
+                    publications[i] = publication;
+                    return publications[i];
+                }
             }
         }
         return null;
+    }
+
+    private boolean checkNullValuePublications(){
+        for(Publication publication : publications){
+            if(publication == null){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Publication[] getPublications() {

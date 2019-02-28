@@ -17,7 +17,7 @@ import java.util.UUID;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public final class PublicationCreator {
+public final class PublicationCreatorUtil {
 
     private static Random random;
     private static long newId;
@@ -39,7 +39,7 @@ public final class PublicationCreator {
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
                         random.nextInt(100), random.nextInt(30), UUID.randomUUID().toString());
             case 2:
-                int x = Musical.KindMusic.values().length;
+                int x = Musical.KindMusic.values().length - 1;
                 return new Musical(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
                         random.nextInt(100), random.nextInt(30), Musical.KindMusic.values()[x],

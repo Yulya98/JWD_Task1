@@ -12,7 +12,7 @@ public interface PublicationSorter {
 
     Publication[] sortedByCirculationAndPageCount(Publication[] publications) throws PublicationsEmptyException;
 
-    Publication[] sortedByPageCount(Publication[] publications);
+    Publication[] sortedByPageCount(Publication[] publications) throws PublicationsEmptyException;
 
-    Publication[] sortedByFont(Publication[] publications);
+    Publication[] sortedByFont(Publication[] publications) throws PublicationsEmptyException;
 }

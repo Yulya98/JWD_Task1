@@ -12,7 +12,7 @@ public interface PublicationFinder {
 
     Publication findExtremumByRating(Publication[] publications, String sortOrder) throws PublicationsEmptyException;
 
-    Publication findByExtremumPageCount(Publication[] publications, String sortOrder);
+    Publication findByExtremumPageCount(Publication[] publications, String sortOrder) throws  PublicationsEmptyException;
 
-    Publication findByExtremumFont(Publication[] publications, String sortOrder);
+    Publication findByExtremumFont(Publication[] publications, String sortOrder) throws PublicationsEmptyException;
 }

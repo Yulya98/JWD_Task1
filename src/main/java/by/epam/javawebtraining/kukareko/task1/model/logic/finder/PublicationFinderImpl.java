@@ -38,7 +38,8 @@ public class PublicationFinderImpl implements PublicationFinder {
         return null;
     }
 
-    public Publication findByExtremumPageCount(Publication[] publications, String sortOrder) {
+    public Publication findByExtremumPageCount(Publication[] publications, String sortOrder)
+            throws PublicationsEmptyException{
         if (publications != null) {
             Publication[] publicationSorted = publicationSorter.sortedByPageCount(publications);
             return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
@@ -46,7 +47,8 @@ public class PublicationFinderImpl implements PublicationFinder {
         return null;
     }
 
-    public Publication findByExtremumFont(Publication[] publications, String sortOrder) {
+    public Publication findByExtremumFont(Publication[] publications, String sortOrder)
+             throws PublicationsEmptyException{
         if (publications != null) {
             Publication[] publicationSorted = publicationSorter.sortedByFont(publications);
             return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];

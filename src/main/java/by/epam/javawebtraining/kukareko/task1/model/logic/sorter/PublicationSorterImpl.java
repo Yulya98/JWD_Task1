@@ -62,39 +62,49 @@ public class PublicationSorterImpl implements PublicationSorter {
     /*
     Sorted publications using Selection sort
      */
-    public Publication[] sortedByPageCount(Publication[] publications) {
-        Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
+    public Publication[] sortedByPageCount(Publication[] publications)
+            throws PublicationsEmptyException {
+        if (publications != null) {
+            Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
-        for (int i = 0; i < publicationsSorted.length; i++) {
-            int iMin = i;
-            for (int j = i + 1; j < publicationsSorted.length; j++) {
-                if (publicationsSorted[iMin].getPageCount() > publicationsSorted[j].getPageCount())
-                    iMin = j;
+            for (int i = 0; i < publicationsSorted.length; i++) {
+                int iMin = i;
+                for (int j = i + 1; j < publicationsSorted.length; j++) {
+                    if (publicationsSorted[iMin].getPageCount() > publicationsSorted[j].getPageCount())
+                        iMin = j;
+                }
+                if (iMin != i) {
+                    Publication c = publicationsSorted[iMin];
+                    publicationsSorted[iMin] = publicationsSorted[i];
+                    publicationsSorted[i] = c;
+                }
             }
-            if (iMin != i) {
-                Publication c = publicationsSorted[iMin];
-                publicationsSorted[iMin] = publicationsSorted[i];
-                publicationsSorted[i] = c;
-            }
+            return publicationsSorted;
+        } else {
+            throw new PublicationsEmptyException();
         }
-        return publicationsSorted;
     }
 
     /*
     Sorted publications using Insertion sort
      */
-    public Publication[] sortedByFont(Publication[] publications) {
-        Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
+    public Publication[] sortedByFont(Publication[] publications)
+            throws PublicationsEmptyException {
+        if (publications != null) {
+            Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
-        for (int i = 0; i < publicationsSorted.length; i++) {
-            for (int j = i; j > 0 &&
-                    (publicationsSorted[j - 1].getFont() > publicationsSorted[j].getFont()); j--) {
-                Publication elem = publicationsSorted[j];
-                publicationsSorted[j] = publicationsSorted[j - 1];
-                publicationsSorted[j - 1] = elem;
+            for (int i = 0; i < publicationsSorted.length; i++) {
+                for (int j = i; j > 0 &&
+                        (publicationsSorted[j - 1].getFont() > publicationsSorted[j].getFont()); j--) {
+                    Publication elem = publicationsSorted[j];
+                    publicationsSorted[j] = publicationsSorted[j - 1];
+                    publicationsSorted[j - 1] = elem;
+                }
             }
+            return publicationsSorted;
+        } else {
+            throw new PublicationsEmptyException();
         }
-        return publicationsSorted;
     }
 
     private void sortedByRatingQuickSort(Publication[] publications, int first, int last) {

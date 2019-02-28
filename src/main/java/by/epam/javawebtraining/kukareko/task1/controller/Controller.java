@@ -23,13 +23,15 @@ public class Controller {
      */
     public static void main(String[] args) {
         try {
+            int initialPublicationsCount = 0;
+            int publicationsCount = 5;
 
-            Library library = new Library(5);
+            Library library = new Library(initialPublicationsCount);
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
-            for (int i = 0; i < library.getPublications().length; i++) {
+            for (int i = 0; i < publicationsCount; i++) {
                 Publication publication = PublicationCreatorUtil.create();
-                library.getPublications()[i] = publication;
+                library.add(publication);
             }
 
             library.add(PublicationCreatorUtil.create());
