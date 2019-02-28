@@ -52,27 +52,27 @@ public class PublicationSorterTest {
 
     @Test
     public void sortedByRatingTest() throws PublicationsEmptyException {
-        Assert.assertEquals(new Publication[]{publications[6], publications[4], publications[5], publications[2],
+        Assert.assertArrayEquals(new Publication[]{publications[6], publications[4], publications[5], publications[2],
                 publications[1], publications[3], publications[0]}, publicationSorter.sortedByRating(publications));
     }
 
     @Test
     public void sortedByPageCountTest() {
-        Assert.assertEquals(new Publication[]{publications[2], publications[6], publications[3], publications[4],
+        Assert.assertArrayEquals(new Publication[]{publications[2], publications[6], publications[3], publications[4],
                         publications[5], publications[0], publications[1]},
                 publicationSorter.sortedByPageCount(publications));
     }
 
     @Test
     public void sortedByFontTest() {
-        Assert.assertEquals(new Publication[]{publications[0], publications[6], publications[3], publications[2],
+        Assert.assertArrayEquals(new Publication[]{publications[0], publications[6], publications[3], publications[2],
                         publications[4], publications[5], publications[1]},
                 publicationSorter.sortedByFont(publications));
     }
 
     @Test
     public void sortedByCirculationAndPageCountTest() throws PublicationsEmptyException {
-        Assert.assertEquals(new Publication[]{publications[6], publications[4], publications[2], publications[5],
+        Assert.assertArrayEquals(new Publication[]{publications[6], publications[4], publications[2], publications[5],
                         publications[0], publications[3], publications[1]},
                 publicationSorter.sortedByCirculationAndPageCount(publications));
     }
