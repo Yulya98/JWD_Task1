@@ -16,6 +16,13 @@ public class LibraryTest {
     @Test
     public void testAdd() {
         Library library = new Library(0);
+        Publication[] publications = new Publication[]{
+                new Programming(1L, 500, "Thinking in Java",
+                        2, "Classical Computer Science", 3000, 10, "Bruce Eckel",
+                        "Base programming knowledge ", "Beginner/Middle", "Java"),
+                new Sport(5L, 50, "Billiards sport", 6, "MFBS", 100, 6,
+                        30, "Billiards")
+        };
         Publication publication = new Children(2L, 700, "Andersen's tales", 8,
                 "Olimpia", 100000, 8, "Hans Christian Andersen", "4+");
 
@@ -38,7 +45,7 @@ public class LibraryTest {
         Publication[] expected = new Publication[]{publications[0]};
 
         library.setPublications(publications);
-        library.remove(2);
+        library.remove(1);
 
         Assert.assertArrayEquals(expected, library.getPublications());
     }
@@ -95,6 +102,8 @@ public class LibraryTest {
 
     @Test
     public void testNotFoundItemUpdate() {
+        Publication publication = new Children(2L, 700, "Andersen's tales", 8,
+                "Olimpia", 100000, 8, "Hans Christian Andersen", "4+");
         Publication[] publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java",
                         2, "Classical Computer Science", 3000, 10, "Bruce Eckel",
@@ -102,8 +111,6 @@ public class LibraryTest {
                 new Sport(5L, 50, "Billiards sport", 6, "MFBS", 100, 6,
                         30, "Billiards")
         };
-        Publication publication = new Children(2L, 700, "Andersen's tales", 8,
-                "Olimpia", 100000, 8, "Hans Christian Andersen", "4+");
         Library library = new Library();
 
         library.setPublications(publications);

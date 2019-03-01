@@ -10,15 +10,9 @@ import org.junit.Test;
  */
 public class PublicationTest {
 
-    private static Publication publication;
-
-    @BeforeClass
-    public static void init() {
-        publication = new Publication();
-    }
-
     @Test
     public void testSetRating() {
+        Publication publication = new Publication();
         int expected = 1;
         int rating = 1;
 
@@ -29,6 +23,7 @@ public class PublicationTest {
 
     @Test
     public void testSetPageCount() {
+        Publication publication = new Publication();
         int expected = 200;
         int pageCount = 200;
 
@@ -39,6 +34,7 @@ public class PublicationTest {
 
     @Test
     public void testSetPageCountNegativeNum() {
+        Publication publication = new Publication();
         int expected = 1;
         int pageCount = -1;
 
@@ -49,6 +45,7 @@ public class PublicationTest {
 
     @Test
     public void testSetCirculation() {
+        Publication publication = new Publication();
         int expected = 200;
         int circulation = 200;
 
@@ -59,6 +56,7 @@ public class PublicationTest {
 
     @Test
     public void testSetCirculationNegativeNum() {
+        Publication publication = new Publication();
         int expected = 1;
         int circulation = -1;
 
