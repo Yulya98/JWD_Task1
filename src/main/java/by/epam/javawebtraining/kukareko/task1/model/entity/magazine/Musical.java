@@ -11,7 +11,7 @@ public class Musical extends Magazine {
     private KindMusic kindMusical;
     private boolean haveDisk;
 
-    public enum KindMusic{
+    public enum KindMusic {
         CLASSIC, POP, HIP_HOP, ROCK, ELECTRO, JAZZ, BLUES
     }
 
@@ -27,6 +27,12 @@ public class Musical extends Magazine {
 
     public KindMusic getKindMusical() {
         return kindMusical;
+    }
+
+    private void setKindMusical(KindMusic kindMusical) {
+        if (kindMusical != null) {
+            this.kindMusical = kindMusical;
+        }
     }
 
     public boolean isHaveDisk() {

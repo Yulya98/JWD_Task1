@@ -71,12 +71,6 @@ public class Publication {
         }
     }
 
-    public void setRaiting(int raiting) {
-        if (raiting > 0) {
-            this.rating = raiting;
-        }
-    }
-
     public String getName() {
         return name;
     }
