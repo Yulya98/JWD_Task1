@@ -1,5 +1,9 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity;
 
+import by.epam.javawebtraining.kukareko.task1.model.exception.logical.CirculationNegativeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PageCountNegativeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.logical.RatingNegativeException;
+
 import java.util.Objects;
 
 /**
@@ -24,13 +28,13 @@ public class Publication {
 
     public Publication(long id, int pageCount, String name, int font, String publishing,
                        int circulation, int rating) {
-        this.pageCount = pageCount;
-        this.name = name;
-        this.font = font;
-        this.publishing = publishing;
-        this.circulation = circulation;
-        this.id = id;
-        this.rating = rating;
+        this.pageCount = checkPositiveNumber(pageCount);
+        this.name = checkNullString(name);
+        this.font = checkPositiveNumber(font);
+        this.publishing = checkNullString(publishing);
+        this.circulation = checkPositiveNumber(circulation);
+        this.id = checkPositiveId(id);
+        this.rating = checkPositiveNumber(rating);
     }
 
     public Publication(Publication obj) {
@@ -41,6 +45,18 @@ public class Publication {
         this.publishing = obj.publishing;
         this.circulation = obj.circulation;
         this.rating = obj.rating;
+    }
+
+    protected final int checkPositiveNumber(int value) {
+        return value >= 0 ? value : 1;
+    }
+
+    protected final String checkNullString(String value) {
+        return value != null ? value : "";
+    }
+
+    private long checkPositiveId(long id) {
+        return id >= 0 ? id : 1L;
     }
 
     public long getId() {
@@ -55,9 +71,11 @@ public class Publication {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(int rating) throws RatingNegativeException {
         if (rating >= 0) {
             this.rating = rating;
+        } else {
+            throw new RatingNegativeException("You have entered negative rating value");
         }
     }
 
@@ -65,9 +83,11 @@ public class Publication {
         return pageCount;
     }
 
-    public void setPageCount(int pageCount) {
+    public void setPageCount(int pageCount) throws PageCountNegativeException {
         if (pageCount > 0) {
             this.pageCount = pageCount;
+        } else {
+            throw new PageCountNegativeException("You have entered negative page count value");
         }
     }
 
@@ -87,9 +107,11 @@ public class Publication {
         return circulation;
     }
 
-    public void setCirculation(int circulation) {
+    public void setCirculation(int circulation) throws CirculationNegativeException {
         if (circulation > 0) {
             this.circulation = circulation;
+        } else {
+            throw new CirculationNegativeException("You have entered negative circulation value");
         }
     }
 

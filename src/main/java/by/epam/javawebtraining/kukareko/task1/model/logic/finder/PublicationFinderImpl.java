@@ -1,6 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.finder;
 
-import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
@@ -16,7 +16,8 @@ public class PublicationFinderImpl implements PublicationFinder {
         publicationSorter = new PublicationSorterImpl();
     }
 
-    public Publication findByParam(Publication[] publications, int rating, int pageCount, int font) {
+    public Publication findByParam(Publication[] publications, int rating, int pageCount, int font)
+            throws PublicationsEmptyException{
         if (publications != null) {
             for (Publication publication : publications) {
                 if ((publication.getRating() == rating)
@@ -25,35 +26,28 @@ public class PublicationFinderImpl implements PublicationFinder {
                     return publication;
                 }
             }
+        } else {
+            throw new PublicationsEmptyException();
         }
         return null;
     }
 
     public Publication findExtremumByRating(Publication[] publications, String sortOrder)
             throws PublicationsEmptyException {
-        if (publications != null) {
-            Publication[] publicationSorted = publicationSorter.sortedByRating(publications);
-            return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
-        }
-        return null;
+        Publication[] publicationSorted = publicationSorter.sortedByRating(publications);
+        return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
     }
 
     public Publication findByExtremumPageCount(Publication[] publications, String sortOrder)
             throws PublicationsEmptyException{
-        if (publications != null) {
-            Publication[] publicationSorted = publicationSorter.sortedByPageCount(publications);
-            return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
-        }
-        return null;
+        Publication[] publicationSorted = publicationSorter.sortedByPageCount(publications);
+        return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
     }
 
     public Publication findByExtremumFont(Publication[] publications, String sortOrder)
              throws PublicationsEmptyException{
-        if (publications != null) {
-            Publication[] publicationSorted = publicationSorter.sortedByFont(publications);
-            return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
-        }
-        return null;
+        Publication[] publicationSorted = publicationSorter.sortedByFont(publications);
+        return sortOrder.equals("ACK") ? publicationSorted[0] : publicationSorted[publications.length - 1];
     }
 }
 

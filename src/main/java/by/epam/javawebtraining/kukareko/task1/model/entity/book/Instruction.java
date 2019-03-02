@@ -16,7 +16,7 @@ public class Instruction extends Technical {
     public Instruction(long id, int pageCount, String name, int font, String publishing, int circulation,
                        int rating, String author, String subjectArea, String level, String subject) {
         super(id, pageCount, name, font, publishing, circulation, rating, author, subjectArea, level);
-        this.subject = subject;
+        this.subject = checkNullString(subject);
     }
 
     public String getSubject() {

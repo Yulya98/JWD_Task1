@@ -17,8 +17,8 @@ public class Technical extends Book {
     public Technical(long id, int pageCount, String name, int font, String publishing,
                      int circulation, int rating, String author, String subjectArea, String level) {
         super(id, pageCount, name, font, publishing, circulation, rating, author);
-        this.subjectArea = subjectArea;
-        this.level = level;
+        this.subjectArea = checkNullString(subjectArea);
+        this.level = checkNullString(level);
     }
 
     public String getSubjectArea() {

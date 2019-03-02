@@ -19,7 +19,7 @@ public class Magazine extends Publication {
     public Magazine(long id, int pageCount, String name, int font, String publishing,
                     int circulation, int rating, int countArticles) {
         super(id, pageCount, name, font, publishing, circulation, rating);
-        this.countArticles = countArticles;
+        this.countArticles = checkPositiveNumber(countArticles);
     }
 
     public int getCountAriticles() {

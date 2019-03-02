@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException;
+
 import java.util.Objects;
 
 /**
@@ -21,17 +23,23 @@ public class Musical extends Magazine {
     public Musical(long id, int pageCount, String name, int font, String publishing, int circulation,
                    int rating, int countArticles, KindMusic kindMusical, boolean haveDisk) {
         super(id, pageCount, name, font, publishing, circulation, rating, countArticles);
-        this.kindMusical = kindMusical;
+        this.kindMusical = checkKindMusic(kindMusical);
         this.haveDisk = haveDisk;
+    }
+
+    private KindMusic checkKindMusic(KindMusic kindMusic) {
+        return kindMusic != null ? kindMusic : KindMusic.CLASSIC;
     }
 
     public KindMusic getKindMusical() {
         return kindMusical;
     }
 
-    private void setKindMusical(KindMusic kindMusical) {
+    public void setKindMusical(KindMusic kindMusical) throws IllegalKindOfMusicException {
         if (kindMusical != null) {
             this.kindMusical = kindMusical;
+        } else {
+            throw new IllegalKindOfMusicException("You have entered incorrect kind of music");
         }
     }
 

@@ -16,14 +16,14 @@ public class Children extends Book {
     public Children(long id, int pageCount, String name, int font, String publishing,
                     int circulation, int rating, String author, String recommendAge) {
         super(id, pageCount, name, font, publishing, circulation, rating, author);
-        this.recommendedAge = recommendAge;
+        this.recommendedAge = checkNullString(recommendAge);
     }
 
     public Children(Children children) {
         this.recommendedAge = children.recommendedAge;
     }
 
-    public String getRecommendAge() {
+    public String getRecommendedAge() {
         return recommendedAge;
     }
 

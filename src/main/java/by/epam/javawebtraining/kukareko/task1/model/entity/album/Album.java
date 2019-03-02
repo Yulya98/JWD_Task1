@@ -18,7 +18,7 @@ public class Album extends Publication {
     public Album(long id, int pageCount, String name, int font, String publishing,
                  int circulation, int rating, String format) {
         super(id, pageCount, name, font, publishing, circulation, rating);
-        this.format = format;
+        this.format = checkNullString(format);
     }
 
     public String getFormat() {

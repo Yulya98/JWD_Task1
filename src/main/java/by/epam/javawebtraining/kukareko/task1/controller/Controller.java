@@ -3,6 +3,8 @@ package by.epam.javawebtraining.kukareko.task1.controller;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
+import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
+import by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounterImpl;
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder;
@@ -19,7 +21,7 @@ import by.epam.javawebtraining.kukareko.task1.view.StandardOutPublicationsRender
 public class Controller {
 
     /*
-     Main method test counter, sorter, finder logic
+     Main method test counter, sorter, finder logical
      */
     public static void main(String[] args) {
         try {
@@ -90,7 +92,7 @@ public class Controller {
             Book book2 = new Book(book);
             publicationsRender.renderElement(book2);
 
-        } catch (Exception ex) {
+        } catch (LibraryException ex) {
             ex.printStackTrace();
         }
     }

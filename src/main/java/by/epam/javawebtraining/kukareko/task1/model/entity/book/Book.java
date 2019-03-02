@@ -18,7 +18,7 @@ public class Book extends Publication {
     public Book(long id, int pageCount, String name, int font, String publishing,
                 int circulation, int rating, String author) {
         super(id, pageCount, name, font, publishing, circulation, rating);
-        this.author = author;
+        this.author = checkNullString(author);
     }
 
     public Book(Book book) {

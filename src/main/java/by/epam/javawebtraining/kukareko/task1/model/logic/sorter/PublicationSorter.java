@@ -1,7 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.sorter;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
 
 /**
  * @author Yulya Kukareko
