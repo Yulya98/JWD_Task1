@@ -5,12 +5,12 @@ import org.junit.Test;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 16 Feb 2019
+ * @version 1.0 02 Mar 2019
  */
-public class ScinceTest {
+public class ScienceTest {
 
     @Test
-    public void testCreateObj(){
+    public void testCreateObj() {
         Science publication = new Science(5L, 50, "Billiards sport", 2, "MFBS", 100, 6,
                 30, "Scientific research");
         String expected = "Scientific research";
@@ -19,7 +19,7 @@ public class ScinceTest {
     }
 
     @Test
-    public void testCreateObjKindSportNull(){
+    public void testCreateObjSubjAreaNull() {
         Science publication = new Science(5L, 50, "Billiards sport", 2, "MFBS", 100, 6,
                 30, null);
         String expected = "";

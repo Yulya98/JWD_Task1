@@ -1,7 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.sorter;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException;
 
 import java.util.Arrays;
 
@@ -15,14 +16,13 @@ public class PublicationSorterImpl implements PublicationSorter {
     /*
     Sorted publications using Quick sort
     */
-    public Publication[] sortedByRating(Publication[] publications)
+    @Override
+    public PublicationCollection sortedByRating(PublicationCollection publications)
             throws PublicationsEmptyException {
-        Publication[] publicationsSorted;
 
         if (publications != null) {
-            publicationsSorted = Arrays.copyOf(publications, publications.length);
-            sortedByRatingQuickSort(publicationsSorted, 0, publicationsSorted.length - 1);
-            return publicationsSorted;
+            sortedByRatingQuickSort(publications, 0, publications.size() - 1);
+            return publications;
         } else {
             throw new PublicationsEmptyException();
         }
@@ -31,29 +31,28 @@ public class PublicationSorterImpl implements PublicationSorter {
     /*
     Sorted publications using Shell sort
      */
-    public Publication[] sortedByCirculationAndPageCount(Publication[] publications)
+    @Override
+    public PublicationCollection sortedByCirculationAndPageCount(PublicationCollection publications)
             throws PublicationsEmptyException {
-        Publication[] publicationsSorted;
 
         if (publications != null) {
-            publicationsSorted = Arrays.copyOf(publications, publications.length);
             Publication tmp;
             int j;
-            int step = publicationsSorted.length;
+            int step = publications.size();
             for (step /= 2; step > 0; step /= 2) {
-                for (int i = step; i < publicationsSorted.length; i++) {
-                    tmp = publicationsSorted[i];
+                for (int i = step; i < publications.size(); i++) {
+                    tmp = publications.get(i);
                     for (j = i; j >= step; j -= step) {
-                        if ((tmp.getPageCount() < publicationsSorted[j - step].getPageCount())
-                                && (tmp.getCirculation() < publicationsSorted[j - step].getCirculation())) {
-                            publicationsSorted[j] = publicationsSorted[j - step];
+                        if ((tmp.getPageCount() < publications.get(j - step).getPageCount())
+                                && (tmp.getCirculation() < publications.get(j - step).getCirculation())) {
+                            publications.set(j, publications.get(j - step));
                         } else
                             break;
                     }
-                    publicationsSorted[j] = tmp;
+                    publications.set(j, tmp);
                 }
             }
-            return publicationsSorted;
+            return publications;
         } else {
             throw new PublicationsEmptyException();
         }
@@ -62,24 +61,24 @@ public class PublicationSorterImpl implements PublicationSorter {
     /*
     Sorted publications using Selection sort
      */
-    public Publication[] sortedByPageCount(Publication[] publications)
+    @Override
+    public PublicationCollection sortedByPageCount(PublicationCollection publications)
             throws PublicationsEmptyException {
         if (publications != null) {
-            Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
-            for (int i = 0; i < publicationsSorted.length; i++) {
+            for (int i = 0; i < publications.size(); i++) {
                 int iMin = i;
-                for (int j = i + 1; j < publicationsSorted.length; j++) {
-                    if (publicationsSorted[iMin].getPageCount() > publicationsSorted[j].getPageCount())
+                for (int j = i + 1; j < publications.size(); j++) {
+                    if (publications.get(iMin).getPageCount() > publications.get(j).getPageCount())
                         iMin = j;
                 }
                 if (iMin != i) {
-                    Publication c = publicationsSorted[iMin];
-                    publicationsSorted[iMin] = publicationsSorted[i];
-                    publicationsSorted[i] = c;
+                    Publication c = publications.get(iMin);
+                    publications.set(iMin, publications.get(i));
+                    publications.set(i, c);
                 }
             }
-            return publicationsSorted;
+            return publications;
         } else {
             throw new PublicationsEmptyException();
         }
@@ -88,37 +87,37 @@ public class PublicationSorterImpl implements PublicationSorter {
     /*
     Sorted publications using Insertion sort
      */
-    public Publication[] sortedByFont(Publication[] publications)
+    @Override
+    public PublicationCollection sortedByFont(PublicationCollection publications)
             throws PublicationsEmptyException {
         if (publications != null) {
-            Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
-            for (int i = 0; i < publicationsSorted.length; i++) {
+            for (int i = 0; i < publications.size(); i++) {
                 for (int j = i; j > 0 &&
-                        (publicationsSorted[j - 1].getFont() > publicationsSorted[j].getFont()); j--) {
-                    Publication elem = publicationsSorted[j];
-                    publicationsSorted[j] = publicationsSorted[j - 1];
-                    publicationsSorted[j - 1] = elem;
+                        (publications.get(j - 1).getFont() > publications.get(j).getFont()); j--) {
+                    Publication elem = publications.get(j);
+                    publications.set(j, publications.get(j - 1));
+                    publications.set(j - 1, elem);
                 }
             }
-            return publicationsSorted;
+            return publications;
         } else {
             throw new PublicationsEmptyException();
         }
     }
 
-    private void sortedByRatingQuickSort(Publication[] publications, int first, int last) {
-        Publication p = publications[(last - first) / 2 + first];
+    private void sortedByRatingQuickSort(PublicationCollection publications, int first, int last) {
+        Publication p = publications.get((last - first) / 2 + first);
         Publication temp;
         int i = first, j = last;
 
         while (i <= j) {
-            while (publications[i].getRating() < p.getRating() && i <= last) i++;
-            while (publications[j].getRating() > p.getRating() && j >= first) j--;
+            while (publications.get(i).getRating() < p.getRating() && i <= last) i++;
+            while (publications.get(j).getRating() > p.getRating() && j >= first) j--;
             if (i <= j) {
-                temp = publications[i];
-                publications[i] = publications[j];
-                publications[j] = temp;
+                temp = publications.get(i);
+                publications.set(i, publications.get(j));
+                publications.set(j, temp);
                 i++;
                 j--;
             }

@@ -10,10 +10,12 @@ import java.util.Objects;
  */
 public class Magazine extends Publication {
 
+    public final int DEFAULT_COUNT_ARTICLES = 1;
+
     private int countArticles;
 
     public Magazine() {
-        countArticles = 1;
+        countArticles = DEFAULT_COUNT_ARTICLES;
     }
 
     public Magazine(long id, int pageCount, String name, int font, String publishing,

@@ -11,10 +11,6 @@ public class PublicationTechnicalException extends LibraryException {
     public PublicationTechnicalException() {
     }
 
-    public PublicationTechnicalException(String message) {
-        super(message);
-    }
-
     public PublicationTechnicalException(Throwable cause) {
         super(cause);
     }

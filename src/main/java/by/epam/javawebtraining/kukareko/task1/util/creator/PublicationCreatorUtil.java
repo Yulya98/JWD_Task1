@@ -21,6 +21,7 @@ public final class PublicationCreatorUtil {
 
     private static Random random;
     private static long newId;
+    public static final int COUNT_PUBLICATION_IMPLEMENTATION = 8;
 
     static {
         random = new Random();
@@ -28,7 +29,7 @@ public final class PublicationCreatorUtil {
 
     public static Publication create() {
         newId++;
-        int newClass = random.nextInt(8);
+        int newClass = random.nextInt(COUNT_PUBLICATION_IMPLEMENTATION);
         switch (newClass) {
             case 0:
                 return new Sport(newId, random.nextInt(1000), UUID.randomUUID().toString(),

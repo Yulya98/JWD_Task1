@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 1 Mar 2019
+ * @version 1.0 01 Mar 2019
  */
 public class PublicationCreatorUtilTest {
 

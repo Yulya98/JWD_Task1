@@ -14,8 +14,4 @@ public class PublicationLogicException extends LibraryException {
     public PublicationLogicException(String message) {
         super(message);
     }
-
-    public PublicationLogicException(Throwable cause) {
-        super(cause);
-    }
 }

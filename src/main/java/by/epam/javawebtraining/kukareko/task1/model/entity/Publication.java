@@ -12,6 +12,10 @@ import java.util.Objects;
  */
 public class Publication {
 
+    public final int DEFAULT_FONT = 1;
+    public final int DEFAULT_PAGE_COUNT = 1;
+    public final int DEFAULT_RATING = 1;
+
     private long id;
     private int pageCount;
     private String name;
@@ -21,9 +25,9 @@ public class Publication {
     private int rating;
 
     public Publication() {
-        this.font = 1;
-        this.pageCount = 1;
-        this.circulation = 1;
+        this.font = DEFAULT_FONT;
+        this.pageCount = DEFAULT_PAGE_COUNT;
+        this.circulation = DEFAULT_RATING;
     }
 
     public Publication(long id, int pageCount, String name, int font, String publishing,

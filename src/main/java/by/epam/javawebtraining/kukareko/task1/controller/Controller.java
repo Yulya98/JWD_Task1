@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.controller;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.ArrayCollection;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
@@ -28,35 +29,34 @@ public class Controller {
             int initialPublicationsCount = 0;
             int publicationsCount = 5;
 
-            Library library = new Library(initialPublicationsCount);
+
+            Library library = new Library(5);
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
             for (int i = 0; i < publicationsCount; i++) {
                 Publication publication = PublicationCreatorUtil.create();
-                library.add(publication);
+                library.getPublications().add(publication);
             }
 
-            library.add(PublicationCreatorUtil.create());
-            library.remove(2);
+            library.getPublications().add(PublicationCreatorUtil.create());
+            library.getPublications().remove(2);
 
             PublicationSorter publicationSorter = new PublicationSorterImpl();
             PublicationFinder publicationFinder = new PublicationFinderImpl();
             PublicationCounter publicationCounter = new PublicationCounterImpl();
 
             publicationsRender.messageRender("Sorting by rating: ");
-            Publication[] publicationsSortByRating = publicationSorter
-                    .sortedByRating(library.getPublications());
+            publicationSorter.sortedByRating(library.getPublications());
 
-            for (Publication publication : publicationsSortByRating) {
-                publicationsRender.renderElement(publication);
+            for (int i = 0; i < library.getPublications().size(); i++) {
+                publicationsRender.renderElement(library.getPublications().get(i));
             }
 
             publicationsRender.messageRender("Sorting by Circulation and page count: ");
-            Publication[] publicationSortedByTwoParam = publicationSorter
-                    .sortedByCirculationAndPageCount(library.getPublications());
+            publicationSorter.sortedByCirculationAndPageCount(library.getPublications());
 
-            for (Publication publication : publicationSortedByTwoParam) {
-                publicationsRender.renderElement(publication);
+            for (int i = 0; i < library.getPublications().size(); i++) {
+                publicationsRender.renderElement(library.getPublications().get(i));
             }
 
             publicationFinder.findExtremumByRating(library.getPublications(), "ACK");

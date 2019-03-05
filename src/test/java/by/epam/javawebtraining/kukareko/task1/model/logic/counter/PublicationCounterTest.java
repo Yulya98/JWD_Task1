@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.counter;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.ArrayCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
@@ -9,7 +11,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -18,13 +20,15 @@ import org.junit.Test;
  */
 public class PublicationCounterTest {
 
-    private static Publication[] publications;
+    private static PublicationCollection publications;
     private static PublicationCounter publicationCounter;
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         publicationCounter = new PublicationCounterImpl();
-        publications = new Publication[]{
+        publications = new ArrayCollection();
+
+        publications.addAll(new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
                         "Classical Computer Science", 3000, 10, "Bruce Eckel",
                         "Base programming knowledge ", "Beginner/Middle", "Java"),
@@ -41,7 +45,7 @@ public class PublicationCounterTest {
                 new Instruction(7L, 30, "Car instruction manual Saturn", 3, "GM",
                         650, 4, "-", "Automotive Equipment",
                         "Beginner/Middle/Experienced", "Car instruction manual")
-        };
+        });
     }
 
     @Test
@@ -68,7 +72,7 @@ public class PublicationCounterTest {
     @Test
     public void testCountBooksNull() {
         int expected = -1;
-        Publication[] publications = null;
+        PublicationCollection publications = null;
 
         Assert.assertEquals(expected, publicationCounter.countBooks(publications));
     }
@@ -76,7 +80,7 @@ public class PublicationCounterTest {
     @Test
     public void testCountMagazineNull() {
         int expected = -1;
-        Publication[] publications = null;
+        PublicationCollection publications = null;
 
         Assert.assertEquals(expected, publicationCounter.countMagazines(publications));
     }
@@ -84,7 +88,7 @@ public class PublicationCounterTest {
     @Test
     public void testCountAlbumNull() {
         int expected = -1;
-        Publication[] publications = null;
+        PublicationCollection publications = null;
 
         Assert.assertEquals(expected, publicationCounter.countAlbums(publications));
     }

@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.finder;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.ArrayCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
@@ -8,9 +10,9 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
-import by.epam.javawebtraining.kukareko.task1.model.exception.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -19,14 +21,16 @@ import org.junit.Test;
  */
 public class PublicationFinderTest {
 
-    private static Publication[] publications;
+    private static ArrayCollection publications;
     private static PublicationFinder publicationFinder;
 
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         publicationFinder = new PublicationFinderImpl();
-        publications = new Publication[]{
+        publications = new ArrayCollection();
+
+        publications.addAll(new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 6,
                         "Classical Computer Science", 3000, 10, "Bruce Eckel",
                         "Base programming knowledge ", "Beginner/Middle", "Java"),
@@ -43,19 +47,19 @@ public class PublicationFinderTest {
                 new Instruction(7L, 30, "Car instruction manual Saturn", 3,
                         "GM", 650, 4, "-", "Automotive Equipment",
                         "Beginner/Middle/Experienced", "Car instruction manual")
-        };
+        });
     }
 
     @Test
-    public void testFindByParam() {
-        Publication expected = publications[0];
+    public void testFindByParam() throws PublicationsEmptyException {
+        Publication expected = publications.get(0);
 
         Assert.assertEquals(expected, publicationFinder.findByParam(publications, 10, 500, 6));
     }
 
     @Test
     public void testFindExtremumByRatingMax() throws PublicationsEmptyException {
-        Publication expected = publications[0];
+        Publication expected = publications.get(0);
         String sortOrder = "DESC";
 
         Assert.assertEquals(expected, publicationFinder.findExtremumByRating(publications, sortOrder));
@@ -63,7 +67,7 @@ public class PublicationFinderTest {
 
     @Test
     public void testFindExtremumByRatingMin() throws PublicationsEmptyException {
-        Publication expected = publications[6];
+        Publication expected = publications.get(6);
         String sortOrder = "ACK";
 
         Assert.assertEquals(expected, publicationFinder.findExtremumByRating(publications, sortOrder));
@@ -71,7 +75,7 @@ public class PublicationFinderTest {
 
     @Test
     public void testFindByExtremumPageCountMax() throws PublicationsEmptyException {
-        Publication expected = publications[1];
+        Publication expected = publications.get(1);
         String sortOrder = "DESC";
 
         Assert.assertEquals(expected, publicationFinder.findByExtremumPageCount(publications, sortOrder));
@@ -79,7 +83,7 @@ public class PublicationFinderTest {
 
     @Test
     public void testFindByExtremumPageCountMin() throws PublicationsEmptyException {
-        Publication expected = publications[2];
+        Publication expected = publications.get(2);
         String sortOrder = "ACK";
 
         Assert.assertEquals(expected, publicationFinder.findByExtremumPageCount(publications, sortOrder));
@@ -87,7 +91,7 @@ public class PublicationFinderTest {
 
     @Test
     public void testFindByExtremumFontMin() throws PublicationsEmptyException {
-        Publication expected = publications[4];
+        Publication expected = publications.get(4);
         String sortOrder = "ACK";
 
         Assert.assertEquals(expected, publicationFinder.findByExtremumFont(publications, sortOrder));
@@ -95,41 +99,40 @@ public class PublicationFinderTest {
 
     @Test
     public void testFindByExtremumFontMax() throws PublicationsEmptyException {
-        Publication expected = publications[1];
+        Publication expected = publications.get(1);
         String sortOrder = "DESC";
 
         Assert.assertEquals(expected, publicationFinder.findByExtremumFont(publications, sortOrder));
     }
 
-    @Test
-    public void testFindByParamNull() {
-        Publication[] publications = null;
+    @Test(expected = PublicationsEmptyException.class)
+    public void testFindByParamNull() throws PublicationsEmptyException {
+        PublicationCollection publications = null;
 
-        Assert.assertNull(publicationFinder.findByParam(publications, 0,
-                0, 0));
+        publicationFinder.findByParam(publications, 0, 0, 0);
     }
 
-    @Test
+    @Test(expected = PublicationsEmptyException.class)
     public void testFindExtremumByRatingNull() throws PublicationsEmptyException {
-        Publication[] publications = null;
+        PublicationCollection publications = null;
         String sortOrder = "ACK";
 
-        Assert.assertNull(publicationFinder.findExtremumByRating(publications, sortOrder));
+        publicationFinder.findExtremumByRating(publications, sortOrder);
     }
 
-    @Test
+    @Test(expected = PublicationsEmptyException.class)
     public void testFindByExtremumPageCountNull() throws PublicationsEmptyException {
-        Publication[] publications = null;
+        PublicationCollection publications = null;
         String sortOrder = "ACK";
 
-        Assert.assertNull(publicationFinder.findByExtremumPageCount(publications, sortOrder));
+        publicationFinder.findByExtremumPageCount(publications, sortOrder);
     }
 
-    @Test
+    @Test(expected = PublicationsEmptyException.class)
     public void testFindByExtremumFontNull() throws PublicationsEmptyException {
-        Publication[] publications = null;
+        PublicationCollection publications = null;
         String sortOrder = "ACK";
 
-        Assert.assertNull(publicationFinder.findByExtremumPageCount(publications, sortOrder));
+        publicationFinder.findByExtremumPageCount(publications, sortOrder);
     }
 }

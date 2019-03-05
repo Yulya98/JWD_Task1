@@ -1,8 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.container;
 
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-
-import java.util.Arrays;
+import by.epam.javawebtraining.kukareko.task1.model.collection.ArrayCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
+import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
@@ -10,58 +10,41 @@ import java.util.Arrays;
  */
 public class Library {
 
-    private Publication[] publications;
+    private PublicationCollection publications;
 
     public Library() {
-        publications = new Publication[7];
+        publications = new ArrayCollection();
     }
 
     public Library(int size) {
-        publications = new Publication[size];
+        publications = new ArrayCollection(size);
     }
 
-    public void add(Publication publication) {
-        if(publication !=null) {
-            publications = Arrays.copyOf(publications, publications.length + 1);
-            publications[publications.length - 1] = publication;
-        }
+    public PublicationCollection getPublications() {
+        return publications;
     }
 
-    public void remove(int remIndex) {
-        if(remIndex >= 0) {
-            for (int i = remIndex; i < publications.length - 1; i++) {
-                publications[i] = publications[i + 1];
-            }
-            publications = Arrays.copyOf(publications, publications.length - 1);
-        }
-    }
-
-    public Publication update(Publication publication) {
-        if((publication != null) && !(checkNullValuePublications())) {
-            for (int i = 0; i < publications.length; i++) {
-                if (publications[i].getId() == publication.getId()) {
-                    publications[i] = publication;
-                    return publications[i];
-                }
-            }
-        }
-        return null;
-    }
-
-    private boolean checkNullValuePublications(){
-        for(Publication publication : publications){
-            if(publication == null){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Publication[] getPublications() {
-        return this.publications;
-    }
-
-    public void setPublications(Publication[] publications) {
+    public void setPublications(PublicationCollection publications) {
         this.publications = publications;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Library library = (Library) o;
+        return Objects.equals(publications, library.publications);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(publications);
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "publications=" + publications +
+                '}';
     }
 }
