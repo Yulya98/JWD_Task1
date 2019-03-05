@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.counter;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine;
@@ -12,12 +13,12 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine;
 public class PublicationCounterImpl implements PublicationCounter {
 
     @Override
-    public int countBooks(PublicationCollection publications) {
+    public int countBooks(Publication[] publications) {
         int count = 0;
 
         if (publications != null) {
-            for (int i = 0; i < publications.size(); i++) {
-                if (publications.get(i) instanceof Book) {
+            for (Publication publication : publications) {
+                if (publication instanceof Book) {
                     count++;
                 }
             }
@@ -26,12 +27,12 @@ public class PublicationCounterImpl implements PublicationCounter {
     }
 
     @Override
-    public int countMagazines(PublicationCollection publications) {
+    public int countMagazines(Publication[] publications) {
         int count = 0;
 
         if (publications != null) {
-            for (int i = 0; i < publications.size(); i++) {
-                if (publications.get(i) instanceof Magazine) {
+            for (Publication publication : publications) {
+                if (publication instanceof Magazine) {
                     count++;
                 }
             }
@@ -40,12 +41,12 @@ public class PublicationCounterImpl implements PublicationCounter {
     }
 
     @Override
-    public int countAlbums(PublicationCollection publications) {
+    public int countAlbums(Publication[] publications) {
         int count = 0;
 
         if (publications != null) {
-            for (int i = 0; i < publications.size(); i++) {
-                if (publications.get(i) instanceof Album) {
+            for (Publication publication : publications) {
+                if (publication instanceof Album) {
                     count++;
                 }
             }

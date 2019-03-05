@@ -12,9 +12,9 @@ import org.junit.Test;
  * @author Yulya Kukareko
  * @version 1.0 05 Март 2019
  */
-public class ArrayCollectionTest {
+public class StaticArrayCollectionTest {
 
-    private ArrayCollection arrayCollection;
+    private StaticArrayCollection staticArrayCollection;
     private static Publication publication;
 
     @BeforeClass
@@ -29,8 +29,8 @@ public class ArrayCollectionTest {
         int size = 10;
         int expected = 10;
 
-        arrayCollection = new ArrayCollection(size);
-        Assert.assertEquals(expected, arrayCollection.getCapacity());
+        staticArrayCollection = new StaticArrayCollection(size);
+        Assert.assertEquals(expected, staticArrayCollection.getCapacity());
     }
 
     @Test
@@ -38,85 +38,85 @@ public class ArrayCollectionTest {
         int size = -1;
         int expected = 8;
 
-        arrayCollection = new ArrayCollection(size);
-        Assert.assertEquals(expected, arrayCollection.getCapacity());
+        staticArrayCollection = new StaticArrayCollection(size);
+        Assert.assertEquals(expected, staticArrayCollection.getCapacity());
     }
 
     @Test
     public void testAdd(){
-        arrayCollection = new ArrayCollection();
+        staticArrayCollection = new StaticArrayCollection();
 
-        Assert.assertTrue(arrayCollection.add(publication));
+        Assert.assertTrue(staticArrayCollection.add(publication));
     }
 
     @Test
     public void testAddNull(){
-        arrayCollection = new ArrayCollection();
+        staticArrayCollection = new StaticArrayCollection();
         Publication publication = null;
 
-        Assert.assertFalse(arrayCollection.add(publication));
+        Assert.assertFalse(staticArrayCollection.add(publication));
     }
 
     @Test
     public void testAddCapacityExceeds(){
         int size = 0;
-        arrayCollection = new ArrayCollection(size);
+        staticArrayCollection = new StaticArrayCollection(size);
 
-        Assert.assertFalse(arrayCollection.add(publication));
+        Assert.assertFalse(staticArrayCollection.add(publication));
     }
 
     @Test
     public void testRemove(){
         int remIndex = 0;
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
 
-        Assert.assertTrue(arrayCollection.remove(remIndex));
+        Assert.assertTrue(staticArrayCollection.remove(remIndex));
     }
 
     @Test
     public void testRemoveNegativeIndex(){
         int remIndex = -1;
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
 
-        Assert.assertFalse(arrayCollection.remove(remIndex));
+        Assert.assertFalse(staticArrayCollection.remove(remIndex));
     }
 
     @Test
     public void testRemoveSizeExceeds(){
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
-        int remIndex = arrayCollection.size() + 1;
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
+        int remIndex = staticArrayCollection.size() + 1;
 
-        Assert.assertFalse(arrayCollection.remove(remIndex));
+        Assert.assertFalse(staticArrayCollection.remove(remIndex));
     }
 
     @Test
     public void testGet(){
         int index = 0;
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
 
-        Assert.assertNotNull(arrayCollection.get(index));
+        Assert.assertNotNull(staticArrayCollection.get(index));
     }
 
     @Test
     public void testGetNegativeIndex(){
         int index = -1;
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
 
-        Assert.assertNull(arrayCollection.get(index));
+        Assert.assertNull(staticArrayCollection.get(index));
     }
 
     @Test
     public void testGetSizeExceeds(){
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
-        int index = arrayCollection.size() + 1;
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
+        int index = staticArrayCollection.size() + 1;
 
-        Assert.assertFalse(arrayCollection.remove(index));
+        Assert.assertFalse(staticArrayCollection.remove(index));
     }
 
     @Test
@@ -124,42 +124,42 @@ public class ArrayCollectionTest {
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
         int index = 0;
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
 
-        Assert.assertTrue(arrayCollection.set(index, publication));
+        Assert.assertTrue(staticArrayCollection.set(index, publication));
     }
 
     @Test
     public void testSetSizeExceeds(){
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
-        int index = arrayCollection.size() + 1;
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
+        int index = staticArrayCollection.size() + 1;
 
-        Assert.assertFalse(arrayCollection.set(index, publication));
+        Assert.assertFalse(staticArrayCollection.set(index, publication));
     }
 
     @Test
     public void testSetNull(){
         Publication publication = null;
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
         int index = 0;
 
-        Assert.assertFalse(arrayCollection.set(index, publication));
+        Assert.assertFalse(staticArrayCollection.set(index, publication));
     }
 
     @Test
     public void testSetNegative(){
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
-        arrayCollection = new ArrayCollection(2);
-        arrayCollection.add(publication);
+        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection.add(publication);
         int index = -1;
 
-        Assert.assertFalse(arrayCollection.set(index, publication));
+        Assert.assertFalse(staticArrayCollection.set(index, publication));
     }
 
     @Test
@@ -171,17 +171,17 @@ public class ArrayCollectionTest {
                 new Children(2L, 700, "Andersen's tales", 8, "Olimpia",
                         100000, 8, "Hans Christian Andersen", "4+")
         };
-        arrayCollection = new ArrayCollection();
+        staticArrayCollection = new StaticArrayCollection();
 
-        Assert.assertTrue(arrayCollection.addAll(publications));
+        Assert.assertTrue(staticArrayCollection.addAll(publications));
     }
 
     @Test
     public void addAllNull(){
         Publication[] publications = null;
-        arrayCollection = new ArrayCollection();
+        staticArrayCollection = new StaticArrayCollection();
 
-        Assert.assertFalse(arrayCollection.addAll(publications));
+        Assert.assertFalse(staticArrayCollection.addAll(publications));
     }
 
     @Test
@@ -193,8 +193,8 @@ public class ArrayCollectionTest {
                 new Children(2L, 700, "Andersen's tales", 8, "Olimpia",
                         100000, 8, "Hans Christian Andersen", "4+")
         };
-        arrayCollection = new ArrayCollection(0);
+        staticArrayCollection = new StaticArrayCollection(0);
 
-        Assert.assertFalse(arrayCollection.addAll(publications));
+        Assert.assertFalse(staticArrayCollection.addAll(publications));
     }
 }
