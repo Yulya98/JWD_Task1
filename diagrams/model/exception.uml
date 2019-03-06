@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>by.epam.javawebtraining.kukareko.task1.model.exception.logical</OriginalElement>
+  <nodes>
+    <node x="695.75" y="0.0">by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException</node>
+    <node x="1060.0" y="162.0">by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException</node>
+    <node x="518.0" y="162.0">by.epam.javawebtraining.kukareko.task1.model.exception.logical.PageCountNegativeException</node>
+    <node x="274.0" y="162.0">by.epam.javawebtraining.kukareko.task1.model.exception.logical.RatingNegativeException</node>
+    <node x="529.5" y="81.0">by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException</node>
+    <node x="793.0" y="162.0">by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException</node>
+    <node x="781.5" y="81.0">by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationTechnicalException</node>
+    <node x="0.0" y="162.0">by.epam.javawebtraining.kukareko.task1.model.exception.logical.CirculationNegativeException</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.logical.CirculationNegativeException" target="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException">
+      <point x="0.0" y="-15.5" />
+      <point x="127.0" y="132.0" />
+      <point x="552.7" y="132.0" />
+      <point x="-92.79999999999995" y="15.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException" target="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException">
+      <point x="0.0" y="-15.5" />
+      <point x="916.5" y="142.0" />
+      <point x="691.9000000000001" y="142.0" />
+      <point x="46.40000000000009" y="15.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException" target="by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException">
+      <point x="0.0" y="-15.5" />
+      <point x="645.5" y="56.0" />
+      <point x="737.0" y="56.0" />
+      <point x="-41.25" y="15.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException" target="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException">
+      <point x="0.0" y="-15.5" />
+      <point x="1183.0" y="132.0" />
+      <point x="738.3000000000001" y="132.0" />
+      <point x="92.80000000000007" y="15.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationTechnicalException" target="by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException">
+      <point x="0.0" y="-15.5" />
+      <point x="911.0" y="56.0" />
+      <point x="819.5" y="56.0" />
+      <point x="41.25" y="15.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.logical.RatingNegativeException" target="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException">
+      <point x="0.0" y="-15.5" />
+      <point x="386.0" y="142.0" />
+      <point x="599.1" y="142.0" />
+      <point x="-46.39999999999998" y="15.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PageCountNegativeException" target="by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationLogicException">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5618401206636501" x="653.0" y="56.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

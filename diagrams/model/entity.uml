@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>by.epam.javawebtraining.kukareko.task1.model.entity.book</OriginalElement>
+  <nodes>
+    <node x="761.0" y="1451.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.InstructionTest</node>
+    <node x="705.125" y="0.0">by.epam.javawebtraining.kukareko.task1.model.entity.Publication</node>
+    <node x="1425.0" y="1451.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.TechnicalTest</node>
+    <node x="713.935606060606" y="742.0">by.epam.javawebtraining.kukareko.task1.model.entity.album.Album</node>
+    <node x="354.0" y="1004.0">by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport</node>
+    <node x="0.0" y="956.0">by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical</node>
+    <node x="603.0" y="1004.0">by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science</node>
+    <node x="1103.0" y="992.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.Children</node>
+    <node x="0.0" y="1451.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.ChildrenTest</node>
+    <node x="326.5" y="730.0">by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine</node>
+    <node x="411.0" y="1451.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.ProgrammingTest</node>
+    <node x="1015.1666666666666" y="742.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.Book</node>
+    <node x="978.0" y="1254.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.Instruction</node>
+    <node x="1094.0" y="1451.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.BookTest</node>
+    <node x="853.0" y="980.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.Technical</node>
+    <node x="729.0" y="1254.0">by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science" target="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine">
+      <point x="0.0" y="-76.0" />
+      <point x="718.0" y="931.0" />
+      <point x="563.1666666666667" y="931.0" />
+      <point x="94.66666666666669" y="88.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.book.Book" target="by.epam.javawebtraining.kukareko.task1.model.entity.Publication">
+      <point x="0.0" y="-76.0" />
+      <point x="1129.6666666666665" y="705.0" />
+      <point x="934.2916666666666" y="705.0" />
+      <point x="91.66666666666663" y="340.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine" target="by.epam.javawebtraining.kukareko.task1.model.entity.Publication">
+      <point x="0.0" y="-88.0" />
+      <point x="468.5" y="705.0" />
+      <point x="750.9583333333334" y="705.0" />
+      <point x="-91.66666666666663" y="340.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.book.Children" target="by.epam.javawebtraining.kukareko.task1.model.entity.book.Book">
+      <point x="0.0" y="-88.0" />
+      <point x="1246.5" y="931.0" />
+      <point x="1186.9166666666665" y="931.0" />
+      <point x="57.25" y="76.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming" target="by.epam.javawebtraining.kukareko.task1.model.entity.book.Technical">
+      <point x="0.0" y="-76.0" />
+      <point x="843.5" y="1229.0" />
+      <point x="910.5" y="1229.0" />
+      <point x="-57.5" y="100.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.album.Album" target="by.epam.javawebtraining.kukareko.task1.model.entity.Publication">
+      <point x="0.0" y="-76.0" />
+      <point x="828.435606060606" y="705.0" />
+      <point x="842.625" y="705.0" />
+      <point x="0.0" y="340.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport" target="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine">
+      <point x="0.0" y="-76.0" />
+      <point x="0.0" y="88.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical" target="by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Magazine">
+      <point x="0.0" y="-124.0" />
+      <point x="167.0" y="931.0" />
+      <point x="373.8333333333333" y="931.0" />
+      <point x="-94.66666666666669" y="88.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.book.Instruction" target="by.epam.javawebtraining.kukareko.task1.model.entity.book.Technical">
+      <point x="0.0" y="-76.0" />
+      <point x="1092.5" y="1229.0" />
+      <point x="1025.5" y="1229.0" />
+      <point x="57.5" y="100.0" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.entity.book.Technical" target="by.epam.javawebtraining.kukareko.task1.model.entity.book.Book">
+      <point x="0.0" y="-100.0" />
+      <point x="968.0" y="931.0" />
+      <point x="1072.4166666666665" y="931.0" />
+      <point x="-57.25" y="76.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5791284403669725" x="669.3881188118811" y="1155.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>by.epam.javawebtraining.kukareko.task1.model.logic.counter</OriginalElement>
+  <nodes>
+    <node x="0.0" y="747.0">by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounterTest</node>
+    <node x="0.0" y="374.0">by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter</node>
+    <node x="0.0" y="551.0">by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl</node>
+    <node x="544.0" y="527.0">by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounterImpl</node>
+    <node x="544.0" y="374.0">by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter</node>
+    <node x="0.0" y="177.0">by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinderImpl</node>
+    <node x="0.0" y="0.0">by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounterImpl" target="by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter">
+      <point x="0.0" y="-51.5" />
+      <point x="0.0" y="51.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinderImpl" target="by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder">
+      <point x="0.0" y="-76.0" />
+      <point x="0.0" y="63.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl" target="by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter">
+      <point x="0.0" y="-75.5" />
+      <point x="0.0" y="63.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8840070298769771" x="170.20477137176943" y="264.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

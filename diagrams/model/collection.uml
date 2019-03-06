@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>by.epam.javawebtraining.kukareko.task1.model.collection.array</OriginalElement>
+  <nodes>
+    <node x="745.1363636363637" y="141.0">by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackCollection</node>
+    <node x="290.0" y="378.0">by.epam.javawebtraining.kukareko.task1.model.collection.list.DoublyLinkedListImpl</node>
+    <node x="290.0" y="105.0">by.epam.javawebtraining.kukareko.task1.model.collection.list.DoublyLinkedListCollection</node>
+    <node x="1457.0" y="474.0">by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueDoblyLinkedListBased</node>
+    <node x="600.0" y="390.0">by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection</node>
+    <node x="0.0" y="129.0">by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollection</node>
+    <node x="865.0" y="438.0">by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackDoublyLinkedListBased</node>
+    <node x="0.0" y="378.0">by.epam.javawebtraining.kukareko.task1.model.collection.array.StaticArrayCollection</node>
+    <node x="1192.0" y="378.0">by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection</node>
+    <node x="1341.1363636363637" y="141.0">by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection</node>
+    <node x="587.75" y="0.0">by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackCollection">
+      <point x="0.0" y="-184.0" />
+      <point x="722.5" y="353.0" />
+      <point x="801.1363636363637" y="353.0" />
+      <point x="-56.0" y="75.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.list.DoublyLinkedListCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection">
+      <point x="0.0" y="-111.5" />
+      <point x="435.0" y="85.0" />
+      <point x="671.0" y="85.0" />
+      <point x="-27.75" y="27.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection">
+      <point x="0.0" y="-87.5" />
+      <point x="135.0" y="75.0" />
+      <point x="615.5" y="75.0" />
+      <point x="-83.25" y="27.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection">
+      <point x="0.0" y="-75.5" />
+      <point x="1449.1363636363637" y="75.0" />
+      <point x="782.0" y="75.0" />
+      <point x="83.25" y="27.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.array.StaticArrayCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollection">
+      <point x="0.0" y="-196.0" />
+      <point x="0.0" y="87.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection">
+      <point x="0.0" y="-75.5" />
+      <point x="857.1363636363637" y="85.0" />
+      <point x="726.5" y="85.0" />
+      <point x="27.75" y="27.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.list.DoublyLinkedListImpl" target="by.epam.javawebtraining.kukareko.task1.model.collection.list.DoublyLinkedListCollection">
+      <point x="0.0" y="-196.0" />
+      <point x="0.0" y="111.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueDoblyLinkedListBased" target="by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection">
+      <point x="0.0" y="-100.0" />
+      <point x="1610.5" y="353.0" />
+      <point x="1503.1363636363637" y="353.0" />
+      <point x="54.0" y="75.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection" target="by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection">
+      <point x="0.0" y="-196.0" />
+      <point x="1314.5" y="353.0" />
+      <point x="1395.1363636363637" y="353.0" />
+      <point x="-54.0" y="75.5" />
+    </edge>
+    <edge source="by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackDoublyLinkedListBased" target="by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackCollection">
+      <point x="0.0" y="-136.0" />
+      <point x="1018.5" y="353.0" />
+      <point x="913.1363636363637" y="353.0" />
+      <point x="56.0" y="75.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.792778649921507" x="408.49702970297034" y="157.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.model.collection;
+package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
