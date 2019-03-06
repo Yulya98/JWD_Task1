@@ -1,8 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -11,7 +9,7 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 05 Mar 2019
  */
-public class ArrayCollection implements PublicationCollection {
+public class StaticArrayCollection implements ArrayCollection {
 
     private static final int DEFAULT_CAPACITY = 8;
 
@@ -19,19 +17,18 @@ public class ArrayCollection implements PublicationCollection {
     private Publication[] publications;
     private int size;
 
-    public ArrayCollection() {
+    public StaticArrayCollection() {
         this.CAPACITY = DEFAULT_CAPACITY;
-        publications = new Publication[DEFAULT_CAPACITY];
+        publications = new Publication[CAPACITY];
     }
 
-    public ArrayCollection(int size) {
+    public StaticArrayCollection(int size) {
         if (size >= 0) {
             this.CAPACITY = size;
-            publications = new Publication[CAPACITY];
         } else {
             this.CAPACITY = DEFAULT_CAPACITY;
-            publications = new Publication[DEFAULT_CAPACITY];
         }
+        publications = new Publication[CAPACITY];
     }
 
     public int getCapacity() {
@@ -48,15 +45,16 @@ public class ArrayCollection implements PublicationCollection {
     }
 
     @Override
-    public boolean remove(int remIndex) {
+    public Publication remove(int remIndex) {
         if (remIndex >= 0 && remIndex < size) {
+            Publication publication = publications[remIndex];
             for (int i = remIndex; i < size - 1; i++) {
                 publications[i] = publications[i + 1];
             }
             publications[--size] = null;
-            return true;
+            return publication;
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -74,7 +72,7 @@ public class ArrayCollection implements PublicationCollection {
 
     @Override
     public boolean set(int index, Publication publication) {
-        if((index >= 0) && (index < size) && (publication != null)){
+        if ((index >= 0) && (index < size) && (publication != null)) {
             publications[index] = publication;
             return true;
         }
@@ -83,7 +81,7 @@ public class ArrayCollection implements PublicationCollection {
 
     @Override
     public boolean addAll(Publication[] publications) {
-        if(publications != null) {
+        if (publications != null) {
             if (publications.length <= CAPACITY) {
                 for (Publication publication : publications) {
                     add(publication);
@@ -95,10 +93,15 @@ public class ArrayCollection implements PublicationCollection {
     }
 
     @Override
+    public Publication[] toArray() {
+        return publications;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ArrayCollection that = (ArrayCollection) o;
+        StaticArrayCollection that = (StaticArrayCollection) o;
         return CAPACITY == that.CAPACITY &&
                 size == that.size &&
                 Arrays.equals(publications, that.publications);
@@ -113,7 +116,7 @@ public class ArrayCollection implements PublicationCollection {
 
     @Override
     public String toString() {
-        return "ArrayCollection{" +
+        return "StaticArrayCollection{" +
                 "CAPACITY=" + CAPACITY +
                 ", publications=" + Arrays.toString(publications) +
                 ", size=" + size +
