@@ -13,11 +13,12 @@ import java.util.Iterator;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 09 Mar 2019
+ * @version 1.0 08 Mar 2019
  */
-public class StackLinkedListBasedTest {
+public class StackArrayBasedCollectionTest {
+
     private static Publication[] publications;
-    private static StackLinkedListBased stack;
+    private static StackArrayBasedCollection stack;
 
     @BeforeClass
     public static void init() {
@@ -32,21 +33,23 @@ public class StackLinkedListBasedTest {
 
     @Before
     public void initEach() {
-        stack = new StackLinkedListBased();
+        stack = new StackArrayBasedCollection();
     }
 
     @Test
-    public void pushTest() {
-        Publication publication = publications[0];
+    public void createObjTest() {
+        int size = 2;
+        int expected = 2;
 
-        Assert.assertTrue(stack.push(publication));
+        Assert.assertEquals(expected, new StackArrayBasedCollection(size).getCapacity());
     }
 
     @Test
-    public void pushNullTest() {
-        Publication publication = null;
+    public void createObjTestNegativeSize() {
+        int size = -2;
+        int expected = 8;
 
-        Assert.assertFalse(stack.push(publication));
+        Assert.assertEquals(expected, new StackArrayBasedCollection(size).getCapacity());
     }
 
     @Test
@@ -60,14 +63,9 @@ public class StackLinkedListBasedTest {
     }
 
     @Test
-    public void clearTest() {
-        int expected = 0;
+    public void pushTest() {
 
-        stack.push(publications[0]);
-        stack.push(publications[1]);
-        stack.clear();
-
-        Assert.assertEquals(expected, stack.size());
+        Assert.assertTrue(stack.push(publications[0]));
     }
 
     @Test
@@ -81,7 +79,7 @@ public class StackLinkedListBasedTest {
     }
 
     @Test
-    public void testPeek() {
+    public void peekTest() {
         Publication expected = publications[1];
 
         stack.push(publications[0]);
@@ -91,12 +89,29 @@ public class StackLinkedListBasedTest {
     }
 
     @Test
-    public void hasNextTest() {
+    public void peekSizeNullTest() {
+
+        Assert.assertNull(stack.peek());
+    }
+
+    @Test
+    public void clearTest() {
+        int expected = 0;
+
         stack.push(publications[0]);
         stack.push(publications[1]);
+        stack.clear();
+
+        Assert.assertEquals(expected, stack.toArray().length);
+    }
+
+    @Test
+    public void hasNextTest() {
+        stack.push(publications[0]);
         Iterator iterator = stack.iterator();
 
         Assert.assertTrue(iterator.hasNext());
+        Assert.assertFalse(iterator.hasNext());
     }
 
     @Test
@@ -125,10 +140,22 @@ public class StackLinkedListBasedTest {
     }
 
     @Test
+    public void iteratorCollectionClearTest() {
+        stack.push(publications[0]);
+        stack.push(publications[1]);
+        stack.clear();
+        Iterator iterator = stack.iterator();
+
+        Assert.assertFalse(iterator.hasNext());
+    }
+
+    @Test
     public void cloneTest() {
         stack.push(publications[0]);
         stack.push(publications[1]);
 
-        Assert.assertArrayEquals(stack.toArray(), stack.clone().toArray());
+        StackArrayBasedCollection cloneStack = new StackArrayBasedCollection(stack.toArray());
+
+        Assert.assertArrayEquals(stack.toArray(), cloneStack.toArray());
     }
 }

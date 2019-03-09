@@ -1,10 +1,10 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -13,19 +13,19 @@ import java.util.Objects;
  */
 public class StackLinkedListBased extends AbstractPublicationCollection implements StackCollection {
 
-    private LinkedList<Publication> publications;
+    private LinkedListImpl publications;
 
     public StackLinkedListBased() {
-        publications = new LinkedList<>();
+        publications = new LinkedListImpl();
     }
 
-    public StackLinkedListBased(LinkedList<Publication> publications) {
+    public StackLinkedListBased(LinkedListImpl publications) {
         this.publications = publications;
     }
 
     @Override
     public boolean push(Publication publication) {
-        return publications.add(publication);
+        return publications.addLast(publication);
     }
 
     @Override
@@ -45,12 +45,12 @@ public class StackLinkedListBased extends AbstractPublicationCollection implemen
 
     @Override
     public Publication[] toArray() {
-        return publications.toArray(new Publication[] {});
+        return publications.toArray();
     }
 
     @Override
     public Iterator iterator() {
-        return publications.descendingIterator();
+        return publications.iteratorStack();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class StackLinkedListBased extends AbstractPublicationCollection implemen
 
     @Override
     public AbstractPublicationCollection clone() {
-        return new StackLinkedListBased((LinkedList<Publication>) publications.clone());
+        return new StackLinkedListBased((LinkedListImpl) publications.clone());
     }
 
     @Override

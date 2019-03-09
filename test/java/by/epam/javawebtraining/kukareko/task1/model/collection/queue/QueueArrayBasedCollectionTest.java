@@ -15,9 +15,9 @@ import java.util.Iterator;
  * @author Yulya Kukareko
  * @version 1.0 09 Mar 2019
  */
-public class QueueLinkedListBasedTest {
+public class QueueArrayBasedCollectionTest {
     private static Publication[] publications;
-    private static QueueLinkedListBased queue;
+    private static QueueArrayBasedCollection queue;
 
     @BeforeClass
     public static void init() {
@@ -32,7 +32,7 @@ public class QueueLinkedListBasedTest {
 
     @Before
     public void initEach() {
-        queue = new QueueLinkedListBased();
+        queue = new QueueArrayBasedCollection();
     }
 
     @Test
@@ -72,7 +72,7 @@ public class QueueLinkedListBasedTest {
         queue.add(publications[0]);
         queue.add(publications[1]);
 
-        Assert.assertEquals(expected, queue.toArray());
+        Assert.assertArrayEquals(expected, queue.toArray());
     }
 
     @Test
@@ -84,6 +84,16 @@ public class QueueLinkedListBasedTest {
         queue.clear();
 
         Assert.assertEquals(expected, queue.size());
+    }
+
+    @Test
+    public void cloneTest() {
+        queue.add(publications[0]);
+        queue.add(publications[1]);
+
+        QueueArrayBasedCollection copyQueue = new QueueArrayBasedCollection(queue.toArray());
+
+        Assert.assertArrayEquals(queue.toArray(), copyQueue.toArray());
     }
 
     @Test
@@ -128,13 +138,5 @@ public class QueueLinkedListBasedTest {
 
         Assert.assertEquals(publications[0], iterator.next());
         Assert.assertEquals(publications[1], iterator.next());
-    }
-
-    @Test
-    public void cloneTest() {
-        queue.add(publications[0]);
-        queue.add(publications[1]);
-
-        Assert.assertArrayEquals(queue.toArray(), queue.clone().toArray());
     }
 }
