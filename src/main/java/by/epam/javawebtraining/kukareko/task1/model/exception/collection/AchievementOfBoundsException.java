@@ -14,4 +14,8 @@ public class AchievementOfBoundsException extends RuntimeException {
     public AchievementOfBoundsException(String message) {
         super(message);
     }
+
+    public AchievementOfBoundsException(Throwable cause) {
+        super(cause);
+    }
 }
