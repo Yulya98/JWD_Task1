@@ -1,7 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.controller;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueLinkedListBased;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
@@ -26,11 +25,9 @@ public class Controller {
      */
     public static void main(String[] args) {
         try {
-            int initialPublicationsCount = 0;
             int publicationsCount = 5;
 
-
-            Library<QueueCollection> library = new Library<>(new QueueArrayBasedCollection());
+            Library<QueueLinkedListBased> library = new Library<>(new QueueLinkedListBased());
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
             for (int i = 0; i < publicationsCount; i++) {

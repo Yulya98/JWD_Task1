@@ -3,7 +3,6 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -11,46 +10,44 @@ import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 05 Mar 2019
+ * @version 1.0 09 Mar 2019
  */
-public class StaticArrayCollection extends AbstractPublicationCollection implements ArrayCollection {
-
+public class DynamicArrayCollection extends AbstractPublicationCollection implements ArrayCollection {
     private static final int DEFAULT_CAPACITY = 8;
 
-    private final int CAPACITY;
     private Publication[] publications;
     private int size;
 
-    public StaticArrayCollection() {
-        this.CAPACITY = DEFAULT_CAPACITY;
-        publications = new Publication[CAPACITY];
+    public DynamicArrayCollection() {
+        publications = new Publication[DEFAULT_CAPACITY];
     }
 
-    public StaticArrayCollection(Publication[] publications) {
-        this.CAPACITY = publications.length;
+    public DynamicArrayCollection(Publication[] publications) {
         this.publications = publications;
     }
 
-    public StaticArrayCollection(int size) {
+    public DynamicArrayCollection(int size) {
         if (size >= 0) {
-            this.CAPACITY = size;
+            publications = new Publication[size];
         } else {
-            this.CAPACITY = DEFAULT_CAPACITY;
+            publications = new Publication[DEFAULT_CAPACITY];
         }
-        publications = new Publication[CAPACITY];
-    }
-
-    public int getCapacity() {
-        return CAPACITY;
     }
 
     @Override
     public boolean add(Publication publication) {
-        if ((publication != null) && (size < CAPACITY)) {
+        if ((publication != null)) {
+            if (size == publications.length) {
+                resize(publications.length * 2);
+            }
             publications[size++] = publication;
             return true;
         }
         return false;
+    }
+
+    private void resize(int capacity) {
+        publications = Arrays.copyOf(publications, capacity);
     }
 
     @Override
@@ -93,12 +90,10 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     @Override
     public boolean addAll(Publication[] publications) {
         if (publications != null) {
-            if (publications.length <= CAPACITY) {
-                for (Publication publication : publications) {
-                    add(publication);
-                }
-                return true;
+            for (Publication publication : publications) {
+                add(publication);
             }
+            return true;
         }
         return false;
     }
@@ -137,9 +132,8 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
         public Publication next() {
             if (this.hasNext()) {
                 return publications[position];
-            } else {
-                throw new AchievementOfBoundsException("You try get not existing element");
             }
+            return null;
         }
     }
 
@@ -147,24 +141,22 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StaticArrayCollection that = (StaticArrayCollection) o;
-        return CAPACITY == that.CAPACITY &&
-                size == that.size &&
+        DynamicArrayCollection that = (DynamicArrayCollection) o;
+        return size == that.size &&
                 Arrays.equals(publications, that.publications);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(CAPACITY, size);
+        int result = Objects.hash(size);
         result = 31 * result + Arrays.hashCode(publications);
         return result;
     }
 
     @Override
     public String toString() {
-        return "StaticArrayCollection{" +
-                "CAPACITY=" + CAPACITY +
-                ", publications=" + Arrays.toString(publications) +
+        return "DynamicArrayCollection{" +
+                "publications=" + Arrays.toString(publications) +
                 ", size=" + size +
                 '}';
     }

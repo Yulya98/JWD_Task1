@@ -1,15 +1,18 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackArrayBasedCollection implements StackCollection {
+public class StackArrayBasedCollection extends AbstractPublicationCollection implements StackCollection {
 
     private static final int DEFAULT_CAPACITY = 8;
 
@@ -19,15 +22,32 @@ public class StackArrayBasedCollection implements StackCollection {
 
 
     public StackArrayBasedCollection() {
-        this.size = 0;
-        this.top = 0;
+        this.size = this.top = 0;
         this.publications = new Publication[DEFAULT_CAPACITY];
+    }
+
+    public StackArrayBasedCollection(int size) {
+        if (size > 0) {
+            this.publications = new Publication[size];
+        } else {
+            this.publications = new Publication[DEFAULT_CAPACITY];
+        }
+        this.size = this.top = 0;
+    }
+
+    public StackArrayBasedCollection(Publication[] publications) {
+        this.size = publications.length;
+        this.publications = publications;
+    }
+
+    public int getCapacity() {
+        return publications.length;
     }
 
     @Override
     public Publication pop() {
         if (!isEmpty()) {
-            Publication publication = publications[top];
+            Publication publication = publications[--top];
             publications[top] = null;
             this.size--;
 
@@ -37,19 +57,14 @@ public class StackArrayBasedCollection implements StackCollection {
     }
 
     @Override
-    public void push(Publication publication) {
-        if (publication != null) {
-            if (size() == publications.length) {
-                resize(publications.length * 2);
-            }
-            publications[++top] = publication;
-            size++;
+    public boolean push(Publication publication) {
+        if (size() == publications.length) {
+            resize(publications.length * 2);
         }
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
+        publications[top] = publication;
+        top++;
+        size++;
+        return true;
     }
 
     @Override
@@ -58,18 +73,53 @@ public class StackArrayBasedCollection implements StackCollection {
     }
 
     @Override
-    public void clear() {
-
-    }
-
-    @Override
     public Publication[] toArray() {
         Publication[] publicationsCpoy = Arrays.copyOf(publications, size());
-        return publications;
+        return publicationsCpoy;
     }
 
     private void resize(int capacity) {
         publications = Arrays.copyOf(publications, capacity);
+    }
+
+    @Override
+    public Publication peek() {
+        return !isEmpty() ? publications[size - 1] : null;
+    }
+
+    @Override
+    public void clear() {
+        while (!isEmpty()) {
+            pop();
+        }
+    }
+
+    @Override
+    public AbstractPublicationCollection clone() {
+        return new StackArrayBasedCollection(toArray());
+    }
+
+    @Override
+    public Iterator<Publication> iterator() {
+        return new IteratorPublication();
+    }
+
+    private class IteratorPublication implements Iterator<Publication> {
+        private int position = size;
+
+        @Override
+        public boolean hasNext() {
+            return --position >= 0;
+        }
+
+        @Override
+        public Publication next() {
+            if (this.hasNext()) {
+                return publications[position];
+            } else {
+                throw new AchievementOfBoundsException("You try get not existing element");
+            }
+        }
     }
 
     @Override

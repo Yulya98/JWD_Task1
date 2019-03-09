@@ -9,13 +9,13 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  */
 public interface StackCollection extends PublicationCollection {
 
-    void push(Publication publication);
+    boolean push(Publication publication);
 
     Publication pop();
 
     boolean isEmpty();
 
-    int size();
-
     void clear();
+
+    Publication peek();
 }

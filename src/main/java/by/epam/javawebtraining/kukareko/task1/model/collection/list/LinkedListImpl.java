@@ -1,40 +1,57 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
+import java.util.Iterator;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
+public class LinkedListImpl extends AbstractPublicationCollection implements LinkedListCollection {
 
     private int count;
     private DoublyLinkedNode head;
     private DoublyLinkedNode tail;
 
-    public DoublyLinkedListImpl() {
+    public LinkedListImpl() {
         head = null;
         tail = null;
         count = 0;
     }
 
-    @Override
-    public void addFirst(Publication value) {
-        head = new DoublyLinkedNode(value, head, null);
-        if (tail == null) {
-            tail = head;
-        }
-        count++;
+    public LinkedListImpl(DoublyLinkedNode head, DoublyLinkedNode tail, int size) {
+        this.head = head;
+        this.tail = tail;
+        this.count = size;
     }
 
     @Override
-    public void addLast(Publication value) {
-        tail = new DoublyLinkedNode(value, null, tail);
-        if (head == null)
-            head = tail;
-        count++;
+    public boolean addFirst(Publication value) {
+        if (value != null) {
+            head = new DoublyLinkedNode(value, head, null);
+            if (tail == null) {
+                tail = head;
+            }
+            count++;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addLast(Publication value) {
+        if (value != null) {
+            tail = new DoublyLinkedNode(value, null, tail);
+            if (head == null)
+                head = tail;
+            count++;
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -78,6 +95,7 @@ public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
             finger = finger.previous();
             i--;
         }
+
         return finger == null ? -1 : i;
     }
 
@@ -105,13 +123,44 @@ public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
     }
 
     @Override
-    public boolean isEmpty() {
-        return count == 0;
+    public int size() {
+        return count;
     }
 
     @Override
-    public int size() {
-        return count;
+    public Iterator<Publication> iterator() {
+        return new IteratorPublications(head);
+    }
+
+    @Override
+    public Iterator<Publication> iteratorStack() {
+        return new IteratorPublications(tail);
+    }
+
+    @Override
+    public void clear() {
+        while (count != 0) {
+            removeLast();
+        }
+    }
+
+    @Override
+    public Publication get(int index) {
+        if ((index < size()) && (index >= 0)) {
+            DoublyLinkedNode publication = head;
+            for (int i = 0; i <= index; i++) {
+                if (i == index) {
+                    return publication.value();
+                }
+                publication = publication.next();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public AbstractPublicationCollection clone() {
+        return new LinkedListImpl(head, tail, count);
     }
 
     @Override
@@ -123,7 +172,7 @@ public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
         if (!isEmpty()) {
             publications = new Publication[count];
             while (current != null) {
-                publications[index] = head.value();
+                publications[index] = current.value();
                 current = current.next();
                 index++;
             }
@@ -131,6 +180,54 @@ public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
         }
 
         return null;
+    }
+
+    private class IteratorPublications implements Iterator<Publication> {
+        private static final String STACK = "Stack";
+        private static final String QUEUE = "Queue";
+
+        private DoublyLinkedNode position;
+        private String collectionName;
+
+        public IteratorPublications(DoublyLinkedNode position) {
+            this.position = position;
+            if (position == head) {
+                collectionName = QUEUE;
+            } else {
+                collectionName = STACK;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position != null;
+        }
+
+        @Override
+        public Publication next() {
+            if (this.hasNext()) {
+                if ((position == head) && (collectionName.equals(QUEUE))
+                        || ((position == tail) && (collectionName.equals(STACK)))) {
+                    if (collectionName.equals(STACK)) {
+                        position = tail.previous();
+                        return tail.value();
+                    } else {
+                        position = head.next();
+                        return head.value();
+                    }
+                } else {
+                    Publication publication = position.value();
+                    if (collectionName.equals(STACK)) {
+                        position = position.previous();
+                    } else {
+                        position = position.next();
+                    }
+                    return publication;
+                }
+            } else {
+                throw new AchievementOfBoundsException("You try get not existing element");
+            }
+        }
     }
 
     private class DoublyLinkedNode {
@@ -183,7 +280,7 @@ public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DoublyLinkedListImpl that = (DoublyLinkedListImpl) o;
+        LinkedListImpl that = (LinkedListImpl) o;
         return count == that.count &&
                 Objects.equals(head, that.head) &&
                 Objects.equals(tail, that.tail);
@@ -196,7 +293,7 @@ public class DoublyLinkedListImpl implements DoublyLinkedListCollection {
 
     @Override
     public String toString() {
-        return "DoublyLinkedListImpl{" +
+        return "LinkedListImpl{" +
                 "count=" + count +
                 ", head=" + head +
                 ", tail=" + tail +
