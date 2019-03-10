@@ -14,6 +14,8 @@ import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSort
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
 import by.epam.javawebtraining.kukareko.task1.view.StandardOutPublicationsRender;
 
+import java.util.ArrayList;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
@@ -24,74 +26,75 @@ public class Controller {
      Main method test counter, sorter, finder logical
      */
     public static void main(String[] args) {
-        try {
-            int publicationsCount = 5;
-
-            Library<QueueLinkedListBased> library = new Library<>(new QueueLinkedListBased());
-            StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
-
-            for (int i = 0; i < publicationsCount; i++) {
-                Publication publication = PublicationCreatorUtil.create();
-                library.getPublications().add(publication);
-            }
-
-            library.getPublications().add(PublicationCreatorUtil.create());
-            library.getPublications().remove();
-
-            PublicationSorter publicationSorter = new PublicationSorterImpl();
-            PublicationFinder publicationFinder = new PublicationFinderImpl();
-            PublicationCounter publicationCounter = new PublicationCounterImpl();
-
-            publicationsRender.messageRender("Sorting by rating: ");
-            publicationSorter.sortedByRating(library.getPublications().toArray());
-
-            for (int i = 0; i < library.getPublications().size(); i++) {
-                publicationsRender.renderElement(library.getPublications().toArray()[i]);
-            }
-
-            publicationsRender.messageRender("Sorting by Circulation and page count: ");
-            publicationSorter.sortedByCirculationAndPageCount(library.getPublications().toArray());
-
-            for (int i = 0; i < library.getPublications().size(); i++) {
-                publicationsRender.renderElement(library.getPublications().toArray()[i]);
-            }
-
-            publicationFinder.findExtremumByRating(library.getPublications().toArray(), "ACK");
-            publicationsRender.messageRender("Find extremum element by rating: ");
-            publicationsRender.renderElement(publicationFinder.findExtremumByRating(library.getPublications().toArray(),
-                    "ACK"));
-
-            publicationFinder.findByExtremumFont(library.getPublications().toArray(), "ACK");
-            publicationsRender.messageRender("Find extremum element by font: ");
-            publicationsRender.renderElement(publicationFinder.findExtremumByRating(library.getPublications().toArray(),
-                    "DESC"));
-
-            publicationFinder.findByExtremumPageCount(library.getPublications().toArray(), "ACK");
-            publicationsRender.messageRender("Find extremum element by page count: ");
-            publicationsRender.renderElement(publicationFinder.findExtremumByRating(library.getPublications().toArray(),
-                    "ACK"));
-
-            publicationsRender.messageRender("Find Publication by param: ");
-
-            publicationsRender.renderElement(publicationFinder.findByParam(library.getPublications().toArray(), 13,
-                    10, 1));
-
-            publicationsRender.messageRender("Books count = "
-                    + checkCount(publicationCounter.countBooks(library.getPublications().toArray())));
-
-            publicationsRender.messageRender("Magazines count = "
-                    + checkCount(publicationCounter.countMagazines(library.getPublications().toArray())));
-
-            publicationsRender.messageRender("Albums count = "
-                    + checkCount(publicationCounter.countAlbums(library.getPublications().toArray())));
-
-            Book book = new Book();
-            Book book2 = new Book(book);
-            publicationsRender.renderElement(book2);
-
-        } catch (LibraryException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            int publicationsCount = 5;
+//            ArrayList
+//
+//            Library<QueueLinkedListBased> library = new Library<>(new QueueLinkedListBased());
+//            StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
+//
+//            for (int i = 0; i < publicationsCount; i++) {
+//                Publication publication = PublicationCreatorUtil.create();
+//                library.getPublications().add(publication);
+//            }
+//
+//            library.getPublications().add(PublicationCreatorUtil.create());
+//            library.getPublications().remove();
+//
+//            PublicationSorter publicationSorter = new PublicationSorterImpl();
+//            PublicationFinder publicationFinder = new PublicationFinderImpl();
+//            PublicationCounter publicationCounter = new PublicationCounterImpl();
+//
+//            publicationsRender.messageRender("Sorting by rating: ");
+//            publicationSorter.sortedByRating(library.getPublications().toArray());
+//
+//            for (int i = 0; i < library.getPublications().size(); i++) {
+//                publicationsRender.renderElement(library.getPublications().toArray()[i]);
+//            }
+//
+//            publicationsRender.messageRender("Sorting by Circulation and page count: ");
+//            publicationSorter.sortedByCirculationAndPageCount(library.getPublications().toArray());
+//
+//            for (int i = 0; i < library.getPublications().size(); i++) {
+//                publicationsRender.renderElement(library.getPublications().toArray()[i]);
+//            }
+//
+//            publicationFinder.findExtremumByRating(library.getPublications().toArray(), "ACK");
+//            publicationsRender.messageRender("Find extremum element by rating: ");
+//            publicationsRender.renderElement(publicationFinder.findExtremumByRating(library.getPublications().toArray(),
+//                    "ACK"));
+//
+//            publicationFinder.findByExtremumFont(library.getPublications().toArray(), "ACK");
+//            publicationsRender.messageRender("Find extremum element by font: ");
+//            publicationsRender.renderElement(publicationFinder.findExtremumByRating(library.getPublications().toArray(),
+//                    "DESC"));
+//
+//            publicationFinder.findByExtremumPageCount(library.getPublications().toArray(), "ACK");
+//            publicationsRender.messageRender("Find extremum element by page count: ");
+//            publicationsRender.renderElement(publicationFinder.findExtremumByRating(library.getPublications().toArray(),
+//                    "ACK"));
+//
+//            publicationsRender.messageRender("Find Publication by param: ");
+//
+//            publicationsRender.renderElement(publicationFinder.findByParam(library.getPublications().toArray(), 13,
+//                    10, 1));
+//
+//            publicationsRender.messageRender("Books count = "
+//                    + checkCount(publicationCounter.countBooks(library.getPublications().toArray())));
+//
+//            publicationsRender.messageRender("Magazines count = "
+//                    + checkCount(publicationCounter.countMagazines(library.getPublications().toArray())));
+//
+//            publicationsRender.messageRender("Albums count = "
+//                    + checkCount(publicationCounter.countAlbums(library.getPublications().toArray())));
+//
+//            Book book = new Book();
+//            Book book2 = new Book(book);
+//            publicationsRender.renderElement(book2);
+//
+//        } catch (LibraryException ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     private static String checkCount(int count) {

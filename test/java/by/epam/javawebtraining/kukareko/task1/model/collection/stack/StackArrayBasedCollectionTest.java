@@ -18,7 +18,7 @@ import java.util.Iterator;
 public class StackArrayBasedCollectionTest {
 
     private static Publication[] publications;
-    private static StackArrayBasedCollection stack;
+    private static StackArrayBasedCollection<Publication> stack;
 
     @BeforeClass
     public static void init() {
@@ -33,23 +33,7 @@ public class StackArrayBasedCollectionTest {
 
     @Before
     public void initEach() {
-        stack = new StackArrayBasedCollection();
-    }
-
-    @Test
-    public void createObjTest() {
-        int size = 2;
-        int expected = 2;
-
-        Assert.assertEquals(expected, new StackArrayBasedCollection(size).getCapacity());
-    }
-
-    @Test
-    public void createObjTestNegativeSize() {
-        int size = -2;
-        int expected = 8;
-
-        Assert.assertEquals(expected, new StackArrayBasedCollection(size).getCapacity());
+        stack = new StackArrayBasedCollection<>();
     }
 
     @Test
@@ -154,7 +138,7 @@ public class StackArrayBasedCollectionTest {
         stack.push(publications[0]);
         stack.push(publications[1]);
 
-        StackArrayBasedCollection cloneStack = new StackArrayBasedCollection(stack.toArray());
+        StackArrayBasedCollection cloneStack = stack.clone();
 
         Assert.assertArrayEquals(stack.toArray(), cloneStack.toArray());
     }

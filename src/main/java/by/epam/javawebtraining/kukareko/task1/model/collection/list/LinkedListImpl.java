@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class LinkedListImpl extends AbstractPublicationCollection implements LinkedListCollection {
+public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implements ListCollection<T> {
 
     private int count;
     private DoublyLinkedNode head;
@@ -30,7 +30,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     @Override
-    public boolean addFirst(Publication value) {
+    public boolean addFirst(T value) {
         if (value != null) {
             head = new DoublyLinkedNode(value, head, null);
             if (tail == null) {
@@ -43,7 +43,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     @Override
-    public boolean addLast(Publication value) {
+    public boolean addLast(T value) {
         if (value != null) {
             tail = new DoublyLinkedNode(value, null, tail);
             if (head == null)
@@ -55,7 +55,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     @Override
-    public Publication removeLast() {
+    public T removeLast() {
         if (!isEmpty()) {
             DoublyLinkedNode temp = tail;
             tail = tail.previous();
@@ -65,13 +65,13 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
                 tail.setNext(null);
             }
             count--;
-            return temp.value();
+            return (T) temp.value();
         }
         return null;
     }
 
     @Override
-    public Publication removeFirst() {
+    public T removeFirst() {
         if (!isEmpty()) {
             DoublyLinkedNode temp = head;
             head = head.next();
@@ -81,13 +81,13 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
                 head.setPrevious(null);
             }
             count--;
-            return temp.value();
+            return (T) temp.value();
         }
         return null;
     }
 
     @Override
-    public int lastIndexOf(Publication publication) {
+    public int lastIndexOf(T publication) {
         int i = size() - 1;
         DoublyLinkedNode finger = tail;
 
@@ -100,7 +100,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     @Override
-    public Publication remove(Publication value) {
+    public T remove(T value) {
         DoublyLinkedNode finger = head;
         while (finger != null && !finger.value().equals(value)) {
             finger = finger.next();
@@ -117,7 +117,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
                 tail = finger.previous();
             }
             count--;
-            return finger.value();
+            return (T) finger.value();
         }
         return null;
     }
@@ -128,7 +128,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     @Override
-    public Iterator<Publication> iterator() {
+    public Iterator<T> iterator() {
         return new IteratorPublications(head);
     }
 
@@ -139,18 +139,18 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
 
     @Override
     public void clear() {
-        while (count != 0) {
+        while (size() != 0) {
             removeLast();
         }
     }
 
     @Override
-    public Publication get(int index) {
+    public T get(int index) {
         if ((index < size()) && (index >= 0)) {
             DoublyLinkedNode publication = head;
             for (int i = 0; i <= index; i++) {
                 if (i == index) {
-                    return publication.value();
+                    return (T) publication.value();
                 }
                 publication = publication.next();
             }
@@ -159,30 +159,30 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
+    public LinkedListImpl clone() {
         return new LinkedListImpl(head, tail, count);
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         int index = 0;
-        Publication[] publications;
+        Object[] elements;
         DoublyLinkedNode current = head;
 
         if (!isEmpty()) {
-            publications = new Publication[count];
+            elements = new Publication[count];
             while (current != null) {
-                publications[index] = current.value();
+                elements[index] = (T) current.value();
                 current = current.next();
                 index++;
             }
-            return publications;
+            return elements;
         }
 
         return null;
     }
 
-    private class IteratorPublications implements Iterator<Publication> {
+    private class IteratorPublications<T> implements Iterator<T> {
         private static final String STACK = "Stack";
         private static final String QUEUE = "Queue";
 
@@ -204,25 +204,25 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
         }
 
         @Override
-        public Publication next() {
+        public T next() {
             if (this.hasNext()) {
                 if ((position == head) && (collectionName.equals(QUEUE))
                         || ((position == tail) && (collectionName.equals(STACK)))) {
                     if (collectionName.equals(STACK)) {
                         position = tail.previous();
-                        return tail.value();
+                        return (T) tail.value();
                     } else {
                         position = head.next();
-                        return head.value();
+                        return (T) head.value();
                     }
                 } else {
-                    Publication publication = position.value();
+                    T publication = (T) position.value();
                     if (collectionName.equals(STACK)) {
                         position = position.previous();
                     } else {
                         position = position.next();
                     }
-                    return publication;
+                    return (T) publication;
                 }
             } else {
                 throw new AchievementOfBoundsException("You try get not existing element");
@@ -231,11 +231,11 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
     }
 
     private class DoublyLinkedNode {
-        private Publication data;
+        private T data;
         private DoublyLinkedNode nextElement;
         private DoublyLinkedNode previousElement;
 
-        public DoublyLinkedNode(Publication data, DoublyLinkedNode nextElement, DoublyLinkedNode previousElement) {
+        public DoublyLinkedNode(T data, DoublyLinkedNode nextElement, DoublyLinkedNode previousElement) {
             this.data = data;
             this.nextElement = nextElement;
             if (nextElement != null) {
@@ -247,11 +247,11 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
             }
         }
 
-        public DoublyLinkedNode(Publication data) {
+        public DoublyLinkedNode(T data) {
             this(data, null, null);
         }
 
-        public Publication value() {
+        public T value() {
             return data;
         }
 
@@ -263,7 +263,7 @@ public class LinkedListImpl extends AbstractPublicationCollection implements Lin
             return previousElement;
         }
 
-        public void setValue(Publication data) {
+        public void setValue(T data) {
             this.data = data;
         }
 

@@ -12,30 +12,22 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 09 Mar 2019
  */
-public class DynamicArrayCollection extends AbstractPublicationCollection implements ArrayCollection {
+public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> implements ArrayCollection<T> {
     private static final int DEFAULT_CAPACITY = 8;
 
-    private Publication[] publications;
+    private Object[] publications;
     private int size;
 
     public DynamicArrayCollection() {
-        publications = new Publication[DEFAULT_CAPACITY];
+        publications = new Object[DEFAULT_CAPACITY];
     }
 
-    public DynamicArrayCollection(Publication[] publications) {
+    public DynamicArrayCollection(Object[] publications) {
         this.publications = publications;
     }
 
-    public DynamicArrayCollection(int size) {
-        if (size >= 0) {
-            publications = new Publication[size];
-        } else {
-            publications = new Publication[DEFAULT_CAPACITY];
-        }
-    }
-
     @Override
-    public boolean add(Publication publication) {
+    public boolean add(T publication) {
         if ((publication != null)) {
             if (size == publications.length) {
                 resize(publications.length * 2);
@@ -51,9 +43,9 @@ public class DynamicArrayCollection extends AbstractPublicationCollection implem
     }
 
     @Override
-    public Publication remove(int remIndex) {
+    public T remove(int remIndex) {
         if (remIndex >= 0 && remIndex < size) {
-            Publication publication = publications[remIndex];
+            T publication = (T) publications[remIndex];
 
             for (int i = remIndex; i < size - 1; i++) {
                 publications[i] = publications[i + 1];
@@ -66,9 +58,9 @@ public class DynamicArrayCollection extends AbstractPublicationCollection implem
     }
 
     @Override
-    public Publication get(int index) {
+    public T get(int index) {
         if (index >= 0 && index < size) {
-            return publications[index];
+            return (T) publications[index];
         }
         return null;
     }
@@ -79,7 +71,7 @@ public class DynamicArrayCollection extends AbstractPublicationCollection implem
     }
 
     @Override
-    public boolean set(int index, Publication publication) {
+    public boolean set(int index, T publication) {
         if ((index >= 0) && (index < size) && (publication != null)) {
             publications[index] = publication;
             return true;
@@ -88,9 +80,9 @@ public class DynamicArrayCollection extends AbstractPublicationCollection implem
     }
 
     @Override
-    public boolean addAll(Publication[] publications) {
+    public boolean addAll(T[] publications) {
         if (publications != null) {
-            for (Publication publication : publications) {
+            for (T publication : publications) {
                 add(publication);
             }
             return true;
@@ -111,16 +103,16 @@ public class DynamicArrayCollection extends AbstractPublicationCollection implem
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         return publications;
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new StackArrayBasedCollection(toArray());
+    public DynamicArrayCollection clone() {
+        return new DynamicArrayCollection(toArray());
     }
 
-    private class IteratorPublications implements Iterator<Publication> {
+    private class IteratorPublications<T> implements Iterator<T> {
         int position = -1;
 
         @Override
@@ -129,9 +121,9 @@ public class DynamicArrayCollection extends AbstractPublicationCollection implem
         }
 
         @Override
-        public Publication next() {
+        public T next() {
             if (this.hasNext()) {
-                return publications[position];
+                return (T) publications[position];
             }
             return null;
         }

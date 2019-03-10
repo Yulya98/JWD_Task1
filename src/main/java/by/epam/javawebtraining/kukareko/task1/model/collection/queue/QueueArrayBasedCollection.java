@@ -1,6 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.ArrayListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
@@ -12,150 +14,75 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class QueueArrayBasedCollection extends AbstractPublicationCollection implements QueueCollection {
+public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
 
-    private static final int DEFAULT_CAPACITY = 8;
-
-    private Publication[] publications;
-    private int head;
-    private int tail;
-    private int size;
+    private ArrayListCollection<T> list;
 
     public QueueArrayBasedCollection() {
-        initialize(DEFAULT_CAPACITY);
+        list = new ArrayListCollection<>();
     }
 
-    public QueueArrayBasedCollection(int size) {
-        initialize(size);
-    }
-
-    public QueueArrayBasedCollection(Publication[] publications) {
-        this.size = publications.length;
-        this.publications = publications;
-    }
-
-    private void initialize(int capacity) {
-        publications = new Publication[capacity];
-        this.size = this.head = 0;
-        this.tail = 0;
-    }
-
-    public int getCapacity() {
-        return publications.length;
+    public QueueArrayBasedCollection(ArrayListCollection<T> list) {
+        this.list = list;
     }
 
     @Override
-    public boolean add(Publication publication) {
-        if (publication != null) {
-            if (size() == publications.length) {
-                resize(publications.length * 2);
-            }
-            publications[tail] = publication;
-            tail++;
-            size++;
-
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Publication remove() {
-        if (!isEmpty()) {
-            Publication item = publications[0];
-
-            for (int i = head; i < size - 1; i++) {
-                publications[i] = publications[i + 1];
-            }
-            publications[size - 1] = null;
-            tail--;
-            size--;
-
-            return item;
-        }
-        return null;
-    }
-
-    @Override
-    public Publication[] toArray() {
-        Publication[] publicationsCopy = Arrays.copyOf(publications, size());
-        return publicationsCopy;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public void clear() {
-        while (tail != 0) {
-            remove();
-        }
-    }
-
-    @Override
-    public AbstractPublicationCollection clone() {
-        return new QueueArrayBasedCollection(toArray());
-    }
-
-    private void resize(int capacity) {
-        publications = Arrays.copyOf(publications, capacity);
-    }
-
-    @Override
-    public Publication element() {
-        return !isEmpty() ? publications[head] : null;
+    public Object[] toArray() {
+        return list.toArray();
     }
 
     @Override
     public Iterator iterator() {
-        return new IteratorPublication();
+        return list.iterator();
     }
 
-    private class IteratorPublication implements Iterator<Publication> {
-        private int position = -1;
+    @Override
+    public void clear() {
+        list.clear();
+    }
 
-        @Override
-        public boolean hasNext() {
-            return ++position < size;
-        }
+    @Override
+    public QueueArrayBasedCollection<T> clone() {
+        return new QueueArrayBasedCollection<>(list.clone());
+    }
 
-        @Override
-        public Publication next() {
-            if (this.hasNext()) {
-                return publications[position];
-            } else {
-                throw new AchievementOfBoundsException("You try get not existing element");
-            }
-        }
+    @Override
+    public int size() {
+        return list.size();
+    }
+
+    @Override
+    public boolean add(T publication) {
+        return list.addLast(publication);
+    }
+
+    @Override
+    public T remove() {
+        return list.removeFirst();
+    }
+
+    @Override
+    public T element() {
+        return list.get(0);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        QueueArrayBasedCollection that = (QueueArrayBasedCollection) o;
-        return head == that.head &&
-                tail == that.tail &&
-                size == that.size &&
-                Arrays.equals(publications, that.publications);
+        QueueArrayBasedCollection<?> that = (QueueArrayBasedCollection<?>) o;
+        return Objects.equals(list, that.list);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(head, tail, size);
-        result = 31 * result + Arrays.hashCode(publications);
-        return result;
+        return Objects.hash(list);
     }
 
     @Override
     public String toString() {
         return "QueueArrayBasedCollection{" +
-                "publications=" + Arrays.toString(publications) +
-                ", head=" + head +
-                ", tail=" + tail +
-                ", size=" + size +
+                "list=" + list +
                 '}';
     }
 }

@@ -17,7 +17,7 @@ import java.util.Iterator;
  */
 public class QueueArrayBasedCollectionTest {
     private static Publication[] publications;
-    private static QueueArrayBasedCollection queue;
+    private static QueueArrayBasedCollection<Publication> queue;
 
     @BeforeClass
     public static void init() {
@@ -32,7 +32,7 @@ public class QueueArrayBasedCollectionTest {
 
     @Before
     public void initEach() {
-        queue = new QueueArrayBasedCollection();
+        queue = new QueueArrayBasedCollection<>();
     }
 
     @Test
@@ -91,7 +91,7 @@ public class QueueArrayBasedCollectionTest {
         queue.add(publications[0]);
         queue.add(publications[1]);
 
-        QueueArrayBasedCollection copyQueue = new QueueArrayBasedCollection(queue.toArray());
+        QueueArrayBasedCollection copyQueue =  queue.clone();
 
         Assert.assertArrayEquals(queue.toArray(), copyQueue.toArray());
     }

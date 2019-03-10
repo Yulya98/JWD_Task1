@@ -11,12 +11,12 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackLinkedListBased extends AbstractPublicationCollection implements StackCollection {
+public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
 
-    private LinkedListImpl publications;
+    private LinkedListImpl<T> publications;
 
     public StackLinkedListBased() {
-        publications = new LinkedListImpl();
+        publications = new LinkedListImpl<>();
     }
 
     public StackLinkedListBased(LinkedListImpl publications) {
@@ -24,12 +24,12 @@ public class StackLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public boolean push(Publication publication) {
+    public boolean push(T publication) {
         return publications.addLast(publication);
     }
 
     @Override
-    public Publication pop() {
+    public T pop() {
         return publications.removeLast();
     }
 
@@ -44,7 +44,7 @@ public class StackLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         return publications.toArray();
     }
 
@@ -54,13 +54,13 @@ public class StackLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication peek() {
+    public T peek() {
         return !isEmpty() ? publications.get(publications.size() - 1) : null;
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new StackLinkedListBased((LinkedListImpl) publications.clone());
+    public StackLinkedListBased clone() {
+        return new StackLinkedListBased(publications.clone());
     }
 
     @Override

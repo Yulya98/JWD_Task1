@@ -17,7 +17,7 @@ import java.util.Iterator;
  */
 public class QueueLinkedListBasedTest {
     private static Publication[] publications;
-    private static QueueLinkedListBased queue;
+    private static QueueLinkedListBased<Publication> queue;
 
     @BeforeClass
     public static void init() {
@@ -32,7 +32,7 @@ public class QueueLinkedListBasedTest {
 
     @Before
     public void initEach() {
-        queue = new QueueLinkedListBased();
+        queue = new QueueLinkedListBased<>();
     }
 
     @Test

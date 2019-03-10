@@ -17,7 +17,7 @@ import java.util.Iterator;
  */
 public class StackLinkedListBasedTest {
     private static Publication[] publications;
-    private static StackLinkedListBased stack;
+    private static StackLinkedListBased<Publication> stack;
 
     @BeforeClass
     public static void init() {
@@ -32,7 +32,7 @@ public class StackLinkedListBasedTest {
 
     @Before
     public void initEach() {
-        stack = new StackLinkedListBased();
+        stack = new StackLinkedListBased<>();
     }
 
     @Test

@@ -9,23 +9,23 @@ import java.util.Iterator;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public interface LinkedListCollection extends PublicationCollection {
+public interface ListCollection<T> extends PublicationCollection<T> {
 
-    boolean addFirst(Publication value);
+    boolean addFirst(T value);
 
-    boolean addLast(Publication value);
+    boolean addLast(T value);
 
-    Publication removeLast();
+    T removeLast();
 
-    Publication remove(Publication value);
+    T remove(T value);
 
-    int lastIndexOf(Publication publication);
+    int lastIndexOf(T publication);
 
     boolean isEmpty();
 
-    Publication removeFirst();
+    T removeFirst();
 
-    Publication get(int index);
+    T get(int index);
 
     Iterator iteratorStack();
 }

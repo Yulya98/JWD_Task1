@@ -2,7 +2,9 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+
 import java.util.Iterator;
+
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
 
 import java.util.Objects;
@@ -11,25 +13,25 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class QueueLinkedListBased extends AbstractPublicationCollection implements QueueCollection {
+public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
 
-    private LinkedListImpl publications;
+    private LinkedListImpl<T> publications;
 
     public QueueLinkedListBased() {
-        publications = new LinkedListImpl();
+        publications = new LinkedListImpl<>();
     }
 
-    public QueueLinkedListBased(LinkedListImpl publications) {
+    public QueueLinkedListBased(LinkedListImpl<T> publications) {
         this.publications = publications;
     }
 
     @Override
-    public boolean add(Publication publication) {
+    public boolean add(T publication) {
         return publications.addLast(publication);
     }
 
     @Override
-    public Publication remove() {
+    public T remove() {
         return publications.removeFirst();
     }
 
@@ -44,7 +46,7 @@ public class QueueLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication element() {
+    public T element() {
         int firstElemIndex = 0;
 
         return publications.get(firstElemIndex);
@@ -56,14 +58,14 @@ public class QueueLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         return publications.toArray();
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new QueueLinkedListBased((LinkedListImpl) publications.clone());
-     }
+    public QueueLinkedListBased<T> clone() {
+        return new QueueLinkedListBased<T>(publications.clone());
+    }
 
     @Override
     public boolean equals(Object o) {

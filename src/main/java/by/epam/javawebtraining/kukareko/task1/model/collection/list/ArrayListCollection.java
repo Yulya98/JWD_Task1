@@ -1,0 +1,220 @@
+package by.epam.javawebtraining.kukareko.task1.model.collection.list;
+
+import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Objects;
+
+/**
+ * @author Yulya Kukareko
+ * @version 1.0 10 Mar 2019
+ */
+public class ArrayListCollection<T> extends AbstractPublicationCollection<T> implements ListCollection<T> {
+
+    private static final int DEFAULT_CAPACITY = 8;
+
+    private Object[] elements;
+    private int size;
+
+    public ArrayListCollection() {
+        this.elements = new Object[DEFAULT_CAPACITY];
+        size = 0;
+    }
+
+    public ArrayListCollection(Object[] elements) {
+        this.size = elements.length;
+        this.elements = elements;
+    }
+
+    @Override
+    public boolean addFirst(T value) {
+        if(value != null) {
+            if (size == elements.length) {
+                resize();
+            }
+            for (int i = size - 1; i > 0; i++) {
+                elements[i] = elements[i - 1];
+            }
+            elements[0] = value;
+            size++;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addLast(T e) {
+        if(e != null) {
+            if (size == elements.length) {
+                resize();
+            }
+            elements[size++] = e;
+            return true;
+        }
+        return false;
+    }
+
+    private void resize() {
+        int newSize = elements.length * 2;
+        elements = Arrays.copyOf(elements, newSize);
+    }
+
+    @Override
+    public T removeFirst() {
+        if (!isEmpty()) {
+            T element = (T) elements[0];
+            for (int i = 0; i < size - 2; i++) {
+                elements[i] = elements[i + 1];
+            }
+            elements[size - 1] = null;
+            size--;
+            return element;
+        }
+        return null;
+    }
+
+    @Override
+    public T removeLast() {
+        if (!isEmpty()) {
+            T element = (T) elements[size - 1];
+            for (int i = 0; i < size - 1; i++) {
+                elements[i] = elements[i + 1];
+            }
+            elements[size - 1] = null;
+            size--;
+            return element;
+        }
+        return null;
+    }
+
+    @Override
+    public T remove(T value) {
+        if ((value != null) && !isEmpty()) {
+            int index = lastIndexOf(value);
+            if (index != -1) {
+                for (int i = index; i < size() - 2; i++) {
+                    elements[i] = elements[i + 1];
+                }
+                elements[size - 1] = null;
+                size--;
+                return value;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public T get(int index) {
+        if (!isEmpty() && (index < size) && (index >= 0)) {
+            return (T) elements[index];
+        }
+        return null;
+    }
+
+    @Override
+    public int lastIndexOf(T publication) {
+        for (int i = 0; i < size(); i++){
+            if(elements[i].equals(publication)){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    @Override
+    public Iterator iteratorStack() {
+        return new IteratorPublications(size);
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new IteratorPublications(-1);
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] publicationsCpoy = (T[]) Arrays.copyOf(elements, size());
+        return publicationsCpoy;
+    }
+
+    @Override
+    public void clear() {
+        while (size() != 0) {
+            removeLast();
+        }
+    }
+
+    @Override
+    public ArrayListCollection<T> clone() {
+        return new ArrayListCollection<>(toArray());
+    }
+
+    private class IteratorPublications<T> implements Iterator<T> {
+        private static final String STACK = "Stack";
+        private static final String QUEUE = "Queue";
+
+        private int position;
+        private String collectionName;
+
+        public IteratorPublications(int position) {
+            this.position = position;
+            if (position == -1) {
+                collectionName = QUEUE;
+            } else {
+                collectionName = STACK;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (collectionName == STACK) {
+                --position;
+            } else {
+                ++position;
+            }
+            return position >= 0 && elements[position] != null;
+        }
+
+        @Override
+        public T next() {
+            if (this.hasNext()) {
+                return (T) elements[position];
+            } else {
+                throw new AchievementOfBoundsException("You try get not existing element");
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArrayListCollection<?> that = (ArrayListCollection<?>) o;
+        return size == that.size &&
+                Arrays.equals(elements, that.elements);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(size);
+        result = 31 * result + Arrays.hashCode(elements);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ArrayListCollection{" +
+                "elements=" + Arrays.toString(elements) +
+                ", size=" + size +
+                '}';
+    }
+}

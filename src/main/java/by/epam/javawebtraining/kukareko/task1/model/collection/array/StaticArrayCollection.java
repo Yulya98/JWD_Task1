@@ -13,20 +13,20 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 05 Mar 2019
  */
-public class StaticArrayCollection extends AbstractPublicationCollection implements ArrayCollection {
+public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> implements ArrayCollection<T> {
 
     private static final int DEFAULT_CAPACITY = 8;
 
     private final int CAPACITY;
-    private Publication[] publications;
+    private Object[] publications;
     private int size;
 
     public StaticArrayCollection() {
         this.CAPACITY = DEFAULT_CAPACITY;
-        publications = new Publication[CAPACITY];
+        publications = new Object[CAPACITY];
     }
 
-    public StaticArrayCollection(Publication[] publications) {
+    public StaticArrayCollection(Object[] publications) {
         this.CAPACITY = publications.length;
         this.publications = publications;
     }
@@ -45,18 +45,18 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     }
 
     @Override
-    public boolean add(Publication publication) {
+    public boolean add(T publication) {
         if ((publication != null) && (size < CAPACITY)) {
-            publications[size++] = publication;
+            publications[size++] = (T) publication;
             return true;
         }
         return false;
     }
 
     @Override
-    public Publication remove(int remIndex) {
+    public T remove(int remIndex) {
         if (remIndex >= 0 && remIndex < size) {
-            Publication publication = publications[remIndex];
+            T publication = (T) publications[remIndex];
 
             for (int i = remIndex; i < size - 1; i++) {
                 publications[i] = publications[i + 1];
@@ -69,9 +69,9 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     }
 
     @Override
-    public Publication get(int index) {
+    public T get(int index) {
         if (index >= 0 && index < size) {
-            return publications[index];
+            return (T) publications[index];
         }
         return null;
     }
@@ -82,7 +82,7 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     }
 
     @Override
-    public boolean set(int index, Publication publication) {
+    public boolean set(int index, T publication) {
         if ((index >= 0) && (index < size) && (publication != null)) {
             publications[index] = publication;
             return true;
@@ -91,10 +91,10 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     }
 
     @Override
-    public boolean addAll(Publication[] publications) {
+    public boolean addAll(T[] publications) {
         if (publications != null) {
             if (publications.length <= CAPACITY) {
-                for (Publication publication : publications) {
+                for (T publication : publications) {
                     add(publication);
                 }
                 return true;
@@ -116,16 +116,16 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         return publications;
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new StackArrayBasedCollection(toArray());
+    public StaticArrayCollection clone() {
+        return new StaticArrayCollection(toArray());
     }
 
-    private class IteratorPublications implements Iterator<Publication> {
+    private class IteratorPublications<T> implements Iterator<T> {
         int position = -1;
 
         @Override
@@ -134,9 +134,9 @@ public class StaticArrayCollection extends AbstractPublicationCollection impleme
         }
 
         @Override
-        public Publication next() {
+        public T next() {
             if (this.hasNext()) {
-                return publications[position];
+                return (T) publications[position];
             } else {
                 throw new AchievementOfBoundsException("You try get not existing element");
             }
