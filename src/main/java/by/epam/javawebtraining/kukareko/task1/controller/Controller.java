@@ -29,7 +29,7 @@ public class Controller {
         try {
             int publicationsCount = 5;
 
-            Library<QueueArrayBasedCollection<Publication>> library = new Library<QueueArrayBasedCollection<Publication>>(new QueueArrayBasedCollection<Publication>());
+            Library<QueueCollection<Publication>> library = new Library<QueueCollection<Publication>>(new QueueArrayBasedCollection<Publication>());
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
             for (int i = 0; i < publicationsCount; i++) {
