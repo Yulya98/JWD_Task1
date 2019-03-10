@@ -1,12 +1,9 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.RemoveIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -59,7 +56,7 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
 
             return publication;
         } else {
-            throw new RemoveIndexOutOfRangeException();
+            throw new IndexOutOfRangeException();
         }
     }
 
@@ -68,7 +65,7 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
         if (index >= 0 && index < size) {
             return (T) publications[index];
         } else {
-            throw new  GetIndexOutOfRangeException();
+            throw new  IndexOutOfRangeException();
         }
     }
 

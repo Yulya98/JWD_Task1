@@ -121,7 +121,7 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
         if (!isEmpty() && (index < size) && (index >= 0)) {
             return (T) elements[index];
         } else {
-            throw new GetIndexOutOfRangeException();
+            throw new IndexOutOfRangeException();
         }
     }
 

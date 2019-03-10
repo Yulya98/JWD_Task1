@@ -1,13 +1,11 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
-import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -180,7 +178,7 @@ public class LinkedListImplTest {
         Assert.assertEquals(expected, linkedList.get(searchIndex));
     }
 
-    @Test(expected = GetIndexOutOfRangeException.class)
+    @Test(expected = IndexOutOfRangeException.class)
     public void getNegativeIndexTest() {
         int searchIndex = -1;
 
@@ -190,7 +188,7 @@ public class LinkedListImplTest {
         linkedList.get(searchIndex);
     }
 
-    @Test(expected = GetIndexOutOfRangeException.class)
+    @Test(expected = IndexOutOfRangeException.class)
     public void getIndexMoreThenSizeTest() {
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);

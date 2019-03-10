@@ -4,7 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicati
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 
 import java.util.Iterator;
@@ -162,7 +162,7 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
                 publication = publication.next();
             }
         } else {
-            throw new GetIndexOutOfRangeException();
+            throw new IndexOutOfRangeException();
         }
         return null;
     }

@@ -6,7 +6,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CapacityExceededException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -117,7 +117,7 @@ public class StaticArrayCollectionTest {
         Assert.assertNotNull(staticArrayCollection.get(index));
     }
 
-    @Test(expected = GetIndexOutOfRangeException.class)
+    @Test(expected = IndexOutOfRangeException.class)
     public void testGetNegativeIndex() {
         int index = -1;
         staticArrayCollection = new StaticArrayCollection(2);
@@ -126,7 +126,7 @@ public class StaticArrayCollectionTest {
         staticArrayCollection.get(index);
     }
 
-    @Test(expected = GetIndexOutOfRangeException.class)
+    @Test(expected = IndexOutOfRangeException.class)
     public void testGetSizeExceeds() {
         int initSize = 2;
         staticArrayCollection = new StaticArrayCollection(initSize);
