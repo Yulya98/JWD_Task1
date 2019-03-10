@@ -5,6 +5,9 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CapacityExceededException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -60,20 +63,20 @@ public class StaticArrayCollectionTest {
         Assert.assertTrue(staticArrayCollection.add(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void testAddNull() {
         staticArrayCollection = new StaticArrayCollection();
         Publication publication = null;
 
-        Assert.assertFalse(staticArrayCollection.add(publication));
+        staticArrayCollection.add(publication);
     }
 
-    @Test
+    @Test(expected = CapacityExceededException.class)
     public void testAddCapacityExceeds() {
         int size = 0;
         staticArrayCollection = new StaticArrayCollection(size);
 
-        Assert.assertFalse(staticArrayCollection.add(publication));
+        staticArrayCollection.add(publication);
     }
 
     @Test
@@ -86,23 +89,23 @@ public class StaticArrayCollectionTest {
         Assert.assertEquals(expected, staticArrayCollection.remove(remIndex));
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testRemoveNegativeIndex() {
         int remIndex = -1;
         staticArrayCollection = new StaticArrayCollection(2);
         staticArrayCollection.add(publication);
 
-        Assert.assertNull(staticArrayCollection.remove(remIndex));
+        staticArrayCollection.remove(remIndex);
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testRemoveSizeExceeds() {
         int initialSize = 2;
         staticArrayCollection = new StaticArrayCollection(initialSize);
         staticArrayCollection.add(publication);
         int remIndex = staticArrayCollection.size() + 1;
 
-        Assert.assertNull(staticArrayCollection.remove(remIndex));
+        staticArrayCollection.remove(remIndex);
     }
 
     @Test
@@ -114,23 +117,23 @@ public class StaticArrayCollectionTest {
         Assert.assertNotNull(staticArrayCollection.get(index));
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testGetNegativeIndex() {
         int index = -1;
         staticArrayCollection = new StaticArrayCollection(2);
         staticArrayCollection.add(publication);
 
-        Assert.assertNull(staticArrayCollection.get(index));
+        staticArrayCollection.get(index);
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testGetSizeExceeds() {
         int initSize = 2;
         staticArrayCollection = new StaticArrayCollection(initSize);
         staticArrayCollection.add(publication);
         int index = staticArrayCollection.size() + 1;
 
-        Assert.assertNull(staticArrayCollection.get(index));
+        staticArrayCollection.get(index);
     }
 
     @Test
@@ -144,7 +147,7 @@ public class StaticArrayCollectionTest {
         Assert.assertTrue(staticArrayCollection.set(index, publication));
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testSetSizeExceeds() {
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
@@ -152,20 +155,20 @@ public class StaticArrayCollectionTest {
         staticArrayCollection.add(publication);
         int index = staticArrayCollection.size() + 1;
 
-        Assert.assertFalse(staticArrayCollection.set(index, publication));
+        staticArrayCollection.set(index, publication);
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void testSetNull() {
         Publication publication = null;
         staticArrayCollection = new StaticArrayCollection(2);
         staticArrayCollection.add(publication);
         int index = 0;
 
-        Assert.assertFalse(staticArrayCollection.set(index, publication));
+        staticArrayCollection.set(index, publication);
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testSetNegative() {
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
@@ -173,7 +176,7 @@ public class StaticArrayCollectionTest {
         staticArrayCollection.add(publication);
         int index = -1;
 
-        Assert.assertFalse(staticArrayCollection.set(index, publication));
+        staticArrayCollection.set(index, publication);
     }
 
     @Test
@@ -183,12 +186,12 @@ public class StaticArrayCollectionTest {
         Assert.assertTrue(staticArrayCollection.addAll(publications));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void addAllNull() {
         Publication[] publications = null;
         staticArrayCollection = new StaticArrayCollection();
 
-        Assert.assertFalse(staticArrayCollection.addAll(publications));
+        staticArrayCollection.addAll(publications);
     }
 
     @Test
@@ -255,7 +258,7 @@ public class StaticArrayCollectionTest {
         Assert.assertEquals(publications[1], iterator.next());
     }
 
-    @Test
+    @Test(expected = CapacityExceededException.class)
     public void addAllCapacityExceeds() {
         Publication[] publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
@@ -265,7 +268,6 @@ public class StaticArrayCollectionTest {
                         100000, 8, "Hans Christian Andersen", "4+")
         };
         staticArrayCollection = new StaticArrayCollection(0);
-
-        Assert.assertFalse(staticArrayCollection.addAll(publications));
+        staticArrayCollection.addAll(publications);
     }
 }

@@ -4,6 +4,9 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicati
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CapacityExceededException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -46,11 +49,16 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
 
     @Override
     public boolean add(T publication) {
-        if ((publication != null) && (size < CAPACITY)) {
-            publications[size++] = (T) publication;
-            return true;
+        if (publication != null) {
+            if(size < CAPACITY) {
+                publications[size++] = (T) publication;
+                return true;
+            } else {
+                throw new CapacityExceededException();
+            }
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     @Override
@@ -64,16 +72,18 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
             publications[--size] = null;
 
             return publication;
+        } else {
+            throw new IndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override
     public T get(int index) {
         if (index >= 0 && index < size) {
             return (T) publications[index];
+        } else {
+            throw new IndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override
@@ -83,11 +93,16 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
 
     @Override
     public boolean set(int index, T publication) {
-        if ((index >= 0) && (index < size) && (publication != null)) {
-            publications[index] = publication;
-            return true;
+        if ((publication != null)) {
+            if((index >= 0) && (index < size)) {
+                publications[index] = publication;
+                return true;
+            } else {
+                throw new IndexOutOfRangeException();
+            }
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     @Override
@@ -98,9 +113,12 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
                     add(publication);
                 }
                 return true;
+            } else {
+                throw new CapacityExceededException();
             }
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     @Override

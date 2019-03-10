@@ -1,8 +1,9 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -34,8 +35,9 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
             }
             publications[size++] = publication;
             return true;
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     private void resize(int capacity) {
@@ -53,16 +55,18 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
             publications[--size] = null;
 
             return publication;
+        } else {
+            throw new IndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override
     public T get(int index) {
         if (index >= 0 && index < size) {
             return (T) publications[index];
+        } else {
+            throw new IndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override
@@ -72,11 +76,16 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
 
     @Override
     public boolean set(int index, T publication) {
-        if ((index >= 0) && (index < size) && (publication != null)) {
-            publications[index] = publication;
-            return true;
+        if (publication != null) {
+            if((index >= 0) && (index < size)) {
+                publications[index] = publication;
+                return true;
+            } else {
+                throw new IndexOutOfRangeException();
+            }
+        } else {
+            throw new CollectionEmptyException();
         }
-        return false;
     }
 
     @Override
