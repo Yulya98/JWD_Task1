@@ -4,6 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicati
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -12,139 +13,55 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackArrayBasedCollection extends AbstractPublicationCollection implements StackCollection {
+public class StackArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
 
-    private static final int DEFAULT_CAPACITY = 8;
-
-    private Publication[] publications;
-    private int size;
-    private int top;
-
+    private ArrayList<T> list;
 
     public StackArrayBasedCollection() {
-        this.size = this.top = 0;
-        this.publications = new Publication[DEFAULT_CAPACITY];
+        list = new ArrayList<>();
     }
 
-    public StackArrayBasedCollection(int size) {
-        if (size > 0) {
-            this.publications = new Publication[size];
-        } else {
-            this.publications = new Publication[DEFAULT_CAPACITY];
-        }
-        this.size = this.top = 0;
-    }
-
-    public StackArrayBasedCollection(Publication[] publications) {
-        this.size = publications.length;
-        this.publications = publications;
-    }
-
-    public int getCapacity() {
-        return publications.length;
+    public StackArrayBasedCollection(ArrayList<T> list) {
+        this.list = list;
     }
 
     @Override
-    public Publication pop() {
-        if (!isEmpty()) {
-            Publication publication = publications[--top];
-            publications[top] = null;
-            this.size--;
-
-            return publication;
-        }
-        return null;
+    public Object[] toArray() {
+        return list.toArray();
     }
 
     @Override
-    public boolean push(Publication publication) {
-        if (size() == publications.length) {
-            resize(publications.length * 2);
-        }
-        publications[top] = publication;
-        top++;
-        size++;
-        return true;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public Publication[] toArray() {
-        Publication[] publicationsCpoy = Arrays.copyOf(publications, size());
-        return publicationsCpoy;
-    }
-
-    private void resize(int capacity) {
-        publications = Arrays.copyOf(publications, capacity);
-    }
-
-    @Override
-    public Publication peek() {
-        return !isEmpty() ? publications[size - 1] : null;
+    public Iterator iterator() {
+        return list.listIterator(list.size());
     }
 
     @Override
     public void clear() {
-        while (!isEmpty()) {
-            pop();
-        }
+        list.clear();
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new StackArrayBasedCollection(toArray());
+    public StackArrayBasedCollection<T> clone() {
+        return new StackArrayBasedCollection<T>((ArrayList<T>) list.clone());
     }
 
     @Override
-    public Iterator<Publication> iterator() {
-        return new IteratorPublication();
-    }
-
-    private class IteratorPublication implements Iterator<Publication> {
-        private int position = size;
-
-        @Override
-        public boolean hasNext() {
-            return --position >= 0;
-        }
-
-        @Override
-        public Publication next() {
-            if (this.hasNext()) {
-                return publications[position];
-            } else {
-                throw new AchievementOfBoundsException("You try get not existing element");
-            }
-        }
+    public int size() {
+        return list.size();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        StackArrayBasedCollection that = (StackArrayBasedCollection) o;
-        return size == that.size &&
-                top == that.top &&
-                Arrays.equals(publications, that.publications);
+    public boolean push(T publication) {
+        return list.add(publication);
     }
 
     @Override
-    public int hashCode() {
-        int result = Objects.hash(size, top);
-        result = 31 * result + Arrays.hashCode(publications);
-        return result;
+    public T pop() {
+        return list.remove(size() - 1);
     }
 
     @Override
-    public String toString() {
-        return "StackArrayBasedCollection{" +
-                "publications=" + Arrays.toString(publications) +
-                ", size=" + size +
-                ", top=" + top +
-                '}';
+    public T peek() {
+        return list.get(list.size() - 1);
     }
 }

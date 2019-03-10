@@ -8,13 +8,13 @@ import java.util.Iterator;
  * @author Yulya Kukareko
  * @version 1.0 08 Mar 2019
  */
-public abstract class AbstractPublicationCollection implements PublicationCollection {
+public abstract class AbstractPublicationCollection<T> implements PublicationCollection<T> {
 
     public AbstractPublicationCollection() {
     }
 
     @Override
-    public abstract Publication[] toArray();
+    public abstract Object[] toArray();
 
     @Override
     public abstract Iterator iterator();
@@ -22,13 +22,13 @@ public abstract class AbstractPublicationCollection implements PublicationCollec
     @Override
     public abstract void clear();
 
-    public abstract AbstractPublicationCollection clone();
+    public abstract PublicationCollection<T> clone();
 
     @Override
     public abstract int size();
 
     @Override
-    public boolean contains(Publication item) {
+    public boolean contains(T item) {
         Iterator it = iterator();
         if (item == null) {
             while (it.hasNext())

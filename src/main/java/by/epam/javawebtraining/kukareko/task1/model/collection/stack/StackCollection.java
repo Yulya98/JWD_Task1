@@ -7,15 +7,15 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public interface StackCollection extends PublicationCollection {
+public interface StackCollection<T> extends PublicationCollection<T> {
 
-    boolean push(Publication publication);
+    boolean push(T publication);
 
-    Publication pop();
+    T pop();
 
     boolean isEmpty();
 
     void clear();
 
-    Publication peek();
+    T peek();
 }

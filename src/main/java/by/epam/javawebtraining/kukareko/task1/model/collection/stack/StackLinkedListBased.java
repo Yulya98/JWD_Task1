@@ -1,35 +1,34 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackLinkedListBased extends AbstractPublicationCollection implements StackCollection {
+public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
 
-    private LinkedListImpl publications;
+    private LinkedList<T> publications;
 
     public StackLinkedListBased() {
-        publications = new LinkedListImpl();
+        publications = new LinkedList<T>();
     }
 
-    public StackLinkedListBased(LinkedListImpl publications) {
+    public StackLinkedListBased( LinkedList<T> publications) {
         this.publications = publications;
     }
 
     @Override
-    public boolean push(Publication publication) {
-        return publications.addLast(publication);
+    public boolean push(T publication) {
+        return publications.add(publication);
     }
 
     @Override
-    public Publication pop() {
+    public T pop() {
         return publications.removeLast();
     }
 
@@ -44,23 +43,23 @@ public class StackLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         return publications.toArray();
     }
 
     @Override
     public Iterator iterator() {
-        return publications.iteratorStack();
+        return publications.descendingIterator();
     }
 
     @Override
-    public Publication peek() {
+    public T peek() {
         return !isEmpty() ? publications.get(publications.size() - 1) : null;
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new StackLinkedListBased((LinkedListImpl) publications.clone());
+    public StackLinkedListBased clone() {
+        return new StackLinkedListBased( (LinkedList<T>) publications.clone());
     }
 
     @Override

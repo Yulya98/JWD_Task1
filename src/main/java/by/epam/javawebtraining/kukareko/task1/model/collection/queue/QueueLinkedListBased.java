@@ -1,35 +1,36 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class QueueLinkedListBased extends AbstractPublicationCollection implements QueueCollection {
+public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
 
-    private LinkedListImpl publications;
+    private LinkedList<T> publications;
 
     public QueueLinkedListBased() {
-        publications = new LinkedListImpl();
+        publications = new LinkedList<>();
     }
 
-    public QueueLinkedListBased(LinkedListImpl publications) {
+    public QueueLinkedListBased(LinkedList<T> publications) {
         this.publications = publications;
     }
 
     @Override
-    public boolean add(Publication publication) {
-        return publications.addLast(publication);
+    public boolean add(T publication) {
+        return publications.add(publication);
     }
 
     @Override
-    public Publication remove() {
+    public T remove() {
         return publications.removeFirst();
     }
 
@@ -44,7 +45,7 @@ public class QueueLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication element() {
+    public T element() {
         int firstElemIndex = 0;
 
         return publications.get(firstElemIndex);
@@ -56,13 +57,13 @@ public class QueueLinkedListBased extends AbstractPublicationCollection implemen
     }
 
     @Override
-    public Publication[] toArray() {
+    public Object[] toArray() {
         return publications.toArray();
     }
 
     @Override
-    public AbstractPublicationCollection clone() {
-        return new QueueLinkedListBased((LinkedListImpl) publications.clone());
+    public QueueLinkedListBased<T> clone() {
+        return new QueueLinkedListBased<T>((LinkedList<T>) publications.clone());
     }
 
     @Override

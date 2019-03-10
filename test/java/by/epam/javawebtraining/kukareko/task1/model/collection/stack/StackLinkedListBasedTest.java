@@ -46,7 +46,7 @@ public class StackLinkedListBasedTest {
     public void pushNullTest() {
         Publication publication = null;
 
-        Assert.assertFalse(stack.push(publication));
+        Assert.assertTrue(stack.push(publication));
     }
 
     @Test
@@ -103,15 +103,6 @@ public class StackLinkedListBasedTest {
     public void iteratorEmptyCollectionTest() {
 
         Assert.assertFalse(stack.iterator().hasNext());
-    }
-
-    @Test(expected = AchievementOfBoundsException.class)
-    public void iteratorExceptionTest() {
-        stack.push(publications[0]);
-        Iterator iterator = stack.iterator();
-
-        iterator.next();
-        iterator.next();
     }
 
     @Test

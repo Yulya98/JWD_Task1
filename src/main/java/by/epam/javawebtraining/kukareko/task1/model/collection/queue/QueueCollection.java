@@ -6,11 +6,11 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public interface QueueCollection {
+public interface QueueCollection<T> {
 
-    boolean add(Publication publication);
+    boolean add(T publication);
 
-    Publication remove();
+    T remove();
 
-    Publication element();
+    T element();
 }

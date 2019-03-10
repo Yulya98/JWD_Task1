@@ -8,13 +8,13 @@ import java.util.Iterator;
  * @author Yulya Kukareko
  * @version 1.0 05 Mar 2019
  */
-public interface PublicationCollection {
+public interface PublicationCollection<T> {
 
-    Publication[] toArray();
+    Object[] toArray();
 
-    boolean contains(Publication item);
+    boolean contains(T item);
 
-    Iterator<Publication> iterator();
+    Iterator<T> iterator();
 
     int size();
 

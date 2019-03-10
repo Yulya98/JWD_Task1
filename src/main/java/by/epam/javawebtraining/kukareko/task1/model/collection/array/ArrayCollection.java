@@ -7,17 +7,17 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public interface ArrayCollection extends PublicationCollection {
+public interface ArrayCollection<T> extends PublicationCollection<T> {
 
-    Publication get(int index);
+    T get(int index);
 
     int size();
 
-    boolean set(int index, Publication publication);
+    boolean set(int index, T publication);
 
-    boolean addAll(Publication[] publications);
+    boolean addAll(T[] publications);
 
-    boolean add(Publication publication);
+    boolean add(T publication);
 
-    Publication remove(int index);
+    T remove(int index);
 }

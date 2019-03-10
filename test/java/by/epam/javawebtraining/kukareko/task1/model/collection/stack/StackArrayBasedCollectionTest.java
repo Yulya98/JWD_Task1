@@ -37,22 +37,6 @@ public class StackArrayBasedCollectionTest {
     }
 
     @Test
-    public void createObjTest() {
-        int size = 2;
-        int expected = 2;
-
-        Assert.assertEquals(expected, new StackArrayBasedCollection(size).getCapacity());
-    }
-
-    @Test
-    public void createObjTestNegativeSize() {
-        int size = -2;
-        int expected = 8;
-
-        Assert.assertEquals(expected, new StackArrayBasedCollection(size).getCapacity());
-    }
-
-    @Test
     public void popTest() {
         Publication expected = publications[1];
 
@@ -89,12 +73,6 @@ public class StackArrayBasedCollectionTest {
     }
 
     @Test
-    public void peekSizeNullTest() {
-
-        Assert.assertNull(stack.peek());
-    }
-
-    @Test
     public void clearTest() {
         int expected = 0;
 
@@ -106,37 +84,9 @@ public class StackArrayBasedCollectionTest {
     }
 
     @Test
-    public void hasNextTest() {
-        stack.push(publications[0]);
-        Iterator iterator = stack.iterator();
-
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertFalse(iterator.hasNext());
-    }
-
-    @Test
     public void iteratorEmptyCollectionTest() {
 
         Assert.assertFalse(stack.iterator().hasNext());
-    }
-
-    @Test(expected = AchievementOfBoundsException.class)
-    public void iteratorExceptionTest() {
-        stack.push(publications[0]);
-        Iterator iterator = stack.iterator();
-
-        iterator.next();
-        iterator.next();
-    }
-
-    @Test
-    public void hasNextNextTest() {
-        stack.push(publications[0]);
-        stack.push(publications[1]);
-        Iterator iterator = stack.iterator();
-
-        Assert.assertEquals(publications[1], iterator.next());
-        Assert.assertEquals(publications[0], iterator.next());
     }
 
     @Test
@@ -154,7 +104,7 @@ public class StackArrayBasedCollectionTest {
         stack.push(publications[0]);
         stack.push(publications[1]);
 
-        StackArrayBasedCollection cloneStack = new StackArrayBasedCollection(stack.toArray());
+        StackArrayBasedCollection cloneStack = stack.clone();
 
         Assert.assertArrayEquals(stack.toArray(), cloneStack.toArray());
     }

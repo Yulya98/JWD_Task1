@@ -46,7 +46,7 @@ public class QueueLinkedListBasedTest {
     public void addNullTest() {
         Publication publication = null;
 
-        Assert.assertFalse(queue.add(publication));
+        Assert.assertTrue(queue.add(publication));
     }
 
     @Test
@@ -57,12 +57,6 @@ public class QueueLinkedListBasedTest {
         queue.add(publications[1]);
 
         Assert.assertEquals(expected, queue.remove());
-    }
-
-    @Test
-    public void removeEmptyTest() {
-
-        Assert.assertNull(queue.remove());
     }
 
     @Test
@@ -109,15 +103,6 @@ public class QueueLinkedListBasedTest {
     public void iteratorEmptyCollectionTest() {
 
         Assert.assertFalse(queue.iterator().hasNext());
-    }
-
-    @Test(expected = AchievementOfBoundsException.class)
-    public void iteratorExceptionTest() {
-        queue.add(publications[0]);
-        Iterator iterator = queue.iterator();
-
-        iterator.next();
-        iterator.next();
     }
 
     @Test
