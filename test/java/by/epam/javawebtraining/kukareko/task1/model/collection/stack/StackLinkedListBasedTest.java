@@ -4,6 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -42,11 +43,11 @@ public class StackLinkedListBasedTest {
         Assert.assertTrue(stack.push(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void pushNullTest() {
         Publication publication = null;
 
-        Assert.assertFalse(stack.push(publication));
+        stack.push(publication);
     }
 
     @Test

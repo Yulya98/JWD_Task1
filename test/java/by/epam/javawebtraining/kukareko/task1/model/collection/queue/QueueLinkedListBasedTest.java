@@ -4,6 +4,8 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -42,11 +44,11 @@ public class QueueLinkedListBasedTest {
         Assert.assertTrue(queue.add(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void addNullTest() {
         Publication publication = null;
 
-        Assert.assertFalse(queue.add(publication));
+        queue.add(publication);
     }
 
     @Test
@@ -59,10 +61,10 @@ public class QueueLinkedListBasedTest {
         Assert.assertEquals(expected, queue.remove());
     }
 
-    @Test
+    @Test(expected = CollectionEmptyException.class)
     public void removeEmptyTest() {
 
-        Assert.assertNull(queue.remove());
+        queue.remove();
     }
 
     @Test

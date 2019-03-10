@@ -5,6 +5,9 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CapacityExceededException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -60,20 +63,20 @@ public class StaticArrayCollectionTest {
         Assert.assertTrue(staticArrayCollection.add(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void testAddNull() {
         staticArrayCollection = new StaticArrayCollection();
         Publication publication = null;
 
-        Assert.assertFalse(staticArrayCollection.add(publication));
+        staticArrayCollection.add(publication);
     }
 
-    @Test
+    @Test(expected = CapacityExceededException.class)
     public void testAddCapacityExceeds() {
         int size = 0;
         staticArrayCollection = new StaticArrayCollection(size);
 
-        Assert.assertFalse(staticArrayCollection.add(publication));
+        staticArrayCollection.add(publication);
     }
 
     @Test
@@ -114,23 +117,23 @@ public class StaticArrayCollectionTest {
         Assert.assertNotNull(staticArrayCollection.get(index));
     }
 
-    @Test
+    @Test(expected = GetIndexOutOfRangeException.class)
     public void testGetNegativeIndex() {
         int index = -1;
         staticArrayCollection = new StaticArrayCollection(2);
         staticArrayCollection.add(publication);
 
-        Assert.assertNull(staticArrayCollection.get(index));
+        staticArrayCollection.get(index);
     }
 
-    @Test
+    @Test(expected = GetIndexOutOfRangeException.class)
     public void testGetSizeExceeds() {
         int initSize = 2;
         staticArrayCollection = new StaticArrayCollection(initSize);
         staticArrayCollection.add(publication);
         int index = staticArrayCollection.size() + 1;
 
-        Assert.assertNull(staticArrayCollection.get(index));
+        staticArrayCollection.get(index);
     }
 
     @Test
@@ -155,14 +158,14 @@ public class StaticArrayCollectionTest {
         Assert.assertFalse(staticArrayCollection.set(index, publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void testSetNull() {
         Publication publication = null;
         staticArrayCollection = new StaticArrayCollection(2);
         staticArrayCollection.add(publication);
         int index = 0;
 
-        Assert.assertFalse(staticArrayCollection.set(index, publication));
+        staticArrayCollection.set(index, publication);
     }
 
     @Test

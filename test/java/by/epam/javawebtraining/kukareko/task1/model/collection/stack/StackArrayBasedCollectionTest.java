@@ -4,6 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -72,10 +73,10 @@ public class StackArrayBasedCollectionTest {
         Assert.assertEquals(expected, stack.peek());
     }
 
-    @Test
+    @Test(expected = GetIndexOutOfRangeException.class)
     public void peekSizeNullTest() {
 
-        Assert.assertNull(stack.peek());
+        stack.peek();
     }
 
     @Test

@@ -3,6 +3,9 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -40,11 +43,11 @@ public class ArrayListCollectionTest {
         Assert.assertTrue(linkedList.addFirst(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void addFirstNullTest() {
         Publication publication = null;
 
-        Assert.assertFalse(linkedList.addFirst(publication));
+        linkedList.addFirst(publication);
     }
 
     @Test
@@ -54,11 +57,11 @@ public class ArrayListCollectionTest {
         Assert.assertTrue(linkedList.addLast(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void addLastNullTest() {
         Publication publication = null;
 
-        Assert.assertFalse(linkedList.addLast(publication));
+        linkedList.addLast(publication);
     }
 
     @Test
@@ -70,10 +73,10 @@ public class ArrayListCollectionTest {
         Assert.assertEquals(expected, linkedList.removeLast());
     }
 
-    @Test
+    @Test(expected = CollectionEmptyException.class)
     public void removeLastEmptyCollectionTest() {
 
-        Assert.assertNull(linkedList.removeLast());
+        linkedList.removeLast();
     }
 
     @Test
@@ -85,10 +88,10 @@ public class ArrayListCollectionTest {
         Assert.assertEquals(expected, linkedList.removeFirst());
     }
 
-    @Test
+    @Test(expected = CollectionEmptyException.class)
     public void removeFirstEmptyCollectionTest() {
 
-        Assert.assertNull(linkedList.removeFirst());
+       linkedList.removeFirst();
     }
 
     @Test
@@ -134,14 +137,14 @@ public class ArrayListCollectionTest {
         Assert.assertEquals(expected, linkedList.remove(publication));
     }
 
-    @Test
+    @Test(expected = NullItemAddException.class)
     public void removeNullTest() {
         Publication publication = null;
 
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);
 
-        Assert.assertNull(linkedList.remove(publication));
+        linkedList.remove(publication);
     }
 
     @Test
@@ -175,23 +178,23 @@ public class ArrayListCollectionTest {
         Assert.assertEquals(expected, linkedList.get(searchIndex));
     }
 
-    @Test
+    @Test(expected = GetIndexOutOfRangeException.class)
     public void getNegativeIndexTest() {
         int searchIndex = -1;
 
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);
 
-        Assert.assertNull(linkedList.get(searchIndex));
+        linkedList.get(searchIndex);
     }
 
-    @Test
+    @Test(expected = GetIndexOutOfRangeException.class)
     public void getIndexMoreThenSizeTest() {
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);
         int searchIndex = linkedList.size() + 1;
 
-        Assert.assertNull(linkedList.get(searchIndex));
+        linkedList.get(searchIndex);
     }
 
     @Test

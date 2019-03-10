@@ -3,6 +3,9 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 
 import java.util.Iterator;
 import java.util.Objects;
@@ -38,8 +41,9 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             }
             count++;
             return true;
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     @Override
@@ -50,8 +54,9 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
                 head = tail;
             count++;
             return true;
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     @Override
@@ -66,8 +71,9 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             }
             count--;
             return (T) temp.value();
+        } else {
+            throw new CollectionEmptyException();
         }
-        return null;
     }
 
     @Override
@@ -82,8 +88,9 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             }
             count--;
             return (T) temp.value();
+        } else {
+            throw new CollectionEmptyException();
         }
-        return null;
     }
 
     @Override
@@ -154,6 +161,8 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
                 }
                 publication = publication.next();
             }
+        } else {
+            throw new GetIndexOutOfRangeException();
         }
         return null;
     }

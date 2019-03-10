@@ -2,7 +2,7 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -41,8 +41,9 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
             elements[0] = value;
             size++;
             return true;
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     @Override
@@ -53,8 +54,9 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
             }
             elements[size++] = e;
             return true;
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     private void resize() {
@@ -72,8 +74,9 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
             elements[size - 1] = null;
             size--;
             return element;
+        } else {
+            throw new CollectionEmptyException();
         }
-        return null;
     }
 
     @Override
@@ -86,22 +89,29 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
             elements[size - 1] = null;
             size--;
             return element;
+        } else {
+            throw new CollectionEmptyException();
         }
-        return null;
     }
 
     @Override
     public T remove(T value) {
-        if ((value != null) && !isEmpty()) {
-            int index = lastIndexOf(value);
-            if (index != -1) {
-                for (int i = index; i < size() - 2; i++) {
-                    elements[i] = elements[i + 1];
+        if ((value != null)) {
+            if(!isEmpty()) {
+                int index = lastIndexOf(value);
+                if (index != -1) {
+                    for (int i = index; i < size() - 2; i++) {
+                        elements[i] = elements[i + 1];
+                    }
+                    elements[size - 1] = null;
+                    size--;
+                    return value;
                 }
-                elements[size - 1] = null;
-                size--;
-                return value;
+            } else {
+                throw new CollectionEmptyException();
             }
+        } else {
+            throw new NullItemAddException();
         }
         return null;
     }
@@ -110,8 +120,9 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
     public T get(int index) {
         if (!isEmpty() && (index < size) && (index >= 0)) {
             return (T) elements[index];
+        } else {
+            throw new GetIndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override

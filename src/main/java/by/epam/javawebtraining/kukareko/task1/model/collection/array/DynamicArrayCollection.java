@@ -3,6 +3,10 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.GetIndexOutOfRangeException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.RemoveIndexOutOfRangeException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -34,8 +38,9 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
             }
             publications[size++] = publication;
             return true;
+        } else {
+            throw new NullItemAddException();
         }
-        return false;
     }
 
     private void resize(int capacity) {
@@ -53,16 +58,18 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
             publications[--size] = null;
 
             return publication;
+        } else {
+            throw new RemoveIndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override
     public T get(int index) {
         if (index >= 0 && index < size) {
             return (T) publications[index];
+        } else {
+            throw new  GetIndexOutOfRangeException();
         }
-        return null;
     }
 
     @Override
@@ -124,8 +131,9 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
         public T next() {
             if (this.hasNext()) {
                 return (T) publications[position];
+            } else {
+                throw new AchievementOfBoundsException();
             }
-            return null;
         }
     }
 
