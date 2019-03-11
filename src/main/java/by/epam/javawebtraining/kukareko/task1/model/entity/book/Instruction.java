@@ -39,7 +39,7 @@ public class Instruction extends Technical {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": subject: "
+        return getClass().getSimpleName() + ": subject = "
                 + subject + ", " + super.toString();
     }
 }

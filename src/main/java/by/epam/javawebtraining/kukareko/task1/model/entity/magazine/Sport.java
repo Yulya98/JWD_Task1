@@ -38,6 +38,6 @@ public class Sport extends Magazine {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": kindSport: " + kindSport + ", " + super.toString();
+        return getClass().getSimpleName() + ": kindSport =  " + kindSport + ", " + super.toString();
     }
 }

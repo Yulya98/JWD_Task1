@@ -49,6 +49,6 @@ public class Children extends Book {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": recommendAge: " + recommendedAge + ", " + super.toString();
+        return getClass().getSimpleName() + ": recommendAge = " + recommendedAge + ", " + super.toString();
     }
 }

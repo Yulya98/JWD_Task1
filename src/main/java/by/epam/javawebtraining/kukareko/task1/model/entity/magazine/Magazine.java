@@ -44,6 +44,6 @@ public class Magazine extends Publication {
 
     @Override
     public String toString() {
-        return "countArticles = " + countArticles + ", " + super.toString();
+        return " countArticles = " + countArticles + ", " + super.toString();
     }
 }

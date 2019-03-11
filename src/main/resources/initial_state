@@ -1,0 +1,7 @@
+id=1 pageCount=500 name='Thinking in Java' font=6 publishing='Classical Computer Science' circulation=500 rating=10 author='Bruce Eckel' subjectArea='Base programming knowledge' level='Beginner/Middle' language='Java'
+id=2 pageCount=700 name='Andersen's tales' font=8 publishing='Olimpia' circulation=100000 rating=8 author='Hans Christian Andersen' recommendedAge='4+'
+id=3 pageCount=15 name='Alternative Press' font=5 circulation=400 rating=7 countArticles=20 kindMusic=0 haveDisk=false publishing='Alternative Press Magazine'
+id=4 pageCount=40 name='Scientific American' font=4 publishing='Springer Nature' circulation=30050 rating=9 countArticles=20 subjectArea='Scientific research'
+id=5 pageCount=50 name='Billiards sport' font=2 publishing='MFBS' circulation=100 rating=6 countArticles=30 kindSport='Billiards'
+id=6 pageCount=70 name='Historical album' font=7 publishing='Olimpia' circulation=200 rating=7 format='horizontal'
+id=7 pageCount=30 name='Car instruction manual Saturn' font=3 publishing='GM' circulation=650 rating=4 author='-' subject='Car instruction manual' subjectArea='Automotive Equipment' level='Beginner/Middle/Experienced'

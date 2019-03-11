@@ -140,8 +140,8 @@ public class Publication {
 
     @Override
     public String toString() {
-        return "long: " + id + " page count = " + pageCount + ", name = " + name
+        return "id = " + id + ", page count = " + pageCount + ", name = " + name
                 + ", font = " + font + ", publishing = " + publishing
-                + ", circulation = " + circulation + " rating = " + rating;
+                + ", circulation = " + circulation + ", rating = " + rating;
     }
 }
