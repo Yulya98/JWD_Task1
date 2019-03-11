@@ -13,6 +13,7 @@ import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFind
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinderImpl;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
 import by.epam.javawebtraining.kukareko.task1.view.StandardOutPublicationsRender;
 
@@ -43,7 +44,7 @@ public class Controller {
             library.getPublications().add(PublicationCreatorUtil.create());
             library.getPublications().remove();
 
-            PublicationSorter publicationSorter = new PublicationSorterImpl();
+            PublicationSorter publicationSorter = new PublicationSorterImplComparator();
             PublicationFinder publicationFinder = new PublicationFinderImpl();
             PublicationCounter publicationCounter = new PublicationCounterImpl();
 

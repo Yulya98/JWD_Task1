@@ -1,8 +1,9 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.finder;
 
-import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException;
-import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl;
+import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
 
 /**
  * @author Yulya Kukareko
@@ -10,16 +11,16 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  */
 public class PublicationFinderImpl implements PublicationFinder {
 
-    private PublicationSorterImpl publicationSorter;
+    private PublicationSorter publicationSorter;
 
     public PublicationFinderImpl() {
-        publicationSorter = new PublicationSorterImpl();
+        publicationSorter = new PublicationSorterImplComparator();
     }
 
     @Override
     public Publication findByParam(Publication[] publications, int rating, int pageCount, int font)
             throws PublicationsEmptyException {
-        if (publications != null) {
+        try {
             for (Publication publication : publications) {
                 if ((publication.getRating() == rating)
                         && (publication.getPageCount() == pageCount)
@@ -27,10 +28,10 @@ public class PublicationFinderImpl implements PublicationFinder {
                     return publication;
                 }
             }
-        } else {
-            throw new PublicationsEmptyException();
+            return null;
+        } catch (NullPointerException ex){
+            throw new PublicationsEmptyException(ex);
         }
-        return null;
     }
 
     @Override

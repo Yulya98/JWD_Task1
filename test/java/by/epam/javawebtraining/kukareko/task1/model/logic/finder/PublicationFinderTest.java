@@ -8,7 +8,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
-import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

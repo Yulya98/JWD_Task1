@@ -43,7 +43,7 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
         publications = new Publication[CAPACITY];
     }
 
-    public int getCapacity() {
+    public int getCAPACITY() {
         return CAPACITY;
     }
 

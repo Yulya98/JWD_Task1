@@ -1,7 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.sorter;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
 
 import java.util.Arrays;
 
@@ -18,14 +18,15 @@ public class PublicationSorterImpl implements PublicationSorter {
     @Override
     public Publication[] sortedByRating(Publication[] publications)
             throws PublicationsEmptyException {
-        Publication[] publicationsSorted;
+        try {
+            Publication[] publicationsSorted;
 
-        if (publications != null) {
             publicationsSorted = Arrays.copyOf(publications, publications.length);
             sortedByRatingQuickSort(publicationsSorted, 0, publicationsSorted.length - 1);
+
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
+        } catch (NullPointerException ex){
+            throw new PublicationsEmptyException(ex);
         }
     }
 
@@ -37,7 +38,7 @@ public class PublicationSorterImpl implements PublicationSorter {
             throws PublicationsEmptyException {
         Publication[] publicationsSorted;
 
-        if (publications != null) {
+        try {
             publicationsSorted = Arrays.copyOf(publications, publications.length);
             Publication tmp;
             int j;
@@ -56,8 +57,8 @@ public class PublicationSorterImpl implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
+        } catch (NullPointerException ex){
+            throw new PublicationsEmptyException(ex);
         }
     }
 
@@ -67,7 +68,8 @@ public class PublicationSorterImpl implements PublicationSorter {
     @Override
     public Publication[] sortedByPageCount(Publication[] publications)
             throws PublicationsEmptyException {
-        if (publications != null) {
+        try {
+
             Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
             for (int i = 0; i < publicationsSorted.length; i++) {
@@ -83,8 +85,8 @@ public class PublicationSorterImpl implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
+        } catch (NullPointerException ex){
+            throw new PublicationsEmptyException(ex);
         }
     }
 
@@ -94,7 +96,7 @@ public class PublicationSorterImpl implements PublicationSorter {
     @Override
     public Publication[] sortedByFont(Publication[] publications)
             throws PublicationsEmptyException {
-        if (publications != null) {
+        try {
             Publication[] publicationsSorted = Arrays.copyOf(publications, publications.length);
 
             for (int i = 0; i < publicationsSorted.length; i++) {
@@ -106,8 +108,8 @@ public class PublicationSorterImpl implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
+        } catch (NullPointerException ex){
+            throw new PublicationsEmptyException(ex);
         }
     }
 
@@ -130,7 +132,6 @@ public class PublicationSorterImpl implements PublicationSorter {
         if (j > first) sortedByRatingQuickSort(publications, first, j);
         if (i < last) sortedByRatingQuickSort(publications, i, last);
     }
-
 }
 
 

@@ -15,16 +15,15 @@ import org.junit.Test;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 19 Feb 2019
+ * @version 1.0 11 Mar 2019
  */
-public class PublicationSorterTest {
-
+public class PublicationSorterImplComparatorTest {
     private static Publication[] publications;
     private static PublicationSorter publicationSorter;
 
     @BeforeClass
     public static void init() {
-        publicationSorter = new PublicationSorterImpl();
+        publicationSorter = new PublicationSorterImplComparator();
         publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
                         "Classical Computer Science", 3000, 10, "Bruce Eckel",
@@ -47,7 +46,7 @@ public class PublicationSorterTest {
 
     @Test
     public void testSortedByRating() throws PublicationsEmptyException {
-        Publication[] expected = new Publication[]{publications[6], publications[4], publications[5], publications[2],
+        Publication[] expected = new Publication[]{publications[6], publications[4], publications[2], publications[5],
                 publications[1], publications[3], publications[0]};
 
         Assert.assertArrayEquals(expected, publicationSorter.sortedByRating(publications));
@@ -104,5 +103,4 @@ public class PublicationSorterTest {
 
         publicationSorter.sortedByPageCount(publications);
     }
-
 }
