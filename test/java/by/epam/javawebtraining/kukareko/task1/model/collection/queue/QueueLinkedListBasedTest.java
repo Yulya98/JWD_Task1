@@ -74,7 +74,7 @@ public class QueueLinkedListBasedTest {
         queue.add(publications[0]);
         queue.add(publications[1]);
 
-        Assert.assertEquals(expected, queue.toArray());
+        Assert.assertArrayEquals(expected, queue.toArray());
     }
 
     @Test

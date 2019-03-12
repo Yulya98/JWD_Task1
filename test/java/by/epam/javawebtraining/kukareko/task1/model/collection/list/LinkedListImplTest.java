@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class LinkedListImplTest {
 
-    private LinkedListCollection linkedList;
+    private LinkedListCollection<Publication> linkedList;
     private static Publication[] publications;
 
     @BeforeClass
@@ -129,7 +129,6 @@ public class LinkedListImplTest {
     @Test
     public void removeTest() {
         Publication publication = publications[1];
-        Publication expected = publications[1];
 
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);
