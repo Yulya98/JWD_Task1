@@ -89,7 +89,7 @@ public class StaticArrayCollectionTest {
         Assert.assertEquals(expected, staticArrayCollection.remove(remIndex));
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testRemoveNegativeIndex() {
         int remIndex = -1;
         staticArrayCollection = new StaticArrayCollection(2);
@@ -98,7 +98,7 @@ public class StaticArrayCollectionTest {
         Assert.assertNull(staticArrayCollection.remove(remIndex));
     }
 
-    @Test
+    @Test(expected = IndexOutOfRangeException.class)
     public void testRemoveSizeExceeds() {
         int initialSize = 2;
         staticArrayCollection = new StaticArrayCollection(initialSize);
@@ -258,7 +258,7 @@ public class StaticArrayCollectionTest {
         Assert.assertEquals(publications[1], iterator.next());
     }
 
-    @Test
+    @Test(expected = CapacityExceededException.class)
     public void addAllCapacityExceeds() {
         Publication[] publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
@@ -269,6 +269,6 @@ public class StaticArrayCollectionTest {
         };
         staticArrayCollection = new StaticArrayCollection(0);
 
-        Assert.assertFalse(staticArrayCollection.addAll(publications));
+        staticArrayCollection.addAll(publications);
     }
 }

@@ -1,10 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 
 import java.util.Iterator;
@@ -14,22 +11,27 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implements ListCollection<T> {
+public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection<T> {
 
-    private int count;
     private DoublyLinkedNode head;
     private DoublyLinkedNode tail;
+    private int size;
 
     public LinkedListImpl() {
         head = null;
         tail = null;
-        count = 0;
+        this.size = 0;
     }
 
     public LinkedListImpl(DoublyLinkedNode head, DoublyLinkedNode tail, int size) {
         this.head = head;
         this.tail = tail;
-        this.count = size;
+        this.size = size;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             if (tail == null) {
                 tail = head;
             }
-            count++;
+            size++;
             return true;
         } else {
             throw new NullItemAddException();
@@ -52,7 +54,7 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             tail = new DoublyLinkedNode(value, null, tail);
             if (head == null)
                 head = tail;
-            count++;
+            size++;
             return true;
         } else {
             throw new NullItemAddException();
@@ -69,7 +71,7 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             } else {
                 tail.setNext(null);
             }
-            count--;
+            size--;
             return (T) temp.value();
         } else {
             throw new CollectionEmptyException();
@@ -86,7 +88,7 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             } else {
                 head.setPrevious(null);
             }
-            count--;
+            size--;
             return (T) temp.value();
         } else {
             throw new CollectionEmptyException();
@@ -94,20 +96,7 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
     }
 
     @Override
-    public int lastIndexOf(T publication) {
-        int i = size() - 1;
-        DoublyLinkedNode finger = tail;
-
-        while (finger != null && !finger.value().equals(publication)) {
-            finger = finger.previous();
-            i--;
-        }
-
-        return finger == null ? -1 : i;
-    }
-
-    @Override
-    public T remove(T value) {
+    public boolean remove(T value) {
         DoublyLinkedNode finger = head;
         while (finger != null && !finger.value().equals(value)) {
             finger = finger.next();
@@ -123,72 +112,29 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             } else {
                 tail = finger.previous();
             }
-            count--;
-            return (T) finger.value();
+            size--;
+            return true;
         }
-        return null;
-    }
-
-    @Override
-    public int size() {
-        return count;
+        return false;
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new IteratorPublications(head);
+        boolean isDescending = false;
+
+        return new IteratorPublications<>(isDescending);
     }
 
     @Override
-    public Iterator<Publication> iteratorStack() {
-        return new IteratorPublications(tail);
-    }
+    public Iterator<T> descendingIterator() {
+        boolean isDescending = true;
 
-    @Override
-    public void clear() {
-        while (size() != 0) {
-            removeLast();
-        }
-    }
-
-    @Override
-    public T get(int index) {
-        if ((index < size()) && (index >= 0)) {
-            DoublyLinkedNode publication = head;
-            for (int i = 0; i <= index; i++) {
-                if (i == index) {
-                    return (T) publication.value();
-                }
-                publication = publication.next();
-            }
-        } else {
-            throw new IndexOutOfRangeException();
-        }
-        return null;
+        return new IteratorPublications<>(isDescending);
     }
 
     @Override
     public LinkedListImpl clone() {
-        return new LinkedListImpl(head, tail, count);
-    }
-
-    @Override
-    public Object[] toArray() {
-        int index = 0;
-        Object[] elements;
-        DoublyLinkedNode current = head;
-
-        if (!isEmpty()) {
-            elements = new Publication[count];
-            while (current != null) {
-                elements[index] = (T) current.value();
-                current = current.next();
-                index++;
-            }
-            return elements;
-        }
-
-        return null;
+        return new LinkedListImpl(head, tail, size);
     }
 
     private class IteratorPublications<T> implements Iterator<T> {
@@ -196,14 +142,17 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
         private static final String QUEUE = "Queue";
 
         private DoublyLinkedNode position;
+        private boolean isDescending;
         private String collectionName;
 
-        public IteratorPublications(DoublyLinkedNode position) {
-            this.position = position;
-            if (position == head) {
-                collectionName = QUEUE;
-            } else {
+        public IteratorPublications(boolean isDescanding) {
+            this.isDescending = isDescanding;
+            if (isDescanding) {
                 collectionName = STACK;
+                position = tail;
+            } else {
+                collectionName = QUEUE;
+                position = head;
             }
         }
 
@@ -236,6 +185,11 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
             } else {
                 throw new AchievementOfBoundsException("You try get not existing element");
             }
+        }
+
+        @Override
+        public void remove() {
+            removeLast();
         }
     }
 
@@ -290,20 +244,20 @@ public class LinkedListImpl<T> extends AbstractPublicationCollection<T> implemen
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LinkedListImpl that = (LinkedListImpl) o;
-        return count == that.count &&
+        return size == that.size &&
                 Objects.equals(head, that.head) &&
                 Objects.equals(tail, that.tail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count, head, tail);
+        return Objects.hash(size, head, tail);
     }
 
     @Override
     public String toString() {
         return "LinkedListImpl{" +
-                "count=" + count +
+                "count=" + size +
                 ", head=" + head +
                 ", tail=" + tail +
                 '}';

@@ -17,7 +17,7 @@ public interface ListCollection<T> extends PublicationCollection<T> {
 
     T removeLast();
 
-    T remove(T value);
+    boolean remove(T value);
 
     int lastIndexOf(T publication);
 
@@ -27,5 +27,7 @@ public interface ListCollection<T> extends PublicationCollection<T> {
 
     T get(int index);
 
-    Iterator iteratorStack();
+    Iterator descendingIterator();
+
+    ListCollection<T> clone();
 }

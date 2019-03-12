@@ -4,6 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicati
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.ArrayListCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
@@ -18,39 +19,29 @@ import java.util.Objects;
  */
 public class StackArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
 
-    private ArrayListCollection<T> list;
+    private ListCollection<T> list;
 
     public StackArrayBasedCollection() {
         list = new ArrayListCollection<>();
     }
 
-    public StackArrayBasedCollection(ArrayListCollection<T> list) {
+    public StackArrayBasedCollection(ListCollection<T> list) {
         this.list = list;
     }
 
     @Override
-    public Object[] toArray() {
-        return list.toArray();
+    public int size(){
+        return list.size();
     }
 
     @Override
     public Iterator iterator() {
-        return list.iteratorStack();
-    }
-
-    @Override
-    public void clear() {
-        list.clear();
+        return list.descendingIterator();
     }
 
     @Override
     public StackArrayBasedCollection<T> clone() {
         return new StackArrayBasedCollection<>(list.clone());
-    }
-
-    @Override
-    public int size() {
-        return list.size();
     }
 
     @Override

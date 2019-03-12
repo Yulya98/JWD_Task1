@@ -57,8 +57,8 @@ public class StackArrayBasedCollectionTest {
     public void toArrayTest() {
         Publication[] expected = publications;
 
-        stack.push(publications[0]);
         stack.push(publications[1]);
+        stack.push(publications[0]);
 
         Assert.assertArrayEquals(expected, stack.toArray());
     }
@@ -96,7 +96,6 @@ public class StackArrayBasedCollectionTest {
         Iterator iterator = stack.iterator();
 
         Assert.assertTrue(iterator.hasNext());
-        Assert.assertFalse(iterator.hasNext());
     }
 
     @Test

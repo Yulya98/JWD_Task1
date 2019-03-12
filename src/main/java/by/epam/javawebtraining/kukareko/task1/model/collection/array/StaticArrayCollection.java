@@ -15,13 +15,11 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 05 Mar 2019
  */
-public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> implements ArrayCollection<T> {
+public class StaticArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayCollection<T> {
 
     private static final int DEFAULT_CAPACITY = 8;
 
     private final int CAPACITY;
-    private Object[] publications;
-    private int size;
 
     public StaticArrayCollection() {
         this.CAPACITY = DEFAULT_CAPACITY;
@@ -29,6 +27,7 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
     }
 
     public StaticArrayCollection(Object[] publications) {
+        setSize(publications.length);
         this.CAPACITY = publications.length;
         this.publications = publications;
     }
@@ -49,8 +48,9 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
     @Override
     public boolean add(T publication) {
         if (publication != null) {
-            if(size != CAPACITY) {
-                publications[size++] = (T) publication;
+            if(size() != CAPACITY) {
+                publications[size()] = (T) publication;
+                setSize(size() + 1);
                 return true;
             } else {
                 throw new CapacityExceededException();
@@ -61,71 +61,8 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
     }
 
     @Override
-    public T remove(int remIndex) {
-        if (remIndex >= 0 && remIndex < size) {
-            T publication = (T) publications[remIndex];
-
-            for (int i = remIndex; i < size - 1; i++) {
-                publications[i] = publications[i + 1];
-            }
-            publications[--size] = null;
-
-            return publication;
-        }
-        return null;
-    }
-
-    @Override
-    public T get(int index) {
-        if (index >= 0 && index < size) {
-            return (T) publications[index];
-        } else {
-            throw new IndexOutOfRangeException();
-        }
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean set(int index, T publication) {
-        if ((index >= 0) && (index < size) && (publication != null)) {
-            publications[index] = publication;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean addAll(T[] publications) {
-        if (publications != null) {
-            if (publications.length <= CAPACITY) {
-                for (T publication : publications) {
-                    add(publication);
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
     public Iterator iterator() {
         return new IteratorPublications();
-    }
-
-    @Override
-    public void clear() {
-        while (size != 0) {
-            remove(size - 1);
-        }
-    }
-
-    @Override
-    public Object[] toArray() {
-        return publications;
     }
 
     @Override
@@ -134,20 +71,27 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
     }
 
     private class IteratorPublications<T> implements Iterator<T> {
-        int position = -1;
+        int position = 0;
 
         @Override
         public boolean hasNext() {
-            return ++position < size;
+            return position < size();
         }
 
         @Override
         public T next() {
             if (this.hasNext()) {
-                return (T) publications[position];
+                return (T) publications[position++];
             } else {
                 throw new AchievementOfBoundsException("You try get not existing element");
             }
+        }
+
+        @Override
+        public void remove() {
+            int remIndex = size() - 1;
+            StaticArrayCollection.this.remove(remIndex);
+            position--;
         }
     }
 
@@ -157,13 +101,13 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
         if (o == null || getClass() != o.getClass()) return false;
         StaticArrayCollection that = (StaticArrayCollection) o;
         return CAPACITY == that.CAPACITY &&
-                size == that.size &&
+                size() == that.size() &&
                 Arrays.equals(publications, that.publications);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(CAPACITY, size);
+        int result = Objects.hash(CAPACITY, size());
         result = 31 * result + Arrays.hashCode(publications);
         return result;
     }
@@ -173,7 +117,7 @@ public class StaticArrayCollection<T> extends AbstractPublicationCollection<T> i
         return "StaticArrayCollection{" +
                 "CAPACITY=" + CAPACITY +
                 ", publications=" + Arrays.toString(publications) +
-                ", size=" + size +
+                ", size=" + size() +
                 '}';
     }
 }

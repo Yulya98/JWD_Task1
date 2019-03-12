@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 10 Mar 2019
  */
-public class ArrayListCollection<T> extends AbstractPublicationCollection<T> implements ListCollection<T> {
+public class ArrayListCollection<T> extends AbstractList<T> implements ListCollection<T> {
 
     private static final int DEFAULT_CAPACITY = 8;
 
@@ -21,7 +21,7 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
 
     public ArrayListCollection() {
         this.elements = new Object[DEFAULT_CAPACITY];
-        size = 0;
+        this.size = 0;
     }
 
     public ArrayListCollection(Object[] elements) {
@@ -30,8 +30,13 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
     }
 
     @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
     public boolean addFirst(T value) {
-        if(value != null) {
+        if (value != null) {
             if (size == elements.length) {
                 resize();
             }
@@ -48,7 +53,7 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
 
     @Override
     public boolean addLast(T e) {
-        if(e != null) {
+        if (e != null) {
             if (size == elements.length) {
                 resize();
             }
@@ -68,7 +73,7 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
     public T removeFirst() {
         if (!isEmpty()) {
             T element = (T) elements[0];
-            for (int i = 0; i < size - 2; i++) {
+            for (int i = 0; i <size - 1; i++) {
                 elements[i] = elements[i + 1];
             }
             elements[size - 1] = null;
@@ -83,9 +88,6 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
     public T removeLast() {
         if (!isEmpty()) {
             T element = (T) elements[size - 1];
-            for (int i = 0; i < size - 1; i++) {
-                elements[i] = elements[i + 1];
-            }
             elements[size - 1] = null;
             size--;
             return element;
@@ -95,17 +97,17 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
     }
 
     @Override
-    public T remove(T value) {
+    public boolean remove(T value) {
         if ((value != null)) {
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 int index = lastIndexOf(value);
                 if (index != -1) {
-                    for (int i = index; i < size() - 2; i++) {
+                    for (int i = index; i < size - 2; i++) {
                         elements[i] = elements[i + 1];
                     }
                     elements[size - 1] = null;
                     size--;
-                    return value;
+                    return true;
                 }
             } else {
                 throw new CollectionEmptyException();
@@ -113,55 +115,21 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
         } else {
             throw new NullItemAddException();
         }
-        return null;
+        return false;
     }
 
     @Override
-    public T get(int index) {
-        if (!isEmpty() && (index < size) && (index >= 0)) {
-            return (T) elements[index];
-        } else {
-            throw new IndexOutOfRangeException();
-        }
+    public Iterator<T> descendingIterator() {
+        boolean isDescending = true;
+
+        return new IteratorPublications<>(isDescending);
     }
 
     @Override
-    public int lastIndexOf(T publication) {
-        for (int i = 0; i < size(); i++){
-            if(elements[i].equals(publication)){
-                return i;
-            }
-        }
+    public Iterator<T> iterator() {
+        boolean isDescending = false;
 
-        return -1;
-    }
-
-    @Override
-    public Iterator iteratorStack() {
-        return new IteratorPublications(size);
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new IteratorPublications(-1);
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public Object[] toArray() {
-        Object[] publicationsCpoy = (T[]) Arrays.copyOf(elements, size());
-        return publicationsCpoy;
-    }
-
-    @Override
-    public void clear() {
-        while (size() != 0) {
-            removeLast();
-        }
+        return new IteratorPublications<>(isDescending);
     }
 
     @Override
@@ -173,34 +141,43 @@ public class ArrayListCollection<T> extends AbstractPublicationCollection<T> imp
         private static final String STACK = "Stack";
         private static final String QUEUE = "Queue";
 
+        private boolean isDescending;
         private int position;
         private String collectionName;
 
-        public IteratorPublications(int position) {
-            this.position = position;
-            if (position == -1) {
+        public IteratorPublications(boolean isDescanding) {
+            this.isDescending = isDescanding;
+            if (!isDescanding) {
                 collectionName = QUEUE;
+                position = 0;
             } else {
                 collectionName = STACK;
+                position = size - 1;
             }
         }
 
         @Override
         public boolean hasNext() {
-            if (collectionName == STACK) {
-                --position;
-            } else {
-                ++position;
-            }
             return position >= 0 && elements[position] != null;
         }
 
         @Override
         public T next() {
             if (this.hasNext()) {
-                return (T) elements[position];
+                if (!isDescending) {
+                    return (T) elements[position++];
+                }
+                return (T) elements[position--];
             } else {
                 throw new AchievementOfBoundsException("You try get not existing element");
+            }
+        }
+
+        @Override
+        public void remove() {
+            removeLast();
+            if(collectionName.equals(QUEUE)) {
+                position--;
             }
         }
     }

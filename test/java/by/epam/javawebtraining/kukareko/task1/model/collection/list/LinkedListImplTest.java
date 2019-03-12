@@ -134,7 +134,7 @@ public class LinkedListImplTest {
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);
 
-        Assert.assertEquals(expected, linkedList.remove(publication));
+        Assert.assertTrue(linkedList.remove(publication));
     }
 
     @Test
@@ -144,7 +144,7 @@ public class LinkedListImplTest {
         linkedList.addLast(publications[0]);
         linkedList.addLast(publications[1]);
 
-        Assert.assertNull(linkedList.remove(publication));
+        Assert.assertFalse(linkedList.remove(publication));
     }
 
     @Test
@@ -153,7 +153,7 @@ public class LinkedListImplTest {
 
         linkedList.addLast(publications[0]);
 
-        Assert.assertNull(linkedList.remove(publication));
+        Assert.assertFalse(linkedList.remove(publication));
     }
 
     @Test

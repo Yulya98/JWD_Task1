@@ -8,7 +8,7 @@ import java.util.Iterator;
  * @author Yulya Kukareko
  * @version 1.0 05 Mar 2019
  */
-public interface PublicationCollection<T> {
+public interface PublicationCollection<T> extends Iterable<T> {
 
     Object[] toArray();
 

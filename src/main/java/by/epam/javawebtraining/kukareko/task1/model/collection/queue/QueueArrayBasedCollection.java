@@ -3,6 +3,7 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.ArrayListCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
@@ -16,19 +17,19 @@ import java.util.Objects;
  */
 public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
 
-    private ArrayListCollection<T> list;
+    private ListCollection<T> list;
 
     public QueueArrayBasedCollection() {
         list = new ArrayListCollection<>();
     }
 
-    public QueueArrayBasedCollection(ArrayListCollection<T> list) {
+    public QueueArrayBasedCollection(ListCollection<T> list) {
         this.list = list;
     }
 
     @Override
-    public Object[] toArray() {
-        return list.toArray();
+    public int size(){
+        return list.size();
     }
 
     @Override
@@ -37,18 +38,8 @@ public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<
     }
 
     @Override
-    public void clear() {
-        list.clear();
-    }
-
-    @Override
     public QueueArrayBasedCollection<T> clone() {
         return new QueueArrayBasedCollection<>(list.clone());
-    }
-
-    @Override
-    public int size() {
-        return list.size();
     }
 
     @Override

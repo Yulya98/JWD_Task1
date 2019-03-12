@@ -2,6 +2,7 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Iterator;
@@ -13,14 +14,19 @@ import java.util.Objects;
  */
 public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
 
-    private LinkedListImpl<T> publications;
+    private ListCollection<T> publications;
 
     public StackLinkedListBased() {
         publications = new LinkedListImpl<>();
     }
 
-    public StackLinkedListBased(LinkedListImpl publications) {
+    public StackLinkedListBased(ListCollection publications) {
         this.publications = publications;
+    }
+
+    @Override
+    public int size() {
+        return publications.size();
     }
 
     @Override
@@ -34,23 +40,8 @@ public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> im
     }
 
     @Override
-    public int size() {
-        return publications.size();
-    }
-
-    @Override
-    public void clear() {
-        publications.clear();
-    }
-
-    @Override
-    public Object[] toArray() {
-        return publications.toArray();
-    }
-
-    @Override
     public Iterator iterator() {
-        return publications.iteratorStack();
+        return publications.descendingIterator();
     }
 
     @Override

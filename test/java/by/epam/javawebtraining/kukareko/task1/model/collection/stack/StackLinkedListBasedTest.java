@@ -75,8 +75,8 @@ public class StackLinkedListBasedTest {
     public void toArrayTest() {
         Publication[] expected = publications;
 
-        stack.push(publications[0]);
         stack.push(publications[1]);
+        stack.push(publications[0]);
 
         Assert.assertArrayEquals(expected, stack.toArray());
     }

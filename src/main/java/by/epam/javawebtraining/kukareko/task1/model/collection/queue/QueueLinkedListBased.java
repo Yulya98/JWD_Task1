@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Iterator;
@@ -15,14 +16,19 @@ import java.util.Objects;
  */
 public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
 
-    private LinkedListImpl<T> publications;
+    private ListCollection<T> publications;
 
     public QueueLinkedListBased() {
         publications = new LinkedListImpl<>();
     }
 
-    public QueueLinkedListBased(LinkedListImpl<T> publications) {
+    public QueueLinkedListBased(ListCollection<T> publications) {
         this.publications = publications;
+    }
+
+    @Override
+    public int size(){
+        return publications.size();
     }
 
     @Override
@@ -36,11 +42,6 @@ public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> im
     }
 
     @Override
-    public int size() {
-        return publications.size();
-    }
-
-    @Override
     public Iterator iterator() {
         return publications.iterator();
     }
@@ -50,16 +51,6 @@ public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> im
         int firstElemIndex = 0;
 
         return publications.get(firstElemIndex);
-    }
-
-    @Override
-    public void clear() {
-        publications.clear();
-    }
-
-    @Override
-    public Object[] toArray() {
-        return publications.toArray();
     }
 
     @Override
