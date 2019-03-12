@@ -48,7 +48,7 @@ public class StaticArrayCollection<T> extends AbstractArrayCollection<T> impleme
     @Override
     public boolean add(T publication) {
         if (publication != null) {
-            if(size() != CAPACITY) {
+            if (size() != CAPACITY) {
                 publications[size()] = (T) publication;
                 setSize(size() + 1);
                 return true;

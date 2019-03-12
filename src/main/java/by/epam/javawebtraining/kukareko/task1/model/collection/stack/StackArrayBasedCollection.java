@@ -30,7 +30,7 @@ public class StackArrayBasedCollection<T> extends AbstractPublicationCollection<
     }
 
     @Override
-    public int size(){
+    public int size() {
         return list.size();
     }
 

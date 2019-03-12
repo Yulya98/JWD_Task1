@@ -28,7 +28,7 @@ public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<
     }
 
     @Override
-    public int size(){
+    public int size() {
         return list.size();
     }
 

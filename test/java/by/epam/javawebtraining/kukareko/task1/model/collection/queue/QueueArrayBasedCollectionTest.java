@@ -93,7 +93,7 @@ public class QueueArrayBasedCollectionTest {
         queue.add(publications[0]);
         queue.add(publications[1]);
 
-        QueueArrayBasedCollection copyQueue =  queue.clone();
+        QueueArrayBasedCollection copyQueue = queue.clone();
 
         Assert.assertArrayEquals(queue.toArray(), copyQueue.toArray());
     }

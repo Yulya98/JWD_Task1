@@ -13,7 +13,7 @@ public abstract class AbstractList<T> extends AbstractPublicationCollection<T> i
 
     @Override
     public T get(int index) {
-        if((index >= 0) && (index < size())) {
+        if ((index >= 0) && (index < size())) {
             Iterator<T> it = iterator();
 
             while (it.hasNext()) {

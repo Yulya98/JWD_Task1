@@ -17,7 +17,7 @@ public abstract class AbstractArrayCollection<T> extends AbstractPublicationColl
     }
 
     @Override
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -43,7 +43,7 @@ public abstract class AbstractArrayCollection<T> extends AbstractPublicationColl
         if (index >= 0 && index < size()) {
             return (T) publications[index];
         } else {
-            throw new  IndexOutOfRangeException();
+            throw new IndexOutOfRangeException();
         }
     }
 

@@ -91,7 +91,7 @@ public class ArrayListCollectionTest {
     @Test(expected = CollectionEmptyException.class)
     public void removeFirstEmptyCollectionTest() {
 
-       linkedList.removeFirst();
+        linkedList.removeFirst();
     }
 
     @Test

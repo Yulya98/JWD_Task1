@@ -27,7 +27,7 @@ public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> im
     }
 
     @Override
-    public int size(){
+    public int size() {
         return publications.size();
     }
 

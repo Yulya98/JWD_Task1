@@ -73,7 +73,7 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
     public T removeFirst() {
         if (!isEmpty()) {
             T element = (T) elements[0];
-            for (int i = 0; i <size - 1; i++) {
+            for (int i = 0; i < size - 1; i++) {
                 elements[i] = elements[i + 1];
             }
             elements[size - 1] = null;
@@ -176,7 +176,7 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
         @Override
         public void remove() {
             removeLast();
-            if(collectionName.equals(QUEUE)) {
+            if (collectionName.equals(QUEUE)) {
                 position--;
             }
         }
