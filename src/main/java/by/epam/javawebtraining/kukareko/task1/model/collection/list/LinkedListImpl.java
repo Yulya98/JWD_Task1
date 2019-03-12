@@ -56,9 +56,8 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
                 head = tail;
             size++;
             return true;
-        } else {
-            throw new NullItemAddException();
         }
+        throw new NullItemAddException();
     }
 
     @Override
@@ -73,9 +72,8 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
             }
             size--;
             return (T) temp.value();
-        } else {
-            throw new CollectionEmptyException();
         }
+        throw new CollectionEmptyException();
     }
 
     @Override
@@ -90,9 +88,8 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
             }
             size--;
             return (T) temp.value();
-        } else {
-            throw new CollectionEmptyException();
         }
+        throw new CollectionEmptyException();
     }
 
     @Override
@@ -133,8 +130,8 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
     }
 
     @Override
-    public LinkedListImpl clone() {
-        return new LinkedListImpl(head, tail, size);
+    public LinkedListImpl<T> clone() {
+        return new LinkedListImpl<>(head, tail, size);
     }
 
     private class IteratorPublications<T> implements Iterator<T> {
@@ -182,9 +179,8 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
                     }
                     return (T) publication;
                 }
-            } else {
-                throw new AchievementOfBoundsException("You try get not existing element");
             }
+            throw new AchievementOfBoundsException("You try get not existing element");
         }
 
         @Override

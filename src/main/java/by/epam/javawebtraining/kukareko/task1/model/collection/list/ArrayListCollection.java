@@ -46,9 +46,8 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
             elements[0] = value;
             size++;
             return true;
-        } else {
-            throw new NullItemAddException();
         }
+        throw new NullItemAddException();
     }
 
     @Override
@@ -59,9 +58,8 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
             }
             elements[size++] = e;
             return true;
-        } else {
-            throw new NullItemAddException();
         }
+        throw new NullItemAddException();
     }
 
     private void resize() {
@@ -79,9 +77,8 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
             elements[size - 1] = null;
             size--;
             return element;
-        } else {
-            throw new CollectionEmptyException();
         }
+        throw new CollectionEmptyException();
     }
 
     @Override
@@ -91,9 +88,8 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
             elements[size - 1] = null;
             size--;
             return element;
-        } else {
-            throw new CollectionEmptyException();
         }
+        throw new CollectionEmptyException();
     }
 
     @Override
@@ -168,9 +164,8 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
                     return (T) elements[position++];
                 }
                 return (T) elements[position--];
-            } else {
-                throw new AchievementOfBoundsException("You try get not existing element");
             }
+            throw new AchievementOfBoundsException("You try get not existing element");
         }
 
         @Override

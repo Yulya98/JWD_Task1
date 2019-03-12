@@ -24,9 +24,8 @@ public class PublicationSorterImpl implements PublicationSorter {
             publicationsSorted = Arrays.copyOf(publications, publications.length);
             sortedByRatingQuickSort(publicationsSorted, 0, publicationsSorted.length - 1);
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
         }
+        throw new PublicationsEmptyException();
     }
 
     /*
@@ -56,9 +55,8 @@ public class PublicationSorterImpl implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
         }
+        throw new PublicationsEmptyException();
     }
 
     /*
@@ -83,9 +81,8 @@ public class PublicationSorterImpl implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
         }
+        throw new PublicationsEmptyException();
     }
 
     /*
@@ -106,9 +103,8 @@ public class PublicationSorterImpl implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } else {
-            throw new PublicationsEmptyException();
         }
+        throw new PublicationsEmptyException();
     }
 
     private void sortedByRatingQuickSort(Publication[] publications, int first, int last) {
