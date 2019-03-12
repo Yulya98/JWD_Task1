@@ -11,19 +11,19 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection<T> {
+public class LinkedListCollection<T> extends AbstractList<T> implements ListCollection<T> {
 
     private DoublyLinkedNode head;
     private DoublyLinkedNode tail;
     private int size;
 
-    public LinkedListImpl() {
+    public LinkedListCollection() {
         head = null;
         tail = null;
         this.size = 0;
     }
 
-    public LinkedListImpl(DoublyLinkedNode head, DoublyLinkedNode tail, int size) {
+    public LinkedListCollection(DoublyLinkedNode head, DoublyLinkedNode tail, int size) {
         this.head = head;
         this.tail = tail;
         this.size = size;
@@ -130,8 +130,8 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
     }
 
     @Override
-    public LinkedListImpl<T> clone() {
-        return new LinkedListImpl<>(head, tail, size);
+    public LinkedListCollection<T> clone() {
+        return new LinkedListCollection<>(head, tail, size);
     }
 
     private class IteratorPublications<T> implements Iterator<T> {
@@ -239,7 +239,7 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LinkedListImpl that = (LinkedListImpl) o;
+        LinkedListCollection that = (LinkedListCollection) o;
         return size == that.size &&
                 Objects.equals(head, that.head) &&
                 Objects.equals(tail, that.tail);
@@ -252,7 +252,7 @@ public class LinkedListImpl<T> extends AbstractList<T> implements ListCollection
 
     @Override
     public String toString() {
-        return "LinkedListImpl{" +
+        return "LinkedListCollection{" +
                 "count=" + size +
                 ", head=" + head +
                 ", tail=" + tail +

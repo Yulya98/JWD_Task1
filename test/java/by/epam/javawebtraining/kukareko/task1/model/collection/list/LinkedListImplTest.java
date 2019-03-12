@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class LinkedListImplTest {
 
-    private LinkedListImpl linkedList;
+    private LinkedListCollection linkedList;
     private static Publication[] publications;
 
     @BeforeClass
@@ -33,7 +33,7 @@ public class LinkedListImplTest {
 
     @Before
     public void initEach() {
-        linkedList = new LinkedListImpl();
+        linkedList = new LinkedListCollection();
     }
 
     @Test

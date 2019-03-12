@@ -1,12 +1,10 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Iterator;
-
-import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
 
 import java.util.Objects;
 
@@ -19,7 +17,7 @@ public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> im
     private ListCollection<T> publications;
 
     public QueueLinkedListBased() {
-        publications = new LinkedListImpl<>();
+        publications = new LinkedListCollection<>();
     }
 
     public QueueLinkedListBased(ListCollection<T> publications) {

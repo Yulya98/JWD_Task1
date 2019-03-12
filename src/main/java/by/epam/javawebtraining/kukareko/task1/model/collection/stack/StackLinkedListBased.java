@@ -1,9 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListImpl;
+import by.epam.javawebtraining.kukareko.task1.model.collection.list.LinkedListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 import java.util.Iterator;
 import java.util.Objects;
@@ -17,7 +16,7 @@ public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> im
     private ListCollection<T> publications;
 
     public StackLinkedListBased() {
-        publications = new LinkedListImpl<>();
+        publications = new LinkedListCollection<>();
     }
 
     public StackLinkedListBased(ListCollection publications) {
