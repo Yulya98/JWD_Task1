@@ -1,6 +1,10 @@
 package by.epam.javawebtraining.kukareko.task1.stream.reader;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 /**
  * @author Yulya Kukareko
@@ -8,23 +12,21 @@ import java.io.*;
  */
 public class Reader {
 
-    public static String[] read() {
-        String[] result = null;
+    public static String read() {
+        StringBuilder result = null;
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
         try (InputStream stream = classloader.getResourceAsStream("initial_state");
              BufferedReader br = new BufferedReader(new InputStreamReader(stream))) {
-            result = new String[20];
-            String newString = null;
-            int index = 0;
+            result = new StringBuilder();
+            String line;
 
-            while ((newString = br.readLine()) != null) {
-                result[index] = newString;
-                index++;
+            while ((line = br.readLine()) != null){
+                result.append(line + " \n");
             }
         } catch (IOException ex) {
             System.out.println(ex);
         }
-        return result;
+        return result.toString();
     }
 }

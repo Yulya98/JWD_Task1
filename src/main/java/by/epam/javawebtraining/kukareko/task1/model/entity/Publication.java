@@ -12,9 +12,9 @@ import java.util.Objects;
  */
 public class Publication {
 
-    public final int DEFAULT_FONT = 1;
-    public final int DEFAULT_PAGE_COUNT = 1;
-    public final int DEFAULT_RATING = 1;
+    private static final int DEFAULT_FONT = 1;
+    private static final int DEFAULT_PAGE_COUNT = 1;
+    private static final int DEFAULT_RATING = 1;
 
     private long id;
     private int pageCount;
