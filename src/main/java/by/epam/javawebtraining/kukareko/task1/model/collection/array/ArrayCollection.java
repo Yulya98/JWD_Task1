@@ -11,8 +11,6 @@ public interface ArrayCollection<T> extends PublicationCollection<T> {
 
     T get(int index);
 
-    int size();
-
     boolean set(int index, T publication);
 
     boolean addAll(T[] publications);

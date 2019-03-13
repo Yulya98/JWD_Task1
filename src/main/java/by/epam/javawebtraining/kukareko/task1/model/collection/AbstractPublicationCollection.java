@@ -2,6 +2,7 @@ package by.epam.javawebtraining.kukareko.task1.model.collection;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -10,22 +11,29 @@ import java.util.Iterator;
  */
 public abstract class AbstractPublicationCollection<T> implements PublicationCollection<T> {
 
-    public AbstractPublicationCollection() {
-    }
-
     @Override
-    public abstract Object[] toArray();
+    public Object[] toArray() {
+        Object[] r = new Object[this.size()];
+        Iterator<T> it = iterator();
+        for (int i = 0; i < r.length; i++) {
+            if (!it.hasNext())
+                return Arrays.copyOf(r, i);
+            r[i] = it.next();
+        }
+        return r;
+    }
 
     @Override
     public abstract Iterator iterator();
 
     @Override
-    public abstract void clear();
-
-    public abstract PublicationCollection<T> clone();
-
-    @Override
-    public abstract int size();
+    public void clear() {
+        Iterator<T> it = iterator();
+        while (it.hasNext()) {
+            it.next();
+            it.remove();
+        }
+    }
 
     @Override
     public boolean contains(T item) {

@@ -16,46 +16,29 @@ import java.util.Comparator;
  */
 public class PublicationSorterImplComparator implements PublicationSorter {
 
-    private Comparator<Publication> ratingComparator;
-    private Comparator<Publication> circulationAndPageCountComparator;
-    private Comparator<Publication> pageCountComparator;
-    private Comparator<Publication> fontComparator;
+    private Comparator<Publication>[] comparators;
 
     public PublicationSorterImplComparator() {
-        this.ratingComparator = new RatingComparator();
-        this.circulationAndPageCountComparator = new CirculationAndPageCountComparator();
-        this.pageCountComparator = new PageCountComparator();
-        this.fontComparator = new FontComparator();
+        comparators = new Comparator[] {
+                new RatingComparator(),
+                new FontComparator(),
+                new CirculationAndPageCountComparator(),
+                new PageCountComparator()
+        };
     }
 
-    public PublicationSorterImplComparator(Comparator<Publication> ratingComparator, Comparator<Publication> circulationAndPageCountComparator,
-                                           Comparator<Publication> pageCountComparator, Comparator<Publication> fontComparator) {
-        this.ratingComparator = ratingComparator;
-        this.circulationAndPageCountComparator = circulationAndPageCountComparator;
-        this.pageCountComparator = pageCountComparator;
-        this.fontComparator = fontComparator;
+    public PublicationSorterImplComparator(Comparator[] comparators) {
+        this.comparators = comparators;
     }
 
-    public void setRatingComparator(Comparator<Publication> ratingComparator) {
-        this.ratingComparator = ratingComparator;
-    }
-
-    public void setCirculationAndPageCountComparator(Comparator<Publication> circulationAndPageCountComparator) {
-        this.circulationAndPageCountComparator = circulationAndPageCountComparator;
-    }
-
-    public void setPageCountComparator(Comparator<Publication> pageCountComparator) {
-        this.pageCountComparator = pageCountComparator;
-    }
-
-    public void setFontComparator(Comparator<Publication> fontComparator) {
-        this.fontComparator = fontComparator;
+    public void setComparators(Comparator[] comparators) {
+        this.comparators = comparators;
     }
 
     @Override
     public Publication[] sortedByRating(Publication[] publications) throws PublicationsEmptyException {
         try {
-            Arrays.sort(publications, ratingComparator);
+            Arrays.sort(publications, comparators[0]);
         } catch (NullPointerException ex){
             throw new PublicationsEmptyException(ex);
         }
@@ -66,7 +49,7 @@ public class PublicationSorterImplComparator implements PublicationSorter {
     @Override
     public Publication[] sortedByCirculationAndPageCount(Publication[] publications) throws PublicationsEmptyException {
         try {
-            Arrays.sort(publications, circulationAndPageCountComparator);
+            Arrays.sort(publications, comparators[2]);
         } catch (NullPointerException ex) {
             throw new PublicationsEmptyException(ex);
         }
@@ -77,7 +60,7 @@ public class PublicationSorterImplComparator implements PublicationSorter {
     @Override
     public Publication[] sortedByPageCount(Publication[] publications) throws PublicationsEmptyException {
         try {
-            Arrays.sort(publications, pageCountComparator);
+            Arrays.sort(publications, comparators[3]);
         } catch (NullPointerException ex){
             throw new PublicationsEmptyException(ex);
         }
@@ -88,7 +71,7 @@ public class PublicationSorterImplComparator implements PublicationSorter {
     @Override
     public Publication[] sortedByFont(Publication[] publications) throws PublicationsEmptyException {
         try {
-            Arrays.sort(publications, fontComparator);
+            Arrays.sort(publications, comparators[1]);
         } catch (NullPointerException ex){
             throw new PublicationsEmptyException(ex);
         }

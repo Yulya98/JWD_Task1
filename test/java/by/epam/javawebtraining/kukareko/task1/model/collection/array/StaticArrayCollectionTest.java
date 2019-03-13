@@ -20,7 +20,7 @@ import java.util.Iterator;
  */
 public class StaticArrayCollectionTest {
 
-    private StaticArrayCollection staticArrayCollection;
+    private StaticArrayCollection<Publication> staticArrayCollection;
     private static Publication publication;
     private static Publication[] publications;
 
@@ -43,7 +43,7 @@ public class StaticArrayCollectionTest {
         int size = 10;
         int expected = 10;
 
-        staticArrayCollection = new StaticArrayCollection(size);
+        staticArrayCollection = new StaticArrayCollection<>(size);
         Assert.assertEquals(expected, staticArrayCollection.getCapacity());
     }
 
@@ -52,20 +52,20 @@ public class StaticArrayCollectionTest {
         int size = -1;
         int expected = 8;
 
-        staticArrayCollection = new StaticArrayCollection(size);
+        staticArrayCollection = new StaticArrayCollection<>(size);
         Assert.assertEquals(expected, staticArrayCollection.getCapacity());
     }
 
     @Test
     public void testAdd() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
 
         Assert.assertTrue(staticArrayCollection.add(publication));
     }
 
     @Test(expected = NullItemAddException.class)
     public void testAddNull() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
         Publication publication = null;
 
         staticArrayCollection.add(publication);
@@ -74,7 +74,7 @@ public class StaticArrayCollectionTest {
     @Test(expected = CapacityExceededException.class)
     public void testAddCapacityExceeds() {
         int size = 0;
-        staticArrayCollection = new StaticArrayCollection(size);
+        staticArrayCollection = new StaticArrayCollection<>(size);
 
         staticArrayCollection.add(publication);
     }
@@ -83,7 +83,7 @@ public class StaticArrayCollectionTest {
     public void testRemove() {
         int remIndex = 0;
         Publication expected = publication;
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
 
         Assert.assertEquals(expected, staticArrayCollection.remove(remIndex));
@@ -92,26 +92,26 @@ public class StaticArrayCollectionTest {
     @Test(expected = IndexOutOfRangeException.class)
     public void testRemoveNegativeIndex() {
         int remIndex = -1;
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
 
-        staticArrayCollection.remove(remIndex);
+        Assert.assertNull(staticArrayCollection.remove(remIndex));
     }
 
     @Test(expected = IndexOutOfRangeException.class)
     public void testRemoveSizeExceeds() {
         int initialSize = 2;
-        staticArrayCollection = new StaticArrayCollection(initialSize);
+        staticArrayCollection = new StaticArrayCollection<>(initialSize);
         staticArrayCollection.add(publication);
         int remIndex = staticArrayCollection.size() + 1;
 
-        staticArrayCollection.remove(remIndex);
+        Assert.assertNull(staticArrayCollection.remove(remIndex));
     }
 
     @Test
     public void testGet() {
         int index = 0;
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
 
         Assert.assertNotNull(staticArrayCollection.get(index));
@@ -120,7 +120,7 @@ public class StaticArrayCollectionTest {
     @Test(expected = IndexOutOfRangeException.class)
     public void testGetNegativeIndex() {
         int index = -1;
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
 
         staticArrayCollection.get(index);
@@ -129,7 +129,7 @@ public class StaticArrayCollectionTest {
     @Test(expected = IndexOutOfRangeException.class)
     public void testGetSizeExceeds() {
         int initSize = 2;
-        staticArrayCollection = new StaticArrayCollection(initSize);
+        staticArrayCollection = new StaticArrayCollection<>(initSize);
         staticArrayCollection.add(publication);
         int index = staticArrayCollection.size() + 1;
 
@@ -141,64 +141,64 @@ public class StaticArrayCollectionTest {
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
         int index = 0;
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
 
         Assert.assertTrue(staticArrayCollection.set(index, publication));
     }
 
-    @Test(expected = IndexOutOfRangeException.class)
+    @Test
     public void testSetSizeExceeds() {
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
         int index = staticArrayCollection.size() + 1;
 
-        staticArrayCollection.set(index, publication);
+        Assert.assertFalse(staticArrayCollection.set(index, publication));
     }
 
     @Test(expected = NullItemAddException.class)
     public void testSetNull() {
         Publication publication = null;
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
         int index = 0;
 
         staticArrayCollection.set(index, publication);
     }
 
-    @Test(expected = IndexOutOfRangeException.class)
+    @Test
     public void testSetNegative() {
         Publication publication = new Sport(5L, 50, "Billiards sport", 6, "MFBS",
                 100, 6, 30, "Billiards");
-        staticArrayCollection = new StaticArrayCollection(2);
+        staticArrayCollection = new StaticArrayCollection<>(2);
         staticArrayCollection.add(publication);
         int index = -1;
 
-        staticArrayCollection.set(index, publication);
+        Assert.assertFalse(staticArrayCollection.set(index, publication));
     }
 
     @Test
     public void addAll() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
 
         Assert.assertTrue(staticArrayCollection.addAll(publications));
     }
 
-    @Test(expected = NullItemAddException.class)
+    @Test
     public void addAllNull() {
         Publication[] publications = null;
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
 
-        staticArrayCollection.addAll(publications);
+        Assert.assertFalse(staticArrayCollection.addAll(publications));
     }
 
     @Test
     public void clearTest() {
         int expected = 0;
 
-        staticArrayCollection = new StaticArrayCollection(publications);
+        staticArrayCollection = new StaticArrayCollection<>(publications);
         staticArrayCollection.clear();
 
         Assert.assertEquals(expected, staticArrayCollection.size());
@@ -206,21 +206,21 @@ public class StaticArrayCollectionTest {
 
     @Test
     public void toArray() {
-        staticArrayCollection = new StaticArrayCollection(publications);
+        staticArrayCollection = new StaticArrayCollection<>(publications);
 
         Assert.assertArrayEquals(publications, staticArrayCollection.toArray());
     }
 
     @Test
     public void cloneTest() {
-        staticArrayCollection = new StaticArrayCollection(publications);
+        staticArrayCollection = new StaticArrayCollection<>(publications);
 
         Assert.assertArrayEquals(publications, staticArrayCollection.clone().toArray());
     }
 
     @Test
     public void hasNextTest() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
         staticArrayCollection.add(publications[0]);
         staticArrayCollection.add(publications[1]);
         Iterator iterator = staticArrayCollection.iterator();
@@ -230,14 +230,14 @@ public class StaticArrayCollectionTest {
 
     @Test
     public void iteratorEmptyCollectionTest() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
 
         Assert.assertFalse(staticArrayCollection.iterator().hasNext());
     }
 
     @Test(expected = AchievementOfBoundsException.class)
     public void iteratorExceptionTest() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
 
         staticArrayCollection.add(publications[0]);
         Iterator iterator = staticArrayCollection.iterator();
@@ -248,7 +248,7 @@ public class StaticArrayCollectionTest {
 
     @Test
     public void hasNextNextTest() {
-        staticArrayCollection = new StaticArrayCollection();
+        staticArrayCollection = new StaticArrayCollection<>();
 
         staticArrayCollection.add(publications[0]);
         staticArrayCollection.add(publications[1]);
@@ -267,7 +267,8 @@ public class StaticArrayCollectionTest {
                 new Children(2L, 700, "Andersen's tales", 8, "Olimpia",
                         100000, 8, "Hans Christian Andersen", "4+")
         };
-        staticArrayCollection = new StaticArrayCollection(0);
+        staticArrayCollection = new StaticArrayCollection<>(0);
+
         staticArrayCollection.addAll(publications);
     }
 }

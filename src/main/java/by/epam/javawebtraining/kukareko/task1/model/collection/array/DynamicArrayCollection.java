@@ -1,10 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CollectionEmptyException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
+import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -13,11 +11,9 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 09 Mar 2019
  */
-public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> implements ArrayCollection<T> {
-    private static final int DEFAULT_CAPACITY = 8;
+public class DynamicArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayCollection<T> {
 
-    private Object[] publications;
-    private int size;
+    private static final int DEFAULT_CAPACITY = 8;
 
     public DynamicArrayCollection() {
         publications = new Object[DEFAULT_CAPACITY];
@@ -30,10 +26,10 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
     @Override
     public boolean add(T publication) {
         if ((publication != null)) {
-            if (size == publications.length) {
+            if (size() == publications.length) {
                 resize(publications.length * 2);
             }
-            publications[size++] = publication;
+            publications[size()] = publication;
             return true;
         } else {
             throw new NullItemAddException();
@@ -45,75 +41,8 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
     }
 
     @Override
-    public T remove(int remIndex) {
-        if (remIndex >= 0 && remIndex < size) {
-            T publication = (T) publications[remIndex];
-
-            for (int i = remIndex; i < size - 1; i++) {
-                publications[i] = publications[i + 1];
-            }
-            publications[--size] = null;
-
-            return publication;
-        } else {
-            throw new IndexOutOfRangeException();
-        }
-    }
-
-    @Override
-    public T get(int index) {
-        if (index >= 0 && index < size) {
-            return (T) publications[index];
-        } else {
-            throw new IndexOutOfRangeException();
-        }
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean set(int index, T publication) {
-        if (publication != null) {
-            if((index >= 0) && (index < size)) {
-                publications[index] = publication;
-                return true;
-            } else {
-                throw new IndexOutOfRangeException();
-            }
-        } else {
-            throw new CollectionEmptyException();
-        }
-    }
-
-    @Override
-    public boolean addAll(T[] publications) {
-        if (publications != null) {
-            for (T publication : publications) {
-                add(publication);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     public Iterator iterator() {
         return new IteratorPublications();
-    }
-
-    @Override
-    public void clear() {
-        while (size != 0) {
-            remove(size - 1);
-        }
-    }
-
-    @Override
-    public Object[] toArray() {
-        return publications;
     }
 
     @Override
@@ -122,19 +51,27 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
     }
 
     private class IteratorPublications<T> implements Iterator<T> {
-        int position = -1;
+        int position = 0;
 
         @Override
         public boolean hasNext() {
-            return ++position < size;
+            return position < size();
         }
 
         @Override
         public T next() {
             if (this.hasNext()) {
-                return (T) publications[position];
+                return (T) publications[position++];
+            } else {
+                throw new AchievementOfBoundsException();
             }
-            return null;
+        }
+
+        @Override
+        public void remove() {
+            int remIndex = size() - 1;
+            DynamicArrayCollection.this.remove(remIndex);
+            position--;
         }
     }
 
@@ -143,13 +80,13 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DynamicArrayCollection that = (DynamicArrayCollection) o;
-        return size == that.size &&
+        return size() == that.size() &&
                 Arrays.equals(publications, that.publications);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(size);
+        int result = Objects.hash(size());
         result = 31 * result + Arrays.hashCode(publications);
         return result;
     }
@@ -158,7 +95,7 @@ public class DynamicArrayCollection<T> extends AbstractPublicationCollection<T> 
     public String toString() {
         return "DynamicArrayCollection{" +
                 "publications=" + Arrays.toString(publications) +
-                ", size=" + size +
+                ", size=" + size() +
                 '}';
     }
 }
