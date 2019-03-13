@@ -1,6 +1,5 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.counter;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;

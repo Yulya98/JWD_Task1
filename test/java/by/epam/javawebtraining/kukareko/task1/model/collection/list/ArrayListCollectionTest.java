@@ -13,7 +13,7 @@ import org.junit.Test;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 10 Март 2019
+ * @version 1.0 10 Mar 2019
  */
 public class ArrayListCollectionTest {
 

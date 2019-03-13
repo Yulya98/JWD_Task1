@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 12 Март 2019
+ * @version 1.0 12 Mar 2019
  */
 public abstract class AbstractList<T> extends AbstractPublicationCollection<T> implements ListCollection<T> {
 

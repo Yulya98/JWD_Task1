@@ -1,7 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 /**
  * @author Yulya Kukareko

@@ -5,7 +5,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 09 Март 2019
+ * @version 1.0 09 Mar 2019
  */
 public interface ArrayCollection<T> extends PublicationCollection<T> {
     T get(int index);

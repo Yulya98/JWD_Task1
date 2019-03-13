@@ -1,7 +1,5 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection;
 
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-
 import java.util.Iterator;
 
 /**

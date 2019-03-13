@@ -1,9 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 
 import java.util.Arrays;
 import java.util.Iterator;

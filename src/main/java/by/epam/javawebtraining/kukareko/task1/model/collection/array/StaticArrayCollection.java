@@ -1,10 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CapacityExceededException;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOutOfRangeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 
 import java.util.Arrays;
@@ -120,4 +118,5 @@ public class StaticArrayCollection<T> extends AbstractArrayCollection<T> impleme
                 ", size=" + size() +
                 '}';
     }
+
 }

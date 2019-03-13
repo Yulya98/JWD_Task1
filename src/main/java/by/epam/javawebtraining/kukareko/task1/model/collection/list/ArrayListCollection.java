@@ -1,7 +1,5 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.list;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.*;
 
 import java.util.Arrays;

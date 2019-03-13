@@ -1,13 +1,9 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.ArrayListCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.list.ListCollection;
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
 
