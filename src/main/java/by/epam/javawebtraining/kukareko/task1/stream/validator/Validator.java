@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.stream.validator;
 
-import org.apache.commons.lang.ArrayUtils;
+import by.epam.javawebtraining.kukareko.task1.stream.FindFieldByPosition;
+import by.epam.javawebtraining.kukareko.task1.stream.FindFieldsClassHierarchies;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -12,64 +13,59 @@ import java.lang.reflect.Type;
  */
 public class Validator {
 
-    public static boolean checkData(String data){
-        try {
-            if (data != null) {
-                String[] arrOfStr = data.split("\n");
+    private static final String DEFAULT_PACKAGE = "by.epam.javawebtraining.kukareko.task1.model.entity.";
 
-                for (String str : arrOfStr) {
+    public static boolean checkData(String data) {
+        if (data != null) {
+            String[] arrOfStr = data.split("\n");
 
-                    if(str != null) {
-                        int p2 = str.indexOf(" ");
-                        String className = "by.epam.javawebtraining.kukareko.task1.model.entity." + str.substring(0, p2);
-                        Field[] fields = Class.forName(className).getDeclaredFields();
+            for (String str : arrOfStr) {
+                if (str != null) {
+                    int splitSymbolPosition = str.indexOf(" ");
+                    String className = DEFAULT_PACKAGE + str.substring(0, splitSymbolPosition);
+                    Field[] fields = FindFieldsClassHierarchies.getFields(className);
 
-                        while (Class.forName(className)
-                                .getSuperclass() != null) {
-                            className = Class.forName(className).getSuperclass().getName();
-
-                            fields = (Field[]) ArrayUtils.addAll(fields, Class.forName(className).getDeclaredFields());
-                        }
-
-                        for (Field field : fields) {
-                            if (!Modifier.isStatic(field.getModifiers())) {
-
-                                Type type = field.getType();
-                                String fieldName = field.getName();
-
-                                if (str.contains(fieldName)) {
-                                    int p1 = str.indexOf(fieldName) + fieldName.length() + 1 + (str.charAt(str.indexOf(fieldName) + 2) == '\'' ? +1 : 0);
-                                    int p3 = str.indexOf(" ", p1);
-
-                                    String value = str.substring(p1, p3);
-
-                                    if (type.equals(Long.TYPE)) {
-                                        if (!tryParseInteger(value)) {
-                                            return false;
-                                        }
-                                    } else if (type.equals(Integer.TYPE)) {
-                                        if (!tryParseLong(value)) {
-                                            return false;
-                                        }
-                                    } else if (type.equals(Boolean.TYPE)) {
-                                        if (!tryParseBoolean(value)) {
-                                            return false;
-                                        }
-                                    }
-                                } else {
-                                    return false;
-                                }
-                            }
+                    for (Field field : fields) {
+                        if (!checkFieldParameter(field, str)) {
+                            return false;
                         }
                     }
                 }
             }
-        } catch (ClassNotFoundException ex ){
-            return false;
         }
+
         return true;
     }
 
+    public static boolean checkFieldParameter(Field field, String data) {
+        if (!Modifier.isStatic(field.getModifiers())) {
+
+            Type type = field.getType();
+            String fieldName = field.getName();
+            String value;
+
+            if (data.contains(fieldName)) {
+                value = FindFieldByPosition.findField(data, fieldName);
+
+                if (type.equals(Long.TYPE)) {
+                    if (!tryParseInteger(value)) {
+                        return false;
+                    }
+                } else if (type.equals(Integer.TYPE)) {
+                    if (!tryParseLong(value)) {
+                        return false;
+                    }
+                } else if (type.equals(Boolean.TYPE)) {
+                    if (!tryParseBoolean(value)) {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
 
     private static boolean tryParseLong(String value) {
         try {

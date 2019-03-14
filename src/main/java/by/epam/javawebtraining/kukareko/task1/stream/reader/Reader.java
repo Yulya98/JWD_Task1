@@ -1,10 +1,10 @@
 package by.epam.javawebtraining.kukareko.task1.stream.reader;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.stream.parser.Parser;
+import by.epam.javawebtraining.kukareko.task1.stream.validator.Validator;
 
 import java.io.*;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 /**
  * @author Yulya Kukareko
@@ -21,12 +21,21 @@ public class Reader {
             result = new StringBuilder();
             String line;
 
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 result.append(line + " \n");
             }
         } catch (IOException ex) {
             System.out.println(ex);
         }
         return result.toString();
+    }
+
+    public static void main(String[] args) {
+        if(Validator.checkData(Reader.read())){
+            Publication[] publications = Parser.checkData(Reader.read());
+            for(Publication publication : publications){
+                System.out.println(publication);
+            }
+        }
     }
 }
