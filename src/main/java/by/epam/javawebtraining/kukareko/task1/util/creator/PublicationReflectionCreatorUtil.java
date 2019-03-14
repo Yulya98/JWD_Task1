@@ -1,0 +1,46 @@
+package by.epam.javawebtraining.kukareko.task1.util.creator;
+
+import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.stream.parser.Parser;
+import com.thoughtworks.paranamer.BytecodeReadingParanamer;
+import com.thoughtworks.paranamer.Paranamer;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+
+/**
+ * @author Yulya Kukareko
+ * @version 1.0 14 Mar 2019
+ */
+public class PublicationReflectionCreatorUtil {
+
+    public static Publication create(String str){
+
+        Map<String, Object> fieldNames = Parser.checkData(str);
+        Publication publication = getObject((String) fieldNames.get("className"), fieldNames);
+
+        return publication;
+    }
+
+    private static Publication getObject(String className, Map<String, Object> fieldNames) {
+        Publication publication = null;
+
+        try {
+            Constructor constructor = Class.forName(className).getConstructors()[1];
+            Paranamer paranamer = new BytecodeReadingParanamer();
+            String[] parameterNames = paranamer.lookupParameterNames(constructor);
+            Object[] constructorParameters = new Object[parameterNames.length];
+
+            for (int i = 0; i < parameterNames.length; i++) {
+                constructorParameters[i] = fieldNames.get(parameterNames[i]);
+            }
+
+            publication = (Publication) constructor.newInstance(constructorParameters);
+        } catch (IllegalAccessException | InvocationTargetException | InstantiationException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        return publication;
+    }
+}

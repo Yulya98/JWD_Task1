@@ -29,13 +29,4 @@ public class Reader {
         }
         return result.toString();
     }
-
-    public static void main(String[] args) {
-        if(Validator.checkData(Reader.read())){
-            Publication[] publications = Parser.checkData(Reader.read());
-            for(Publication publication : publications){
-                System.out.println(publication);
-            }
-        }
-    }
 }
