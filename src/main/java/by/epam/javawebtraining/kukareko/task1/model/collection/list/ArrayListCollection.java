@@ -15,34 +15,28 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
     private static final int DEFAULT_CAPACITY = 8;
 
     private Object[] elements;
-    private int size;
 
     public ArrayListCollection() {
         this.elements = new Object[DEFAULT_CAPACITY];
-        this.size = 0;
+        setSize(0);
     }
 
     public ArrayListCollection(Object[] elements) {
-        this.size = elements.length;
+        setSize(elements.length);
         this.elements = elements;
-    }
-
-    @Override
-    public int size() {
-        return size;
     }
 
     @Override
     public boolean addFirst(T value) {
         if (value != null) {
-            if (size == elements.length) {
+            if (size() == elements.length) {
                 resize();
             }
-            for (int i = size - 1; i > 0; i++) {
+            for (int i = size() - 1; i > 0; i++) {
                 elements[i] = elements[i - 1];
             }
             elements[0] = value;
-            size++;
+            setSize(size() + 1);
             return true;
         }
         throw new NullItemAddException();
@@ -51,10 +45,11 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
     @Override
     public boolean addLast(T e) {
         if (e != null) {
-            if (size == elements.length) {
+            if (size() == elements.length) {
                 resize();
             }
-            elements[size++] = e;
+            elements[size()] = e;
+            setSize(size() + 1);
             return true;
         }
         throw new NullItemAddException();
@@ -69,11 +64,11 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
     public T removeFirst() {
         if (!isEmpty()) {
             T element = (T) elements[0];
-            for (int i = 0; i < size - 1; i++) {
+            for (int i = 0; i < size() - 1; i++) {
                 elements[i] = elements[i + 1];
             }
-            elements[size - 1] = null;
-            size--;
+            elements[size() - 1] = null;
+            setSize(size() - 1);
             return element;
         }
         throw new CollectionEmptyException();
@@ -82,9 +77,9 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
     @Override
     public T removeLast() {
         if (!isEmpty()) {
-            T element = (T) elements[size - 1];
-            elements[size - 1] = null;
-            size--;
+            T element = (T) elements[size() - 1];
+            elements[size() - 1] = null;
+            setSize(size() - 1);
             return element;
         }
         throw new CollectionEmptyException();
@@ -96,11 +91,11 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
             if (!isEmpty()) {
                 int index = lastIndexOf(value);
                 if (index != -1) {
-                    for (int i = index; i < size - 2; i++) {
+                    for (int i = index; i < size() - 2; i++) {
                         elements[i] = elements[i + 1];
                     }
-                    elements[size - 1] = null;
-                    size--;
+                    elements[size() - 1] = null;
+                    setSize(size() - 1);
                     return true;
                 }
             } else {
@@ -146,7 +141,7 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
                 position = 0;
             } else {
                 collectionName = STACK;
-                position = size - 1;
+                position = size() - 1;
             }
         }
 
@@ -180,13 +175,13 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArrayListCollection<?> that = (ArrayListCollection<?>) o;
-        return size == that.size &&
+        return size() == that.size() &&
                 Arrays.equals(elements, that.elements);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(size);
+        int result = Objects.hash(size());
         result = 31 * result + Arrays.hashCode(elements);
         return result;
     }
@@ -195,7 +190,7 @@ public class ArrayListCollection<T> extends AbstractList<T> implements ListColle
     public String toString() {
         return "ArrayListCollection{" +
                 "elements=" + Arrays.toString(elements) +
-                ", size=" + size +
+                ", size=" + size() +
                 '}';
     }
 }

@@ -11,6 +11,8 @@ import java.util.Iterator;
  */
 public abstract class AbstractList<T> extends AbstractPublicationCollection<T> implements ListCollection<T> {
 
+    private int size;
+
     @Override
     public T get(int index) {
         if ((index >= 0) && (index < size())) {
@@ -44,5 +46,15 @@ public abstract class AbstractList<T> extends AbstractPublicationCollection<T> i
     @Override
     public ListCollection<T> clone() {
         return null;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+    protected void setSize(int size){
+        if(size >= 0){
+            this.size = size;
+        }
     }
 }

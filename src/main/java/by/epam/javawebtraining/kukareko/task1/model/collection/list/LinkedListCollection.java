@@ -15,23 +15,17 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
 
     private DoublyLinkedNode head;
     private DoublyLinkedNode tail;
-    private int size;
 
     public LinkedListCollection() {
         head = null;
         tail = null;
-        this.size = 0;
+        setSize(0);
     }
 
     public LinkedListCollection(DoublyLinkedNode head, DoublyLinkedNode tail, int size) {
         this.head = head;
         this.tail = tail;
-        this.size = size;
-    }
-
-    @Override
-    public int size() {
-        return size;
+        setSize(size);
     }
 
     @Override
@@ -41,7 +35,7 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
             if (tail == null) {
                 tail = head;
             }
-            size++;
+            setSize(size() + 1);
             return true;
         } else {
             throw new NullItemAddException();
@@ -54,7 +48,7 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
             tail = new DoublyLinkedNode(value, null, tail);
             if (head == null)
                 head = tail;
-            size++;
+            setSize(size() + 1);
             return true;
         }
         throw new NullItemAddException();
@@ -70,7 +64,7 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
             } else {
                 tail.setNext(null);
             }
-            size--;
+            setSize(size() - 1);
             return (T) temp.value();
         }
         throw new CollectionEmptyException();
@@ -86,7 +80,7 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
             } else {
                 head.setPrevious(null);
             }
-            size--;
+            setSize(size() - 1);
             return (T) temp.value();
         }
         throw new CollectionEmptyException();
@@ -109,7 +103,7 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
             } else {
                 tail = finger.previous();
             }
-            size--;
+            setSize(size() - 1);
             return true;
         }
         return false;
@@ -131,7 +125,7 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
 
     @Override
     public LinkedListCollection<T> clone() {
-        return new LinkedListCollection<>(head, tail, size);
+        return new LinkedListCollection<>(head, tail, size());
     }
 
     private class IteratorPublications<T> implements Iterator<T> {
@@ -240,20 +234,20 @@ public class LinkedListCollection<T> extends AbstractList<T> implements ListColl
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LinkedListCollection that = (LinkedListCollection) o;
-        return size == that.size &&
+        return size() == that.size() &&
                 Objects.equals(head, that.head) &&
                 Objects.equals(tail, that.tail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(size, head, tail);
+        return Objects.hash(size(), head, tail);
     }
 
     @Override
     public String toString() {
         return "LinkedListCollection{" +
-                "count=" + size +
+                "count=" + size() +
                 ", head=" + head +
                 ", tail=" + tail +
                 '}';

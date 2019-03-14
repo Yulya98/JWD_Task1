@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class Magazine extends Publication {
 
-    public final int DEFAULT_COUNT_ARTICLES = 1;
+    private final int DEFAULT_COUNT_ARTICLES = 1;
 
     private int countArticles;
 
