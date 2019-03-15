@@ -6,7 +6,7 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public class StandardOutPublicationsRender implements PublicationsRender {
+public class StandardOutPublicationsRender implements PublicationRender {
 
     @Override
     public void messageRender(String message) {

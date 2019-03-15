@@ -15,9 +15,8 @@ import java.util.Map;
  */
 public class PublicationReflectionCreatorUtil {
 
-    public static Publication create(String str){
+    public static Publication create(Map<String, Object> fieldNames){
 
-        Map<String, Object> fieldNames = Parser.checkData(str);
         Publication publication = getObject((String) fieldNames.get("className"), fieldNames);
 
         return publication;
