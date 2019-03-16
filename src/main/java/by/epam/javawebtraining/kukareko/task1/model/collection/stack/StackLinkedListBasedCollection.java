@@ -10,15 +10,15 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
+public class StackLinkedListBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
 
     private LinkedList<T> publications;
 
-    public StackLinkedListBased() {
+    public StackLinkedListBasedCollection() {
         publications = new LinkedList<T>();
     }
 
-    public StackLinkedListBased( LinkedList<T> publications) {
+    public StackLinkedListBasedCollection(LinkedList<T> publications) {
         this.publications = publications;
     }
 
@@ -58,15 +58,15 @@ public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> im
     }
 
     @Override
-    public StackLinkedListBased clone() {
-        return new StackLinkedListBased( (LinkedList<T>) publications.clone());
+    public StackLinkedListBasedCollection clone() {
+        return new StackLinkedListBasedCollection( (LinkedList<T>) publications.clone());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StackLinkedListBased that = (StackLinkedListBased) o;
+        StackLinkedListBasedCollection that = (StackLinkedListBasedCollection) o;
         return Objects.equals(publications, that.publications);
     }
 
@@ -77,7 +77,7 @@ public class StackLinkedListBased<T> extends AbstractPublicationCollection<T> im
 
     @Override
     public String toString() {
-        return "StackLinkedListBased{" +
+        return "StackLinkedListBasedCollection{" +
                 "publications=" + publications +
                 '}';
     }

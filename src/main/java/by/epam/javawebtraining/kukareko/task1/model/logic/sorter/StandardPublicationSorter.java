@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public class PublicationSorterImpl implements PublicationSorter {
+public class StandardPublicationSorter implements PublicationSorter {
 
     /*
     Sorted publications using Quick sort

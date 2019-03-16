@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 16 Март 2019
+ * @version 1.0 16 Mar 2019
  */
 public class LibraryStackBased<T> extends Library<T> {
 

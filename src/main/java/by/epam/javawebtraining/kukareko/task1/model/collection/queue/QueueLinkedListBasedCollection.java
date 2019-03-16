@@ -1,26 +1,24 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.queue;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
+public class QueueLinkedListBasedCollection<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
 
     private LinkedList<T> publications;
 
-    public QueueLinkedListBased() {
+    public QueueLinkedListBasedCollection() {
         publications = new LinkedList<>();
     }
 
-    public QueueLinkedListBased(LinkedList<T> publications) {
+    public QueueLinkedListBasedCollection(LinkedList<T> publications) {
         this.publications = publications;
     }
 
@@ -62,15 +60,15 @@ public class QueueLinkedListBased<T> extends AbstractPublicationCollection<T> im
     }
 
     @Override
-    public QueueLinkedListBased<T> clone() {
-        return new QueueLinkedListBased<T>((LinkedList<T>) publications.clone());
+    public QueueLinkedListBasedCollection<T> clone() {
+        return new QueueLinkedListBasedCollection<T>((LinkedList<T>) publications.clone());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        QueueLinkedListBased that = (QueueLinkedListBased) o;
+        QueueLinkedListBasedCollection that = (QueueLinkedListBasedCollection) o;
         return Objects.equals(publications, that.publications);
     }
 

@@ -1,26 +1,28 @@
 package by.epam.javawebtraining.kukareko.task1.controller;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection;
-import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueLinkedListBased;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.container.LibraryStackBased;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
+import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter;
-import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounterImpl;
+import by.epam.javawebtraining.kukareko.task1.model.logic.counter.StandardPublicationCounter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder;
-import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinderImpl;
+import by.epam.javawebtraining.kukareko.task1.model.logic.finder.StandardPublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
-import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImpl;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
+import by.epam.javawebtraining.kukareko.task1.stream.BuildStringPublication;
+import by.epam.javawebtraining.kukareko.task1.stream.parser.Parser;
+import by.epam.javawebtraining.kukareko.task1.stream.reader.CharacterReader;
+import by.epam.javawebtraining.kukareko.task1.stream.reader.PublicationFileReader;
+import by.epam.javawebtraining.kukareko.task1.stream.validator.Validator;
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
-import by.epam.javawebtraining.kukareko.task1.view.StandardOutPublicationsRender;
-
-import java.util.PriorityQueue;
-import java.util.Queue;
+import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationReflectionCreatorUtil;
+import by.epam.javawebtraining.kukareko.task1.view.BinaryFileRender;
+import by.epam.javawebtraining.kukareko.task1.view.ConsoleRender;
+import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
 
 /**
  * @author Yulya Kukareko
@@ -36,7 +38,7 @@ public class Controller {
             int publicationsCount = 5;
 
             Library<Publication> library = new LibraryStackBased<>(new StackArrayBasedCollection<>());
-            StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
+            ConsoleRender publicationsRender = new ConsoleRender();
 
             for (int i = 0; i < publicationsCount; i++) {
                 Publication publication = PublicationCreatorUtil.create();
@@ -47,50 +49,50 @@ public class Controller {
             library.remove();
 
             PublicationSorter publicationSorter = new PublicationSorterImplComparator();
-            PublicationFinder publicationFinder = new PublicationFinderImpl();
-            PublicationCounter publicationCounter = new PublicationCounterImpl();
+            PublicationFinder publicationFinder = new StandardPublicationFinder();
+            PublicationCounter publicationCounter = new StandardPublicationCounter();
 
             Publication[] publications = castArray(library.getPublications().toArray());
 
-            publicationsRender.messageRender("Sorting by rating: ");
+            publicationsRender.render("Sorting by rating: ");
             publicationSorter.sortedByRating(publications);
 
             for (int i = 0; i < library.getPublications().size(); i++) {
-                publicationsRender.renderElement(publications[i]);
+                publicationsRender.render(publications[i].toString());
             }
 
-            publicationsRender.messageRender("Sorting by Circulation and page count: ");
+            publicationsRender.render("Sorting by Circulation and page count: ");
             publicationSorter.sortedByCirculationAndPageCount(publications);
 
             for (int i = 0; i < library.getPublications().size(); i++) {
-                publicationsRender.renderElement(publications[i]);
+                publicationsRender.render(publications[i].toString());
             }
 
             publicationFinder.findExtremumByRating(publications, "ACK");
-            publicationsRender.messageRender("Find extremum element by rating: ");
-            publicationsRender.renderElement(publicationFinder.findExtremumByRating(publications, "ACK"));
+            publicationsRender.render("Find extremum element by rating: ");
+            publicationsRender.render(publicationFinder.findExtremumByRating(publications, "ACK").toString());
 
             publicationFinder.findByExtremumFont(publications, "ACK");
-            publicationsRender.messageRender("Find extremum element by font: ");
-            publicationsRender.renderElement(publicationFinder.findExtremumByRating(publications, "DESC"));
+            publicationsRender.render("Find extremum element by font: ");
+            publicationsRender.render(publicationFinder.findExtremumByRating(publications, "DESC").toString());
 
             publicationFinder.findByExtremumPageCount(publications, "ACK");
-            publicationsRender.messageRender("Find extremum element by page count: ");
-            publicationsRender.renderElement(publicationFinder.findExtremumByRating(publications, "ACK"));
+            publicationsRender.render("Find extremum element by page count: ");
+            publicationsRender.render(publicationFinder.findExtremumByRating(publications, "ACK").toString());
 
-            publicationsRender.messageRender("Find Publication by param: ");
+            publicationsRender.render("Find Publication by param: ");
 
-            publicationsRender.renderElement(publicationFinder.findByParam(publications, 13, 10, 1));
+            publicationsRender.render(publicationFinder.findByParam(publications, 13, 10, 1).toString());
 
-            publicationsRender.messageRender("Books count = " + checkCount(publicationCounter.countBooks(publications)));
+            publicationsRender.render("Books count = " + checkCount(publicationCounter.countBooks(publications)));
 
-            publicationsRender.messageRender("Magazines count = " + checkCount(publicationCounter.countMagazines(publications)));
+            publicationsRender.render("Magazines count = " + checkCount(publicationCounter.countMagazines(publications)));
 
-            publicationsRender.messageRender("Albums count = " + checkCount(publicationCounter.countAlbums(publications)));
+            publicationsRender.render("Albums count = " + checkCount(publicationCounter.countAlbums(publications)));
 
             Book book = new Book();
             Book book2 = new Book(book);
-            publicationsRender.renderElement(book2);
+            publicationsRender.render(book2.toString());
 
         } catch (LibraryException ex) {
             ex.printStackTrace();

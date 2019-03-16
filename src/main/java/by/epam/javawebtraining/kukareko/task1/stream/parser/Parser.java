@@ -27,14 +27,14 @@ public class Parser {
             baseClassName = currentClassName;
             Field[] fields = FindFieldsClassHierarchies.getFields(baseClassName);
 
-            fieldNames = preparationConstructorParametrs(fields, data);
+            fieldNames = preparationConstructorParameters(fields, data);
             fieldNames.put("className", currentClassName);
         }
 
         return fieldNames;
     }
 
-    private static Map<String, Object> preparationConstructorParametrs(Field[] fields, String data) {
+    private static Map<String, Object> preparationConstructorParameters(Field[] fields, String data) {
         Map<String, Object> fieldNames = new HashMap<>();
 
         for (Field field : fields) {

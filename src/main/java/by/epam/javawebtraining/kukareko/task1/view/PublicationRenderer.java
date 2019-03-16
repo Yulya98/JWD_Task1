@@ -6,10 +6,8 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public interface PublicationRender {
-    void messageRender(String message);
-
-    void renderElement(Publication publication);
+public interface PublicationRenderer {
+    void render(String message);
 }
 
 
