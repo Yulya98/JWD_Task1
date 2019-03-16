@@ -3,7 +3,9 @@ package by.epam.javawebtraining.kukareko.task1.controller;
 import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueLinkedListBased;
+import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
+import by.epam.javawebtraining.kukareko.task1.model.container.LibraryStackBased;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
 import by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException;
@@ -33,16 +35,16 @@ public class Controller {
         try {
             int publicationsCount = 5;
 
-            Library<QueueCollection<Publication>> library = new Library<>(new QueueArrayBasedCollection<Publication>());
+            Library<Publication> library = new LibraryStackBased<>(new StackArrayBasedCollection<>());
             StandardOutPublicationsRender publicationsRender = new StandardOutPublicationsRender();
 
             for (int i = 0; i < publicationsCount; i++) {
                 Publication publication = PublicationCreatorUtil.create();
-                library.getPublications().add(publication);
+                library.add(publication);
             }
 
-            library.getPublications().add(PublicationCreatorUtil.create());
-            library.getPublications().remove();
+            library.add(PublicationCreatorUtil.create());
+            library.remove();
 
             PublicationSorter publicationSorter = new PublicationSorterImplComparator();
             PublicationFinder publicationFinder = new PublicationFinderImpl();
