@@ -1,7 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.stream.parser;
 
-import by.epam.javawebtraining.kukareko.task1.stream.FindFieldByPosition;
-import by.epam.javawebtraining.kukareko.task1.stream.FindFieldsClassHierarchies;
+import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldByPosition;
+import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldsClassHierarchies;
 
 import java.lang.reflect.*;
 import java.util.HashMap;

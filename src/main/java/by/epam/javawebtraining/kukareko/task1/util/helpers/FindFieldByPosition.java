@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.stream;
+package by.epam.javawebtraining.kukareko.task1.util.helpers;
 
 /**
  * @author Yulya Kukareko

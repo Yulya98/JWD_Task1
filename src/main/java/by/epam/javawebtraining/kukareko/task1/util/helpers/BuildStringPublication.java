@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.stream;
+package by.epam.javawebtraining.kukareko.task1.util.helpers;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;

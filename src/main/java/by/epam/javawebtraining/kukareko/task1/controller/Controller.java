@@ -5,7 +5,6 @@ import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.container.LibraryStackBased;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
-import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
 import by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.StandardPublicationCounter;
@@ -13,16 +12,8 @@ import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFind
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.StandardPublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
-import by.epam.javawebtraining.kukareko.task1.stream.BuildStringPublication;
-import by.epam.javawebtraining.kukareko.task1.stream.parser.Parser;
-import by.epam.javawebtraining.kukareko.task1.stream.reader.CharacterReader;
-import by.epam.javawebtraining.kukareko.task1.stream.reader.PublicationFileReader;
-import by.epam.javawebtraining.kukareko.task1.stream.validator.Validator;
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
-import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationReflectionCreatorUtil;
-import by.epam.javawebtraining.kukareko.task1.view.BinaryFileRender;
 import by.epam.javawebtraining.kukareko.task1.view.ConsoleRender;
-import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
 
 /**
  * @author Yulya Kukareko
