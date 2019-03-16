@@ -12,8 +12,17 @@ import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFind
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.StandardPublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
+import by.epam.javawebtraining.kukareko.task1.stream.parser.Parser;
+import by.epam.javawebtraining.kukareko.task1.stream.reader.CharacterReader;
+import by.epam.javawebtraining.kukareko.task1.stream.validator.Validator;
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
+import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationReflectionCreatorUtil;
+import by.epam.javawebtraining.kukareko.task1.util.helpers.BuildStringPublication;
+import by.epam.javawebtraining.kukareko.task1.view.CharacterFileRender;
 import by.epam.javawebtraining.kukareko.task1.view.ConsoleRender;
+import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
+
+import java.util.Map;
 
 /**
  * @author Yulya Kukareko
@@ -29,11 +38,31 @@ public class Controller {
             int publicationsCount = 5;
 
             Library<Publication> library = new LibraryStackBased<>(new StackArrayBasedCollection<>());
-            ConsoleRender publicationsRender = new ConsoleRender();
+            PublicationRenderer consoleRender = new ConsoleRender();
+            PublicationRenderer fileRenderer = new CharacterFileRender();
+            CharacterReader reader = new CharacterReader();
+
 
             for (int i = 0; i < publicationsCount; i++) {
                 Publication publication = PublicationCreatorUtil.create();
                 library.add(publication);
+            }
+
+            for(Publication publication : castArray(library.toArray())) {
+                fileRenderer.render(BuildStringPublication.builderPublicationStr(publication));
+            }
+
+            String filePath = "src/main/resources/state";
+
+            String data = reader.read(filePath);
+
+            if(Validator.checkData(data)){
+                String[] arrayData = data.split("\n");
+                for(String objStr : arrayData) {
+                    Map<String, Object> fields = Parser.checkData(objStr);
+                    Publication publication = PublicationReflectionCreatorUtil.create(fields);
+                    library.add(publication);
+                }
             }
 
             library.add(PublicationCreatorUtil.create());
@@ -43,51 +72,55 @@ public class Controller {
             PublicationFinder publicationFinder = new StandardPublicationFinder();
             PublicationCounter publicationCounter = new StandardPublicationCounter();
 
-            Publication[] publications = castArray(library.getPublications().toArray());
+            Publication[] publications = castArray(library.toArray());
 
-            publicationsRender.render("Sorting by rating: ");
+            consoleRender.render("Sorting by rating: ");
             publicationSorter.sortedByRating(publications);
 
             for (int i = 0; i < library.getPublications().size(); i++) {
-                publicationsRender.render(publications[i].toString());
+                consoleRender.render(publications[i].toString());
             }
 
-            publicationsRender.render("Sorting by Circulation and page count: ");
+            consoleRender.render("Sorting by Circulation and page count: ");
             publicationSorter.sortedByCirculationAndPageCount(publications);
 
             for (int i = 0; i < library.getPublications().size(); i++) {
-                publicationsRender.render(publications[i].toString());
+                consoleRender.render(publications[i].toString());
             }
 
             publicationFinder.findExtremumByRating(publications, "ACK");
-            publicationsRender.render("Find extremum element by rating: ");
-            publicationsRender.render(publicationFinder.findExtremumByRating(publications, "ACK").toString());
+            consoleRender.render("Find extremum element by rating: ");
+            consoleRender.render(checkNull(publicationFinder.findExtremumByRating(publications, "ACK")));
 
             publicationFinder.findByExtremumFont(publications, "ACK");
-            publicationsRender.render("Find extremum element by font: ");
-            publicationsRender.render(publicationFinder.findExtremumByRating(publications, "DESC").toString());
+            consoleRender.render("Find extremum element by font: ");
+            consoleRender.render(checkNull(publicationFinder.findExtremumByRating(publications, "DESC")));
 
             publicationFinder.findByExtremumPageCount(publications, "ACK");
-            publicationsRender.render("Find extremum element by page count: ");
-            publicationsRender.render(publicationFinder.findExtremumByRating(publications, "ACK").toString());
+            consoleRender.render("Find extremum element by page count: ");
+            consoleRender.render(checkNull(publicationFinder.findExtremumByRating(publications, "ACK")));
 
-            publicationsRender.render("Find Publication by param: ");
+            consoleRender.render("Find Publication by param: ");
 
-            publicationsRender.render(publicationFinder.findByParam(publications, 13, 10, 1).toString());
+            consoleRender.render(checkNull(publicationFinder.findByParam(publications, 13, 10, 1)));
 
-            publicationsRender.render("Books count = " + checkCount(publicationCounter.countBooks(publications)));
+            consoleRender.render("Books count = " + checkCount(publicationCounter.countBooks(publications)));
 
-            publicationsRender.render("Magazines count = " + checkCount(publicationCounter.countMagazines(publications)));
+            consoleRender.render("Magazines count = " + checkCount(publicationCounter.countMagazines(publications)));
 
-            publicationsRender.render("Albums count = " + checkCount(publicationCounter.countAlbums(publications)));
+            consoleRender.render("Albums count = " + checkCount(publicationCounter.countAlbums(publications)));
 
             Book book = new Book();
             Book book2 = new Book(book);
-            publicationsRender.render(book2.toString());
+            consoleRender.render(book2.toString());
 
         } catch (LibraryException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private static String checkNull(Publication publication) {
+        return publication == null ? "Not found" :publication.toString();
     }
 
     private static String checkCount(int count) {

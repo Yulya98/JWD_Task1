@@ -24,12 +24,12 @@ public class BuildStringPublication {
         LANGUAGE("language"), SUBJECT("subject"), COUNT_ARTICLES("countArticles"),
         KIND_MUSICAL("kindMusical"), KIND_SPORT("kindSport"), FORMAT("format"), ID("id"),
         PAGE_CONT("pageCount"), NAME("name"), FONT("font"), PUBLISHING("publishing"),
-        CIRCULATION("circulation"), RATING("rating"), LEVEL("level");
+        CIRCULATION("circulation"), RATING("rating"), LEVEL("level"), HAVE_DISK("haveDisk");
 
         private String fieldName;
 
-        FIELDS(String fieldName) {
-
+         FIELDS(String fieldName) {
+             this.fieldName = fieldName;
         }
     }
 
@@ -60,8 +60,11 @@ public class BuildStringPublication {
 
             if (publication instanceof Musical) {
                 data.append(buildStr(FIELDS.KIND_MUSICAL.fieldName, Integer.toString(((Musical) publication).getKindMusical().ordinal()), false));
+                data.append(buildStr(FIELDS.HAVE_DISK.fieldName, Boolean.toString(((Musical) publication).isHaveDisk()),false));
+                return data.append(END_STR).toString();
             } else if (publication instanceof Science) {
                 data.append(buildStr(FIELDS.SUBJECT_AREA.fieldName, ((Science) publication).getSubjectArea(), true));
+                return data.append(END_STR).toString();
             }
             data.append(buildStr(FIELDS.KIND_SPORT.fieldName, ((Sport) publication).getKindSport(), true));
             return data.append(END_STR).toString();

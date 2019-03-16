@@ -21,7 +21,7 @@ public final class PublicationCreatorUtil {
 
     private static Random random;
     private static long newId;
-    public static final int COUNT_PUBLICATION_IMPLEMENTATION = 8;
+    public static final int COUNT_PUBLICATION_IMPLEMENTATION = 7;
 
     static {
         random = new Random();
@@ -46,25 +46,20 @@ public final class PublicationCreatorUtil {
                         random.nextInt(100), random.nextInt(30), Musical.KindMusic.values()[x],
                         true);
             case 3:
-                return new Technical(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
-                        random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
-                        UUID.randomUUID().toString());
-            case 4:
                 return new Programming(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
                         random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 5:
+            case 4:
                 return new Instruction(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
                         random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 6:
+            case 5:
                 return new Children(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
                         random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString());
-            case 7:
+            case 6:
                 return new Album(newId, random.nextInt(1000), UUID.randomUUID().toString(),
                         random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
                         random.nextInt(100), UUID.randomUUID().toString());
