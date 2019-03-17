@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.view;
 
+import org.apache.log4j.Logger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +15,12 @@ public class CharacterFileRender implements PublicationRenderer {
     private static final String filePath = "src/main/resources/iostream/state";
     private static final boolean isAppend = true;
 
+    public static final Logger LOGGER_CHARACTER_RENDER;
+
+    static {
+        LOGGER_CHARACTER_RENDER = Logger.getRootLogger();
+    }
+
     @Override
     public void render(String data) {
 
@@ -22,7 +30,7 @@ public class CharacterFileRender implements PublicationRenderer {
             br.flush();
 
         } catch (IOException ex) {
-            System.out.println(ex);
+            LOGGER_CHARACTER_RENDER.error(ex.getMessage());
         }
     }
 }

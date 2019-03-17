@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.view;
 
+import org.apache.log4j.Logger;
+
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +16,12 @@ public class BinaryFileRender implements PublicationRenderer {
     private static final String filePath = "src/main/resources/iostream/state.bin";
     private static final boolean isAppend = true;
 
+    public static final Logger LOGGER_BINARY_RENDER;
+
+    static {
+        LOGGER_BINARY_RENDER = Logger.getRootLogger();
+    }
+
     public void render(String data) {
 
         try (OutputStream stream = new FileOutputStream(filePath, isAppend);
@@ -24,7 +32,7 @@ public class BinaryFileRender implements PublicationRenderer {
             br.flush();
 
         } catch (IOException ex) {
-            System.out.println(ex);
+            LOGGER_BINARY_RENDER.error(ex.getMessage());
         }
     }
 }

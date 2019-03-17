@@ -3,6 +3,7 @@ package by.epam.javawebtraining.kukareko.task1.util.creator;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import com.thoughtworks.paranamer.BytecodeReadingParanamer;
 import com.thoughtworks.paranamer.Paranamer;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -13,6 +14,12 @@ import java.util.Map;
  * @version 1.0 14 Mar 2019
  */
 public class PublicationReflectionCreatorUtil {
+
+    public static final Logger LOGGER_REFLECTION_CREATOR;
+
+    static {
+        LOGGER_REFLECTION_CREATOR = Logger.getRootLogger();
+    }
 
     public static Publication create(Map<String, Object> fieldNames){
 
@@ -36,7 +43,7 @@ public class PublicationReflectionCreatorUtil {
 
             publication = (Publication) constructor.newInstance(constructorParameters);
         } catch (IllegalAccessException | InvocationTargetException | InstantiationException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            LOGGER_REFLECTION_CREATOR.error(ex.getMessage());
         }
 
         return publication;

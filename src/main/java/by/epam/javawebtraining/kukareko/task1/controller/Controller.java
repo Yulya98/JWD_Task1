@@ -1,6 +1,5 @@
 package by.epam.javawebtraining.kukareko.task1.controller;
 
-import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.container.LibraryStackBased;
@@ -25,6 +24,7 @@ import by.epam.javawebtraining.kukareko.task1.view.CharacterFileRender;
 import by.epam.javawebtraining.kukareko.task1.view.ConsoleRender;
 import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
 import by.epam.javawebtraining.kukareko.task1.view.UserCommunication;
+import org.apache.log4j.Logger;
 
 import java.util.Locale;
 import java.util.Map;
@@ -34,6 +34,12 @@ import java.util.Map;
  * @version 1.0 16 Feb 2019
  */
 public class Controller {
+
+    public static final Logger LOGGER;
+
+    static {
+        LOGGER = Logger.getRootLogger();
+    }
 
     /*
      Main method test counter, sorter, finder logical
@@ -133,7 +139,7 @@ public class Controller {
             consoleRender.render(book2.toString());
 
         } catch (LibraryException ex) {
-            ex.printStackTrace();
+            Controller.LOGGER.error(ex.getMessage());
         }
     }
 
