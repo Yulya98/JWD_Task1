@@ -5,7 +5,7 @@ import by.epam.javawebtraining.kukareko.task1.model.exception.collection.IndexOu
 
 /**
  * @author Yulya Kukareko
- * @version 1.0 13 Март 2019
+ * @version 1.0 13 Mar 2019
  */
 public abstract class AbstractArrayCollection<T> extends AbstractPublicationCollection<T> implements ArrayCollection<T>{
 
