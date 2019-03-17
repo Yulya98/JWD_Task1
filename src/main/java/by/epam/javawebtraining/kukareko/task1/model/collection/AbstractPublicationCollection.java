@@ -1,7 +1,5 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection;
 
-import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -49,6 +47,9 @@ public abstract class AbstractPublicationCollection<T> implements PublicationCol
         }
         return false;
     }
+
+    @Override
+    public abstract PublicationCollection<T> clone();
 
     @Override
     public boolean isEmpty() {

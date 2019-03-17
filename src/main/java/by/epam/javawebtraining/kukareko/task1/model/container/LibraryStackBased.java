@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.container;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackCollection;
 
@@ -22,6 +23,10 @@ public class LibraryStackBased<T> extends Library<T> {
     public LibraryStackBased(StackCollection<T> publications) {
         super(publications);
         this.items = publications;
+    }
+
+    public LibraryStackBased(Library<T> other){
+        setPublications(other.clone());
     }
 
     @Override

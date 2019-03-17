@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.controller;
 
+import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.container.Library;
 import by.epam.javawebtraining.kukareko.task1.model.container.LibraryStackBased;
@@ -53,6 +54,16 @@ public class Controller {
             for (int i = 0; i < publicationsCount; i++) {
                 Publication publication = PublicationCreatorUtil.create();
                 library.add(publication);
+            }
+
+            Library<Publication> library2 = new LibraryStackBased<>(library);
+
+            for(Publication collection : castArray(library.toArray())){
+                System.out.println(collection);
+            }
+
+            for(Publication collection : castArray(library2.toArray())){
+                System.out.println(collection);
             }
 
             for(Publication publication : castArray(library.toArray())) {

@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.container;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
+import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
 
 import java.util.Objects;
 
@@ -45,6 +46,10 @@ public abstract class Library<T> {
 
     public void items(){
         items.clear();
+    }
+
+    public PublicationCollection<T> clone(){
+        return items.clone();
     }
 
     @Override

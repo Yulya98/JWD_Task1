@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
 import java.util.Iterator;
 
@@ -21,4 +22,6 @@ public interface PublicationCollection<T> {
     boolean isEmpty();
 
     void clear();
+
+    PublicationCollection<T> clone();
 }
