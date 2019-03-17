@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
 import java.util.Objects;
 
@@ -45,7 +46,7 @@ public class Book extends Publication {
 
     @Override
     public String toString() {
-        return  " author = " + author
+        return  " " + PublicationConstants.AUTHOR + " = " + author
                 + ", " + super.toString();
     }
 }

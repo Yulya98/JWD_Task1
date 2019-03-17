@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.CirculationNegativeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PageCountNegativeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.RatingNegativeException;
@@ -140,8 +141,9 @@ public class Publication {
 
     @Override
     public String toString() {
-        return "id = " + id + ", page count = " + pageCount + ", name = " + name
-                + ", font = " + font + ", publishing = " + publishing
-                + ", circulation = " + circulation + ", rating = " + rating;
+        return PublicationConstants.ID + " = " + id + ", " + PublicationConstants.PAGE_COUNT + " = " + pageCount + ", "
+                + PublicationConstants.NAME + " = " + name + ", " + PublicationConstants.FONT + " = " + font + ", "
+                + PublicationConstants.PUBLISHING + " = " + publishing + ", " + PublicationConstants.CIRCULATION + " = "
+                + circulation + ", " + PublicationConstants.RATING + " = " + rating;
     }
 }

@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.album;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
 import java.util.Objects;
 
@@ -41,7 +42,7 @@ public class Album extends Publication {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": format = " + format + ", " + super.toString();
+        return getClass().getSimpleName() + ": " + PublicationConstants.FORMAT + " = " + format + ", " + super.toString();
     }
 }
 

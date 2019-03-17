@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class CharacterFileRender implements PublicationRenderer {
 
-    private static final String filePath = "src/main/resources/state";
+    private static final String filePath = "src/main/resources/iostream/state";
     private static final boolean isAppend = true;
 
     @Override

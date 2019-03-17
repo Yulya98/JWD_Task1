@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
+
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
@@ -38,6 +40,6 @@ public class Sport extends Magazine {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": kindSport =  " + kindSport + ", " + super.toString();
+        return getClass().getSimpleName() + ": " + PublicationConstants.KIND_SPORT + " = " + kindSport + ", " + super.toString();
     }
 }

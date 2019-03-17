@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
+
 import java.util.Objects;
 
 /**
@@ -39,6 +41,6 @@ public class Science extends Magazine {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": subjectArea = " + subjectArea + ", " + super.toString();
+        return getClass().getSimpleName() + ": " + PublicationConstants.SUBJECT_AREA + " = " + subjectArea + ", " + super.toString();
     }
 }

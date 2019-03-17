@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
+
 import java.util.Objects;
 
 /**
@@ -39,7 +41,7 @@ public class Instruction extends Technical {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": subject = "
+        return getClass().getSimpleName() + ": " + PublicationConstants.SUBJECT + " = "
                 + subject + ", " + super.toString();
     }
 }

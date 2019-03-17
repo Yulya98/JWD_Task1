@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException;
 
 import java.util.Objects;
@@ -64,7 +65,7 @@ public class Musical extends Magazine {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": kindMusical = " + kindMusical +
-                ", haveDisk = " + haveDisk + ", " + super.toString();
+        return getClass().getSimpleName() + ": " + PublicationConstants.KIND_MUSICAL + " = " + kindMusical
+                + ", " + PublicationConstants.HAVE_DISK + " = " + haveDisk + ", " + super.toString();
     }
 }

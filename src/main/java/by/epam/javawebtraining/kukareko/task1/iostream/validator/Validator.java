@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.stream.validator;
+package by.epam.javawebtraining.kukareko.task1.iostream.validator;
 
 import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldByPosition;
 import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldsClassHierarchies;

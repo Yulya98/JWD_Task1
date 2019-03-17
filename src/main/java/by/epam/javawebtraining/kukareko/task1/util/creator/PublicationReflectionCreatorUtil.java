@@ -1,7 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.util.creator;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.stream.parser.Parser;
 import com.thoughtworks.paranamer.BytecodeReadingParanamer;
 import com.thoughtworks.paranamer.Paranamer;
 

@@ -11,7 +11,7 @@ import java.io.OutputStream;
  */
 public class BinaryFileRender implements PublicationRenderer {
 
-    private static final String filePath = "src/main/resources/state.bin";
+    private static final String filePath = "src/main/resources/iostream/state.bin";
     private static final boolean isAppend = true;
 
     public void render(String data) {

@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task1.stream.reader;
+package by.epam.javawebtraining.kukareko.task1.iostream.reader;
 
 import java.io.*;
 

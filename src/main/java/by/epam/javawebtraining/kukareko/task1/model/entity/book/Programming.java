@@ -1,5 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
+
 import java.util.Objects;
 
 /**
@@ -39,6 +41,6 @@ public class Programming extends Technical {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": language = " + this.language + ", " + super.toString();
+        return getClass().getSimpleName() + ": " + PublicationConstants.LANGUAGE + " = " + this.language + ", " + super.toString();
     }
 }
