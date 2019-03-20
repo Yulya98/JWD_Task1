@@ -13,7 +13,7 @@ public class BinaryReader implements PublicationFileReader {
     public static final Logger LOGGER_BINARY_READER;
 
     static {
-        LOGGER_BINARY_READER = Logger.getRootLogger();
+        LOGGER_BINARY_READER = Logger.getLogger(BinaryReader.class);
     }
 
     public String read(String filePath) {

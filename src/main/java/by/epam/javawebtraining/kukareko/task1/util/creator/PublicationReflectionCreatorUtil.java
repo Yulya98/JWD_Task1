@@ -18,7 +18,7 @@ public class PublicationReflectionCreatorUtil {
     public static final Logger LOGGER_REFLECTION_CREATOR;
 
     static {
-        LOGGER_REFLECTION_CREATOR = Logger.getRootLogger();
+        LOGGER_REFLECTION_CREATOR = Logger.getLogger(PublicationReflectionCreatorUtil.class);
     }
 
     public static Publication create(Map<String, Object> fieldNames){
@@ -32,7 +32,7 @@ public class PublicationReflectionCreatorUtil {
         Publication publication = null;
 
         try {
-            Constructor constructor = Class.forName(className).getConstructors()[1];
+            Constructor constructor = Class.forName(className).getConstructors()[2];
             Paranamer paranamer = new BytecodeReadingParanamer();
             String[] parameterNames = paranamer.lookupParameterNames(constructor);
             Object[] constructorParameters = new Object[parameterNames.length];

@@ -12,10 +12,11 @@ import by.epam.javawebtraining.kukareko.task1.model.logic.counter.StandardPublic
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.StandardPublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
-import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterComparator;
 import by.epam.javawebtraining.kukareko.task1.iostream.parser.Parser;
 import by.epam.javawebtraining.kukareko.task1.iostream.reader.CharacterReader;
 import by.epam.javawebtraining.kukareko.task1.iostream.validator.Validator;
+import by.epam.javawebtraining.kukareko.task1.util.config.ReadConfigProperties;
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationCreatorUtil;
 import by.epam.javawebtraining.kukareko.task1.util.creator.PublicationReflectionCreatorUtil;
 import by.epam.javawebtraining.kukareko.task1.util.helpers.BuildStringPublication;
@@ -62,23 +63,15 @@ public class Controller {
                 library.add(publication);
             }
 
-            Library<Publication> library2 = new LibraryStackBased<>(library);
-
             for(Publication collection : castArray(library.toArray())){
-                System.out.println(collection);
+                consoleRender.render(collection.toString());
             }
-
-            for(Publication collection : castArray(library2.toArray())){
-                System.out.println(collection);
-            }
-
+        
             for(Publication publication : castArray(library.toArray())) {
                 fileRenderer.render(BuildStringPublication.builderPublicationStr(publication));
             }
 
-            String filePath = "src/main/resources/iostream/state";
-
-            String data = reader.read(filePath);
+            String data = reader.read(ReadConfigProperties.getProp("characterFile"));
 
             if(Validator.checkData(data)){
                 String[] arrayData = SplitStrRegExp.splitStr(data, "\n");
@@ -92,7 +85,7 @@ public class Controller {
             library.add(PublicationCreatorUtil.create());
             library.remove();
 
-            PublicationSorter publicationSorter = new PublicationSorterImplComparator();
+            PublicationSorter publicationSorter = new PublicationSorterComparator();
             PublicationFinder publicationFinder = new StandardPublicationFinder();
             PublicationCounter publicationCounter = new StandardPublicationCounter();
 

@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.view;
 
+import by.epam.javawebtraining.kukareko.task1.util.config.ReadConfigProperties;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedWriter;
@@ -12,19 +13,19 @@ import java.io.IOException;
  */
 public class CharacterFileRender implements PublicationRenderer {
 
-    private static final String filePath = "src/main/resources/iostream/state";
     private static final boolean isAppend = true;
 
     public static final Logger LOGGER_CHARACTER_RENDER;
 
     static {
-        LOGGER_CHARACTER_RENDER = Logger.getRootLogger();
+        LOGGER_CHARACTER_RENDER = Logger.getLogger(CharacterFileRender.class);
     }
 
     @Override
     public void render(String data) {
 
-        try (BufferedWriter br = new BufferedWriter(new FileWriter(filePath, isAppend))) {
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(ReadConfigProperties.getProp("characterFile"),
+                isAppend))) {
 
             br.write(data);
             br.flush();

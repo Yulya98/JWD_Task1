@@ -19,6 +19,8 @@ import java.util.UUID;
  */
 public final class PublicationCreatorUtil {
 
+    private static int RANDOM_RANGE = 100;
+
     private static Random random;
     private static long newId;
     public static final int COUNT_PUBLICATION_IMPLEMENTATION = 7;
@@ -28,43 +30,51 @@ public final class PublicationCreatorUtil {
     }
 
     public static Publication create() {
+        Publication publication = new Publication(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                random.nextInt(RANDOM_RANGE));
         newId++;
-        int newClass = random.nextInt(COUNT_PUBLICATION_IMPLEMENTATION);
-        switch (newClass) {
+
+        switch (random.nextInt(COUNT_PUBLICATION_IMPLEMENTATION)) {
             case 0:
-                return new Sport(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
-                        random.nextInt(100), random.nextInt(30), UUID.randomUUID().toString());
+                publication = new Sport(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString());
+                break;
             case 1:
-                return new Science(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
-                        random.nextInt(100), random.nextInt(30), UUID.randomUUID().toString());
+                publication = new Science(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString());
+                break;
             case 2:
-                int x = Musical.KindMusic.values().length - 1;
-                return new Musical(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(100000),
-                        random.nextInt(100), random.nextInt(30), Musical.KindMusic.values()[x],
-                        true);
+                publication = new Musical(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), random.nextInt(RANDOM_RANGE),
+                        Musical.KindMusic.values()[Musical.KindMusic.values().length - 1], true);
+                break;
             case 3:
-                return new Programming(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
-                        random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
+                publication = new Programming(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
+                break;
             case 4:
-                return new Instruction(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
-                        random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
+                publication = new Instruction(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), UUID.randomUUID().toString(),
                         UUID.randomUUID().toString(), UUID.randomUUID().toString());
+                break;
             case 5:
-                return new Children(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
-                        random.nextInt(100), UUID.randomUUID().toString(), UUID.randomUUID().toString());
+                publication = new Children(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), UUID.randomUUID().toString());
+                break;
             case 6:
-                return new Album(newId, random.nextInt(1000), UUID.randomUUID().toString(),
-                        random.nextInt(5), UUID.randomUUID().toString(), random.nextInt(10000),
-                        random.nextInt(100), UUID.randomUUID().toString());
-            default:
-                return null;
+                publication = new Album(newId, random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString(), random.nextInt(RANDOM_RANGE),
+                        random.nextInt(RANDOM_RANGE), UUID.randomUUID().toString());
+                break;
         }
+        return publication;
     }
 }

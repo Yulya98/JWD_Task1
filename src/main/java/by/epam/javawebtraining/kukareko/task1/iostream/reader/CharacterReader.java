@@ -14,7 +14,7 @@ public class CharacterReader implements PublicationFileReader {
     public static final Logger LOGGER_CHARACTER_READER;
 
     static {
-        LOGGER_CHARACTER_READER = Logger.getRootLogger();
+        LOGGER_CHARACTER_READER = Logger.getLogger(CharacterReader.class);
     }
 
 

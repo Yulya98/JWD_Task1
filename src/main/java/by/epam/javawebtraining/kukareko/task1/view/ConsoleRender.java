@@ -8,7 +8,6 @@ public class ConsoleRender implements PublicationRenderer {
 
     @Override
     public void render(String message) {
-        System.out.println();
         System.out.println(message);
         System.out.println();
     }

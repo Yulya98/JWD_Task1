@@ -56,7 +56,7 @@ public class BuildStringPublication {
 
             }
         } else if (publication instanceof Magazine) {
-            data.append(buildStr(FIELDS.COUNT_ARTICLES.fieldName,Integer.toString(((Magazine) publication).getCountAriticles()), false));
+            data.append(buildStr(FIELDS.COUNT_ARTICLES.fieldName,Integer.toString(((Magazine) publication).getCountArticles()), false));
 
             if (publication instanceof Musical) {
                 data.append(buildStr(FIELDS.KIND_MUSICAL.fieldName, Integer.toString(((Musical) publication).getKindMusical().ordinal()), false));

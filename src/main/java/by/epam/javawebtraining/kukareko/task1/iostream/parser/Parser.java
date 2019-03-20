@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.iostream.parser;
 
+import by.epam.javawebtraining.kukareko.task1.util.config.ReadConfigProperties;
 import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldByPosition;
 import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldsClassHierarchies;
 
@@ -14,8 +15,6 @@ import java.util.Map;
  */
 public class Parser {
 
-    private static final String DEFAULT_PACKAGE = "by.epam.javawebtraining.kukareko.task1.model.entity.";
-
     public static Map<String, Object> checkData(String data) {
         Map<String, Object> fieldNames = null;
         if (data != null) {
@@ -23,7 +22,7 @@ public class Parser {
             String baseClassName;
 
             int p2 = data.indexOf(" ");
-            currentClassName = DEFAULT_PACKAGE + data.substring(0, p2);
+            currentClassName = ReadConfigProperties.getProp("entityPackage") + data.substring(0, p2);
             baseClassName = currentClassName;
             Field[] fields = FindFieldsClassHierarchies.getFields(baseClassName);
 

@@ -25,10 +25,14 @@ public class Validator {
                     String className = ReadConfigProperties.getProp("entityPackage") + str.substring(0, splitSymbolPosition);
                     Field[] fields = FindFieldsClassHierarchies.getFields(className);
 
-                    for (Field field : fields) {
-                        if (!checkFieldParameter(field, str)) {
-                            return false;
+                    if (fields != null) {
+                        for (Field field : fields) {
+                            if (!checkFieldParameter(field, str)) {
+                                return false;
+                            }
                         }
+                    } else {
+                        return false;
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.view;
 
+import by.epam.javawebtraining.kukareko.task1.util.config.ReadConfigProperties;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedOutputStream;
@@ -13,18 +14,17 @@ import java.io.OutputStream;
  */
 public class BinaryFileRender implements PublicationRenderer {
 
-    private static final String filePath = "src/main/resources/iostream/state.bin";
     private static final boolean isAppend = true;
 
     public static final Logger LOGGER_BINARY_RENDER;
 
     static {
-        LOGGER_BINARY_RENDER = Logger.getRootLogger();
+        LOGGER_BINARY_RENDER = Logger.getLogger(BinaryFileRender.class);
     }
 
     public void render(String data) {
 
-        try (OutputStream stream = new FileOutputStream(filePath, isAppend);
+        try (OutputStream stream = new FileOutputStream(ReadConfigProperties.getProp("binFile"), isAppend);
              BufferedOutputStream br = new BufferedOutputStream(stream)) {
 
             br.write(data.getBytes());
