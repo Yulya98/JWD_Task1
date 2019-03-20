@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -16,7 +17,7 @@ public class ProgrammingTest {
                 "Base programming knowledge ", "Beginner/Middle", "Java");
         String expected = "Java";
 
-        Assert.assertEquals(expected, publication.getLanguage());
+        assertEquals(expected, publication.getLanguage());
     }
 
     @Test
@@ -24,8 +25,8 @@ public class ProgrammingTest {
         Programming publication = new Programming(1L, 500, "Thinking in Java", 6,
                 "Classical Computer Science", 3000, 10, "Bruce Eckel",
                 "Base programming knowledge ", "Beginner/Middle", null);
-        String expected = "";
+        String expected = "About programming";
 
-        Assert.assertEquals(expected, publication.getLanguage());
+        assertEquals(expected, publication.getLanguage());
     }
 }

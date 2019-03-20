@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -15,15 +16,15 @@ public class ScienceTest {
                 30, "Scientific research");
         String expected = "Scientific research";
 
-        Assert.assertEquals(expected, publication.getSubjectArea());
+        assertEquals(expected, publication.getSubjectArea());
     }
 
     @Test
     public void testCreateObjSubjAreaNull() {
         Science publication = new Science(5L, 50, "Billiards sport", 2, "MFBS", 100, 6,
                 30, null);
-        String expected = "";
+        String expected = "About everything";
 
-        Assert.assertEquals(expected, publication.getSubjectArea());
+        assertEquals(expected, publication.getSubjectArea());
     }
 }

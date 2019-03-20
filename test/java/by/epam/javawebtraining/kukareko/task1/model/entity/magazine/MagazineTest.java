@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -15,7 +16,7 @@ public class MagazineTest {
                 100, 6, 15);
         int expected = 15;
 
-        Assert.assertEquals(expected, publication.getCountAriticles());
+        assertEquals(expected, publication.getCountArticles());
     }
 
     @Test
@@ -24,6 +25,6 @@ public class MagazineTest {
                 100, 6, -1);
         int expected = 1;
 
-        Assert.assertEquals(expected, publication.getCountAriticles());
+        assertEquals(expected, publication.getCountArticles());
     }
 }

@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.album;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -15,15 +16,15 @@ public class AlbumTest {
                 7, "horizontal");
         String expected = "horizontal";
 
-        Assert.assertEquals(expected, publication.getFormat());
+        assertEquals(expected, publication.getFormat());
     }
 
     @Test
     public void testCreateObjHorizontalNull() {
         Album publication = new Album(6L, 70, "Historical album", 7, "Olimpia", 200,
                 7, null);
-        String expected = "";
+        String expected = "Horizontal";
 
-        Assert.assertEquals(expected, publication.getFormat());
+        assertEquals(expected, publication.getFormat());
     }
 }

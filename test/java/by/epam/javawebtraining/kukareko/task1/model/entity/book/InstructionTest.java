@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -16,7 +17,7 @@ public class InstructionTest {
                 "Beginner/Middle/Experienced", "Car instruction manual");
         String expected = "Car instruction manual";
 
-        Assert.assertEquals(expected, publication.getSubject());
+        assertEquals(expected, publication.getSubject());
     }
 
     @Test
@@ -24,8 +25,8 @@ public class InstructionTest {
         Instruction publication = new Instruction(7L, 30, "Car instruction manual Saturn", 3,
                 "GM", 650, 4, "-", "Automotive Equipment",
                 "Beginner/Middle/Experienced", null);
-        String expected = "";
+        String expected = "Instruction of technical";
 
-        Assert.assertEquals(expected, publication.getSubject());
+        assertEquals(expected, publication.getSubject());
     }
 }

@@ -1,14 +1,11 @@
 package by.epam.javawebtraining.kukareko.task1.model.logic.counter;
 
+import static org.junit.Assert.*;
+
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
-import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
-import by.epam.javawebtraining.kukareko.task1.model.entity.book.Instruction;
-import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
-import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Musical;
-import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
-import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Sport;
-import org.junit.Assert;
+import by.epam.javawebtraining.kukareko.task1.model.entity.book.*;
+import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,7 +20,7 @@ public class PublicationCounterTest {
 
     @BeforeClass
     public static void init() {
-        publicationCounter = new PublicationCounterImpl();
+        publicationCounter = new StandardPublicationCounter();
         publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
                         "Classical Computer Science", 3000, 10, "Bruce Eckel",
@@ -48,21 +45,21 @@ public class PublicationCounterTest {
     public void testCountBooks() {
         int expected = 3;
 
-        Assert.assertEquals(expected, publicationCounter.countBooks(publications));
+        assertEquals(expected, publicationCounter.countBooks(publications));
     }
 
     @Test
     public void testCountMagazines() {
         int expected = 3;
 
-        Assert.assertEquals(expected, publicationCounter.countMagazines(publications));
+        assertEquals(expected, publicationCounter.countMagazines(publications));
     }
 
     @Test
     public void testCountAlbums() {
         int expected = 1;
 
-        Assert.assertEquals(expected, publicationCounter.countAlbums(publications));
+        assertEquals(expected, publicationCounter.countAlbums(publications));
     }
 
     @Test
@@ -70,7 +67,7 @@ public class PublicationCounterTest {
         int expected = -1;
         Publication[] publications = null;
 
-        Assert.assertEquals(expected, publicationCounter.countBooks(publications));
+        assertEquals(expected, publicationCounter.countBooks(publications));
     }
 
     @Test
@@ -78,7 +75,7 @@ public class PublicationCounterTest {
         int expected = -1;
         Publication[] publications = null;
 
-        Assert.assertEquals(expected, publicationCounter.countMagazines(publications));
+        assertEquals(expected, publicationCounter.countMagazines(publications));
     }
 
     @Test
@@ -86,6 +83,7 @@ public class PublicationCounterTest {
         int expected = -1;
         Publication[] publications = null;
 
-        Assert.assertEquals(expected, publicationCounter.countAlbums(publications));
+
+        assertEquals(expected, publicationCounter.countAlbums(publications));
     }
 }

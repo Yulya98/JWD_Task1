@@ -1,7 +1,8 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import static org.junit.Assert.*;
+
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ import org.junit.Test;
  */
 public class MusicalTest {
 
-    Musical musical;
+    private Musical musical;
 
     @Before
     public void init() {
@@ -24,7 +25,7 @@ public class MusicalTest {
         musical = new Musical(3L, 15, "Alternative Press", 5, "Alternative Press Magazine",
                 400, 7, 20, Musical.KindMusic.BLUES, false);
 
-        Assert.assertEquals(expected, musical.getKindMusical());
+        assertEquals(expected, musical.getKindMusical());
     }
 
     @Test
@@ -33,7 +34,7 @@ public class MusicalTest {
         musical = new Musical(3L, 15, "Alternative Press", 5, "Alternative Press Magazine",
                 400, 7, 20, null, false);
 
-        Assert.assertEquals(expected, musical.getKindMusical());
+        assertEquals(expected, musical.getKindMusical());
     }
 
     @Test
@@ -43,7 +44,7 @@ public class MusicalTest {
 
         musical.setKindMusical(kindMusic);
 
-        Assert.assertEquals(expected, musical.getKindMusical());
+        assertEquals(expected, musical.getKindMusical());
     }
 
     @Test(expected = IllegalKindOfMusicException.class)

@@ -1,10 +1,10 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
+import static org.junit.Assert.*;
+
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Children;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Programming;
-import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,78 +34,65 @@ public class StackArrayBasedCollectionTest {
     @Before
     public void initEach() {
         stack = new StackArrayBasedCollection();
+        stack.push(publications[0]);
+        stack.push(publications[1]);
     }
 
     @Test
     public void popTest() {
         Publication expected = publications[1];
 
-        stack.push(publications[0]);
-        stack.push(publications[1]);
-
-        Assert.assertEquals(expected, stack.pop());
+        assertEquals(expected, stack.pop());
     }
 
     @Test
     public void pushTest() {
 
-        Assert.assertTrue(stack.push(publications[0]));
+        assertTrue(stack.push(publications[0]));
     }
 
     @Test
     public void toArrayTest() {
         Publication[] expected = publications;
 
-        stack.push(publications[0]);
-        stack.push(publications[1]);
-
-        Assert.assertArrayEquals(expected, stack.toArray());
+        assertArrayEquals(expected, stack.toArray());
     }
 
     @Test
     public void peekTest() {
         Publication expected = publications[1];
 
-        stack.push(publications[0]);
-        stack.push(publications[1]);
-
-        Assert.assertEquals(expected, stack.peek());
+        assertEquals(expected, stack.peek());
     }
 
     @Test
     public void clearTest() {
         int expected = 0;
 
-        stack.push(publications[0]);
-        stack.push(publications[1]);
         stack.clear();
 
-        Assert.assertEquals(expected, stack.toArray().length);
+        assertEquals(expected, stack.toArray().length);
     }
 
     @Test
     public void iteratorEmptyCollectionTest() {
 
-        Assert.assertFalse(stack.iterator().hasNext());
+        assertFalse(stack.iterator().hasNext());
     }
 
     @Test
     public void iteratorCollectionClearTest() {
-        stack.push(publications[0]);
-        stack.push(publications[1]);
         stack.clear();
         Iterator iterator = stack.iterator();
 
-        Assert.assertFalse(iterator.hasNext());
+        assertFalse(iterator.hasNext());
     }
 
     @Test
     public void cloneTest() {
-        stack.push(publications[0]);
-        stack.push(publications[1]);
 
         StackArrayBasedCollection cloneStack = stack.clone();
 
-        Assert.assertArrayEquals(stack.toArray(), cloneStack.toArray());
+        assertArrayEquals(stack.toArray(), cloneStack.toArray());
     }
 }
