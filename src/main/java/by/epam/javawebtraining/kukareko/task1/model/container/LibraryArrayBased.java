@@ -4,17 +4,18 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollec
 import by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.array.DynamicArrayCollection;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 16 Mar 2019
  */
-public class LibraryArrayBased<T> extends Library<T> {
+public class LibraryArrayBased<T> extends Library<T> implements Serializable {
 
     private ArrayCollection<T> items;
 
-    public LibraryArrayBased(){
+    public LibraryArrayBased() {
         items = new DynamicArrayCollection<>();
         setPublications(items);
     }
@@ -47,9 +48,15 @@ public class LibraryArrayBased<T> extends Library<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         LibraryArrayBased<?> that = (LibraryArrayBased<?>) o;
         return Objects.equals(items, that.items);
     }

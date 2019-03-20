@@ -5,17 +5,18 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.array.ArrayCollec
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.stack.StackCollection;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 16 Mar 2019
  */
-public class LibraryStackBased<T> extends Library<T> {
+public class LibraryStackBased<T> extends Library<T> implements Serializable {
 
     private StackCollection<T> items;
 
-    public LibraryStackBased(){
+    public LibraryStackBased() {
         items = new StackArrayBasedCollection<>();
         setPublications(items);
     }
@@ -23,10 +24,6 @@ public class LibraryStackBased<T> extends Library<T> {
     public LibraryStackBased(StackCollection<T> publications) {
         super(publications);
         this.items = publications;
-    }
-
-    public LibraryStackBased(Library<T> other){
-        setPublications(other.clone());
     }
 
     @Override
@@ -52,9 +49,15 @@ public class LibraryStackBased<T> extends Library<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         LibraryStackBased<?> that = (LibraryStackBased<?>) o;
         return Objects.equals(items, that.items);
     }

@@ -4,13 +4,14 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollec
 import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueArrayBasedCollection;
 import by.epam.javawebtraining.kukareko.task1.model.collection.queue.QueueCollection;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 16 Mar 2019
  */
-public class LibraryQueueBased<T> extends Library<T> {
+public class LibraryQueueBased<T> extends Library<T> implements Serializable {
 
     private QueueCollection<T> items;
 
@@ -48,9 +49,15 @@ public class LibraryQueueBased<T> extends Library<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         LibraryQueueBased<?> that = (LibraryQueueBased<?>) o;
         return Objects.equals(items, that.items);
     }

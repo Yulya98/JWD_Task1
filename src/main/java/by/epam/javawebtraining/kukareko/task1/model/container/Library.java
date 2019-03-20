@@ -3,13 +3,14 @@ package by.epam.javawebtraining.kukareko.task1.model.container;
 import by.epam.javawebtraining.kukareko.task1.model.collection.PublicationCollection;
 import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public abstract class Library<T> {
+public abstract class Library<T> implements Serializable {
 
     private PublicationCollection<T> items;
 
@@ -32,30 +33,30 @@ public abstract class Library<T> {
 
     public abstract T remove();
 
-    public Object[] toArray(){
-       return items.toArray();
+    public Object[] toArray() {
+        return items.toArray();
     }
 
-    public int size(){
+    public int size() {
         return items.size();
     }
 
-    public boolean contains(T item){
+    public boolean contains(T item) {
         return items.contains(item);
     }
 
-    public void items(){
+    public void clear() {
         items.clear();
-    }
-
-    public PublicationCollection<T> clone(){
-        return items.clone();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Library<?> library = (Library<?>) o;
         return Objects.equals(items, library.items);
     }
