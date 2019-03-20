@@ -3,7 +3,7 @@ package by.epam.javawebtraining.kukareko.task1.model.logic.finder;
 import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
-import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterImplComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterComparator;
 
 /**
  * @author Yulya Kukareko
@@ -14,7 +14,7 @@ public class StandardPublicationFinder implements PublicationFinder {
     private PublicationSorter publicationSorter;
 
     public StandardPublicationFinder() {
-        publicationSorter = new PublicationSorterImplComparator();
+        publicationSorter = new PublicationSorterComparator();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class StandardPublicationFinder implements PublicationFinder {
                 }
             }
             return null;
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             throw new PublicationsEmptyException(ex);
         }
     }

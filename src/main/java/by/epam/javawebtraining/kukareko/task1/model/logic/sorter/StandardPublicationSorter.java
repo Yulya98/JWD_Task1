@@ -25,7 +25,7 @@ public class StandardPublicationSorter implements PublicationSorter {
             sortedByRatingQuickSort(publicationsSorted, 0, publicationsSorted.length - 1);
 
             return publicationsSorted;
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             throw new PublicationsEmptyException(ex);
         }
     }
@@ -57,7 +57,7 @@ public class StandardPublicationSorter implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             throw new PublicationsEmptyException(ex);
         }
     }
@@ -85,7 +85,7 @@ public class StandardPublicationSorter implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             throw new PublicationsEmptyException(ex);
         }
     }
@@ -108,7 +108,7 @@ public class StandardPublicationSorter implements PublicationSorter {
                 }
             }
             return publicationsSorted;
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             throw new PublicationsEmptyException(ex);
         }
     }
