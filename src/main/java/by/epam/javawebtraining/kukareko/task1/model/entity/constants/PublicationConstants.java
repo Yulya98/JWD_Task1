@@ -44,7 +44,7 @@ public class PublicationConstants {
     public static String HAVE_DISK;
     public static String KIND_SPORT;
 
-    public static void changeLocale(Locale locale){
+    public static void changeLocale(Locale locale) {
         bundle = ResourceBundle.getBundle("localization.i10n", locale);
 
         SORT_RATING_MESSAGE = bundle.getString("sortMessageRatingMessage");

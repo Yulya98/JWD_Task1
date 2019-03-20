@@ -1,28 +1,34 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
+import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Children extends Book {
+public class Children extends Book implements Serializable {
+
+    private static final String DEFAULT_RECOMMENDED_AGE = "0+";
 
     private String recommendedAge;
 
     public Children() {
-    }
-
-    public Children(Children children) {
-        this.recommendedAge = children.recommendedAge;
+        this.recommendedAge = DEFAULT_RECOMMENDED_AGE;
     }
 
     public Children(long id, int pageCount, String name, int font, String publishing,
                     int circulation, int rating, String author, String recommendAge) {
         super(id, pageCount, name, font, publishing, circulation, rating, author);
-        this.recommendedAge = checkNullString(recommendAge);
+        this.recommendedAge = checkNullString(recommendAge, DEFAULT_RECOMMENDED_AGE);
+    }
+
+    public Children(Children children) {
+        super(children);
+        this.recommendedAge = children.recommendedAge;
     }
 
     public String getRecommendedAge() {
@@ -32,14 +38,22 @@ public class Children extends Book {
     public void setRecommendAge(String recommendAge) {
         if (recommendAge != null && !recommendAge.equals("")) {
             this.recommendedAge = recommendAge;
+        } else {
+            this.recommendedAge = DEFAULT_RECOMMENDED_AGE;
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         Children children = (Children) o;
         return Objects.equals(recommendedAge, children.recommendedAge);
     }

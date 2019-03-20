@@ -3,13 +3,14 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Magazine extends Publication {
+public class Magazine extends Publication implements Serializable {
 
     private static final int DEFAULT_COUNT_ARTICLES = 1;
 
@@ -25,15 +26,26 @@ public class Magazine extends Publication {
         this.countArticles = checkPositiveNumber(countArticles);
     }
 
-    public int getCountAriticles() {
+    public Magazine(Magazine magazine) {
+        super(magazine);
+        this.countArticles = magazine.countArticles;
+    }
+
+    public int getCountArticles() {
         return countArticles;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         Magazine magazine = (Magazine) o;
         return countArticles == magazine.countArticles;
     }

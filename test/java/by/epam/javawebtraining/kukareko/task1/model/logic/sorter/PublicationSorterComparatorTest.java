@@ -23,7 +23,7 @@ public class PublicationSorterImplComparatorTest {
 
     @BeforeClass
     public static void init() {
-        publicationSorter = new PublicationSorterImplComparator();
+        publicationSorter = new PublicationSorterComparator();
         publications = new Publication[]{
                 new Programming(1L, 500, "Thinking in Java", 2,
                         "Classical Computer Science", 3000, 10, "Bruce Eckel",

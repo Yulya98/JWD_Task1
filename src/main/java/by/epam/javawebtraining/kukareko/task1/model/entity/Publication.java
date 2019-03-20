@@ -5,17 +5,20 @@ import by.epam.javawebtraining.kukareko.task1.model.exception.logical.Circulatio
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PageCountNegativeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.RatingNegativeException;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Publication {
+public class Publication implements Serializable {
 
     private static final int DEFAULT_FONT = 1;
     private static final int DEFAULT_PAGE_COUNT = 1;
     private static final int DEFAULT_RATING = 1;
+    private static final String DEFAULT_PUBLISHING = "-";
+    private static final String DEFAULT_NAME = "-";
 
     private long id;
     private int pageCount;
@@ -34,9 +37,9 @@ public class Publication {
     public Publication(long id, int pageCount, String name, int font, String publishing,
                        int circulation, int rating) {
         this.pageCount = checkPositiveNumber(pageCount);
-        this.name = checkNullString(name);
+        this.name = checkNullString(name, DEFAULT_NAME);
         this.font = checkPositiveNumber(font);
-        this.publishing = checkNullString(publishing);
+        this.publishing = checkNullString(publishing, DEFAULT_PUBLISHING);
         this.circulation = checkPositiveNumber(circulation);
         this.id = checkPositiveId(id);
         this.rating = checkPositiveNumber(rating);
@@ -56,8 +59,8 @@ public class Publication {
         return value >= 0 ? value : 1;
     }
 
-    protected final String checkNullString(String value) {
-        return value != null ? value : "";
+    protected final String checkNullString(String value, String defaultValue) {
+        return value != null ? value : defaultValue;
     }
 
     private long checkPositiveId(long id) {
@@ -122,8 +125,12 @@ public class Publication {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Publication that = (Publication) o;
         return id == that.id &&
                 pageCount == that.pageCount &&

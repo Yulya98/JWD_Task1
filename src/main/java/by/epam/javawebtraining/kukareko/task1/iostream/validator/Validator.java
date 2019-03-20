@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.iostream.validator;
 
+import by.epam.javawebtraining.kukareko.task1.util.config.ReadConfigProperties;
 import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldByPosition;
 import by.epam.javawebtraining.kukareko.task1.util.helpers.FindFieldsClassHierarchies;
 
@@ -13,7 +14,6 @@ import java.lang.reflect.Type;
  */
 public class Validator {
 
-    private static final String DEFAULT_PACKAGE = "by.epam.javawebtraining.kukareko.task1.model.entity.";
 
     public static boolean checkData(String data) {
         if (data != null) {
@@ -22,7 +22,7 @@ public class Validator {
             for (String str : arrOfStr) {
                 if (str != null) {
                     int splitSymbolPosition = str.indexOf(" ");
-                    String className = DEFAULT_PACKAGE + str.substring(0, splitSymbolPosition);
+                    String className = ReadConfigProperties.getProp("entityPackage") + str.substring(0, splitSymbolPosition);
                     Field[] fields = FindFieldsClassHierarchies.getFields(className);
 
                     for (Field field : fields) {

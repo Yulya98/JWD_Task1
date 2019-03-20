@@ -3,13 +3,16 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Musical extends Magazine {
+public class Musical extends Magazine implements Serializable {
+
+    private static final KindMusic DEFAULT_KIND_MUSICAL = KindMusic.CLASSIC;
 
     private KindMusic kindMusical;
     private boolean haveDisk;
@@ -19,6 +22,7 @@ public class Musical extends Magazine {
     }
 
     public Musical() {
+        this.kindMusical = DEFAULT_KIND_MUSICAL;
     }
 
     public Musical(long id, int pageCount, String name, int font, String publishing, int circulation,
@@ -28,8 +32,14 @@ public class Musical extends Magazine {
         this.haveDisk = haveDisk;
     }
 
+    public Musical(Musical musical) {
+        super(musical);
+        this.kindMusical = musical.kindMusical;
+        this.haveDisk = musical.haveDisk;
+    }
+
     private KindMusic checkKindMusic(KindMusic kindMusic) {
-        return kindMusic != null ? kindMusic : KindMusic.CLASSIC;
+        return kindMusic != null ? kindMusic : DEFAULT_KIND_MUSICAL;
     }
 
     public KindMusic getKindMusical() {
@@ -50,9 +60,15 @@ public class Musical extends Magazine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         Musical musical = (Musical) o;
         return haveDisk == musical.haveDisk &&
                 Objects.equals(kindMusical, musical.kindMusical);
