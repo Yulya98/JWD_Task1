@@ -4,13 +4,14 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicati
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements QueueCollection<T> {
+public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements QueueCollection<T>, Serializable {
 
     private ArrayList<T> list;
 
@@ -64,8 +65,12 @@ public class QueueArrayBasedCollection<T> extends AbstractPublicationCollection<
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         QueueArrayBasedCollection<?> that = (QueueArrayBasedCollection<?>) o;
         return Objects.equals(list, that.list);
     }

@@ -2,6 +2,7 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.stack;
 
 import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicationCollection;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackLinkedListBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
+public class StackLinkedListBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T>, Serializable {
 
     private LinkedList<T> publications;
 
@@ -59,13 +60,17 @@ public class StackLinkedListBasedCollection<T> extends AbstractPublicationCollec
 
     @Override
     public StackLinkedListBasedCollection clone() {
-        return new StackLinkedListBasedCollection( (LinkedList<T>) publications.clone());
+        return new StackLinkedListBasedCollection((LinkedList<T>) publications.clone());
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         StackLinkedListBasedCollection that = (StackLinkedListBasedCollection) o;
         return Objects.equals(publications, that.publications);
     }

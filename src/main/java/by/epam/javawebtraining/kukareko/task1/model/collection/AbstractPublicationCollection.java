@@ -1,5 +1,6 @@
 package by.epam.javawebtraining.kukareko.task1.model.collection;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -7,7 +8,7 @@ import java.util.Iterator;
  * @author Yulya Kukareko
  * @version 1.0 08 Mar 2019
  */
-public abstract class AbstractPublicationCollection<T> implements PublicationCollection<T> {
+public abstract class AbstractPublicationCollection<T> implements PublicationCollection<T>, Serializable {
 
     @Override
     public Object[] toArray() {

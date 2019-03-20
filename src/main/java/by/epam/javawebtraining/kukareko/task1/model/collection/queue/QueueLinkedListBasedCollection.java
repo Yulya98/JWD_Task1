@@ -66,8 +66,12 @@ public class QueueLinkedListBasedCollection<T> extends AbstractPublicationCollec
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         QueueLinkedListBasedCollection that = (QueueLinkedListBasedCollection) o;
         return Objects.equals(publications, that.publications);
     }

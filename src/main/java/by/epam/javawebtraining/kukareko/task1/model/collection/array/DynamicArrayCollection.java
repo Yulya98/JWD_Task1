@@ -3,6 +3,7 @@ package by.epam.javawebtraining.kukareko.task1.model.collection.array;
 
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -11,7 +12,7 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 09 Mar 2019
  */
-public class DynamicArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayCollection<T> {
+public class DynamicArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayCollection<T>, Serializable  {
 
     private static final int DEFAULT_CAPACITY = 8;
 
@@ -30,6 +31,7 @@ public class DynamicArrayCollection<T> extends AbstractArrayCollection<T> implem
                 resize(publications.length * 2);
             }
             publications[size()] = publication;
+            setSize(size() + 1);
             return true;
         } else {
             throw new NullItemAddException();
@@ -77,8 +79,12 @@ public class DynamicArrayCollection<T> extends AbstractArrayCollection<T> implem
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DynamicArrayCollection that = (DynamicArrayCollection) o;
         return size() == that.size() &&
                 Arrays.equals(publications, that.publications);

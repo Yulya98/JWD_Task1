@@ -4,6 +4,7 @@ import by.epam.javawebtraining.kukareko.task1.model.collection.AbstractPublicati
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.AchievementOfBoundsException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -13,7 +14,7 @@ import java.util.Objects;
  * @author Yulya Kukareko
  * @version 1.0 06 Mar 2019
  */
-public class StackArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T> {
+public class StackArrayBasedCollection<T> extends AbstractPublicationCollection<T> implements StackCollection<T>, Serializable {
 
     private ArrayList<T> list;
 
@@ -63,5 +64,29 @@ public class StackArrayBasedCollection<T> extends AbstractPublicationCollection<
     @Override
     public T peek() {
         return list.get(list.size() - 1);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StackArrayBasedCollection<?> that = (StackArrayBasedCollection<?>) o;
+        return Objects.equals(list, that.list);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(list);
+    }
+
+    @Override
+    public String toString() {
+        return "StackArrayBasedCollection{" +
+                "list=" + list +
+                '}';
     }
 }

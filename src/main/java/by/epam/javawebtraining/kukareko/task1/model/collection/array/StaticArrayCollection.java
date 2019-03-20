@@ -5,6 +5,7 @@ import by.epam.javawebtraining.kukareko.task1.model.exception.collection.Achieve
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.CapacityExceededException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.collection.NullItemAddException;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -14,7 +15,7 @@ import java.util.Objects;
  * @version 1.0 05 Mar 2019
  */
 public class
-StaticArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayCollection<T> {
+StaticArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayCollection<T>, Serializable {
 
     private static final int DEFAULT_CAPACITY = 8;
 
@@ -96,8 +97,12 @@ StaticArrayCollection<T> extends AbstractArrayCollection<T> implements ArrayColl
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         StaticArrayCollection that = (StaticArrayCollection) o;
         return CAPACITY == that.CAPACITY &&
                 size() == that.size() &&
