@@ -7,6 +7,10 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.*;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.*;
 import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.CirculationAndPageCountComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.FontComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.PageCountComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.RatingComparator;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,7 +20,11 @@ import org.junit.Test;
  */
 public class PublicationSorterComparatorTest {
     private static Publication[] publications;
-    private static PublicationSorter publicationSorter;
+    private static PublicationSorterComparator publicationSorter;
+    private static RatingComparator ratingComparator;
+    private static FontComparator fontComparator;
+    private static PageCountComparator pageCountComparator;
+    private static CirculationAndPageCountComparator circulationAndPageCountComparator;
 
     @BeforeClass
     public static void init() {
@@ -39,6 +47,10 @@ public class PublicationSorterComparatorTest {
                         650, 4, "-", "Automotive Equipment",
                         "Beginner/Middle/Experienced", "Car instruction manual")
         };
+        ratingComparator = new RatingComparator();
+        fontComparator = new FontComparator();
+        pageCountComparator = new PageCountComparator();
+        circulationAndPageCountComparator = new CirculationAndPageCountComparator();
     }
 
     @Test
@@ -46,7 +58,7 @@ public class PublicationSorterComparatorTest {
         Publication[] expected = new Publication[]{publications[6], publications[4], publications[2], publications[5],
                 publications[1], publications[3], publications[0]};
 
-        assertArrayEquals(expected, publicationSorter.sortedByRating(publications));
+        assertArrayEquals(expected, publicationSorter.sorted(publications, ratingComparator));
     }
 
     @Test
@@ -54,7 +66,7 @@ public class PublicationSorterComparatorTest {
         Publication[] expected = new Publication[]{publications[2], publications[6], publications[3], publications[4],
                 publications[5], publications[0], publications[1]};
 
-        assertArrayEquals(expected, publicationSorter.sortedByPageCount(publications));
+        assertArrayEquals(expected, publicationSorter.sorted(publications, pageCountComparator));
     }
 
     @Test
@@ -62,7 +74,7 @@ public class PublicationSorterComparatorTest {
         Publication[] expected = new Publication[]{publications[0], publications[6], publications[3], publications[2],
                 publications[4], publications[5], publications[1]};
 
-        assertArrayEquals(expected, publicationSorter.sortedByFont(publications));
+        assertArrayEquals(expected, publicationSorter.sorted(publications, fontComparator));
     }
 
     @Test
@@ -70,34 +82,34 @@ public class PublicationSorterComparatorTest {
         Publication[] expected = new Publication[]{publications[6], publications[4], publications[2], publications[5],
                 publications[0], publications[3], publications[1]};
 
-        assertArrayEquals(expected, publicationSorter.sortedByCirculationAndPageCount(publications));
+        assertArrayEquals(expected, publicationSorter.sorted(publications, circulationAndPageCountComparator));
     }
 
     @Test(expected = PublicationsEmptyException.class)
     public void testSortedByCirculationAndPageCountException() throws Exception {
         Publication[] publications = null;
 
-        publicationSorter.sortedByCirculationAndPageCount(publications);
+        publicationSorter.sorted(publications, circulationAndPageCountComparator);
     }
 
     @Test(expected = PublicationsEmptyException.class)
     public void testSortedByRatingException() throws Exception {
         Publication[] publications = null;
 
-        publicationSorter.sortedByRating(publications);
+        publicationSorter.sorted(publications, ratingComparator);
     }
 
     @Test(expected = PublicationsEmptyException.class)
     public void testSortedByFontException() throws Exception {
         Publication[] publications = null;
 
-        publicationSorter.sortedByFont(publications);
+        publicationSorter.sorted(publications, fontComparator);
     }
 
     @Test(expected = PublicationsEmptyException.class)
     public void testSortedByPageCountException() throws Exception {
         Publication[] publications = null;
 
-        publicationSorter.sortedByPageCount(publications);
+        publicationSorter.sorted(publications, pageCountComparator);
     }
 }

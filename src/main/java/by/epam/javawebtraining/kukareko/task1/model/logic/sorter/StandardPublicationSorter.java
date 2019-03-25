@@ -10,12 +10,11 @@ import java.util.Arrays;
  * @author Yulya Kukareko
  * @version 1.0 16 Feb 2019
  */
-public class StandardPublicationSorter implements PublicationSorter {
+public class StandardPublicationSorter {
 
     /*
     Sorted publications using Quick sort
     */
-    @Override
     public Publication[] sortedByRating(Publication[] publications)
             throws PublicationsEmptyException {
         try {
@@ -33,7 +32,6 @@ public class StandardPublicationSorter implements PublicationSorter {
     /*
     Sorted publications using Shell sort
      */
-    @Override
     public Publication[] sortedByCirculationAndPageCount(Publication[] publications)
             throws PublicationsEmptyException {
         Publication[] publicationsSorted;
@@ -65,7 +63,6 @@ public class StandardPublicationSorter implements PublicationSorter {
     /*
     Sorted publications using Selection sort
      */
-    @Override
     public Publication[] sortedByPageCount(Publication[] publications)
             throws PublicationsEmptyException {
         try {
@@ -93,7 +90,6 @@ public class StandardPublicationSorter implements PublicationSorter {
     /*
     Sorted publications using Insertion sort
      */
-    @Override
     public Publication[] sortedByFont(Publication[] publications)
             throws PublicationsEmptyException {
         try {

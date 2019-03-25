@@ -17,7 +17,7 @@ import org.junit.Test;
 public class PublicationSorterTest {
 
     private static Publication[] publications;
-    private static PublicationSorter publicationSorter;
+    private static StandardPublicationSorter publicationSorter;
 
     @BeforeClass
     public static void init() {

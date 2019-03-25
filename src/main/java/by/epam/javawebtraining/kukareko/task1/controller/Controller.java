@@ -7,11 +7,13 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.Book;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 import by.epam.javawebtraining.kukareko.task1.model.exception.LibraryException;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.CirculationAndPageCountComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.FontComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.PageCountComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.RatingComparator;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.PublicationCounter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.counter.StandardPublicationCounter;
-import by.epam.javawebtraining.kukareko.task1.model.logic.finder.PublicationFinder;
 import by.epam.javawebtraining.kukareko.task1.model.logic.finder.StandardPublicationFinder;
-import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorter;
 import by.epam.javawebtraining.kukareko.task1.model.logic.sorter.PublicationSorterComparator;
 import by.epam.javawebtraining.kukareko.task1.iostream.parser.Parser;
 import by.epam.javawebtraining.kukareko.task1.iostream.reader.CharacterReader;
@@ -27,6 +29,7 @@ import by.epam.javawebtraining.kukareko.task1.view.PublicationRenderer;
 import by.epam.javawebtraining.kukareko.task1.view.UserCommunication;
 import org.apache.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Map;
 
@@ -85,37 +88,42 @@ public class Controller {
             library.add(PublicationCreatorUtil.create());
             library.remove();
 
-            PublicationSorter publicationSorter = new PublicationSorterComparator();
-            PublicationFinder publicationFinder = new StandardPublicationFinder();
+            PublicationSorterComparator publicationSorter = new PublicationSorterComparator();
+            StandardPublicationFinder publicationFinder = new StandardPublicationFinder();
             PublicationCounter publicationCounter = new StandardPublicationCounter();
+            Comparator<Publication> pageCountComparator = new PageCountComparator();
+            Comparator<Publication> fontComparator = new FontComparator();
+            Comparator<Publication> ratingComparator = new RatingComparator();
+            Comparator<Publication> circulationAndPageCountComparator = new CirculationAndPageCountComparator();
+
 
             Publication[] publications = castArray(library.toArray());
 
             consoleRender.render(PublicationConstants.SORT_RATING_MESSAGE);
-            publicationSorter.sortedByRating(publications);
+            publicationSorter.sorted(publications, ratingComparator);
 
             for (int i = 0; i < library.getPublications().size(); i++) {
                 consoleRender.render(publications[i].toString());
             }
 
             consoleRender.render(PublicationConstants.SORT_CIRCULATION_MESSAGE);
-            publicationSorter.sortedByCirculationAndPageCount(publications);
+            publicationSorter.sorted(publications, circulationAndPageCountComparator);
 
             for (int i = 0; i < library.getPublications().size(); i++) {
                 consoleRender.render(publications[i].toString());
             }
 
-            publicationFinder.findExtremumByRating(publications, "ACK");
+            publicationFinder.find(publications, "ACK", ratingComparator);
             consoleRender.render(PublicationConstants.FIND_EXTREMUM_RATING_MESSAGE);
-            consoleRender.render(checkNull(publicationFinder.findExtremumByRating(publications, "ACK")));
+            consoleRender.render(checkNull(publicationFinder.find(publications, "ACK", ratingComparator)));
 
-            publicationFinder.findByExtremumFont(publications, "ACK");
+            publicationFinder.find(publications, "ACK", fontComparator);
             consoleRender.render(PublicationConstants.FIND_EXTREMUM_FONT_MESSAGE);
-            consoleRender.render(checkNull(publicationFinder.findExtremumByRating(publications, "DESC")));
+            consoleRender.render(checkNull(publicationFinder.find(publications, "DESC", ratingComparator)));
 
-            publicationFinder.findByExtremumPageCount(publications, "ACK");
+            publicationFinder.find(publications, "ACK", pageCountComparator);
             consoleRender.render(PublicationConstants.FIND_EXTREMUM_PAGE_COUNT_MESSAGE);
-            consoleRender.render(checkNull(publicationFinder.findExtremumByRating(publications, "ACK")));
+            consoleRender.render(checkNull(publicationFinder.find(publications, "ACK", ratingComparator)));
 
             consoleRender.render(PublicationConstants.FIND_BY_PARAM_MESSAGE);
 

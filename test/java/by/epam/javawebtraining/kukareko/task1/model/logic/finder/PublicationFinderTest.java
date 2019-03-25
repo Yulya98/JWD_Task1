@@ -7,6 +7,10 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.album.Album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.book.*;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.*;
 import by.epam.javawebtraining.kukareko.task1.model.exception.technical.PublicationsEmptyException;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.CirculationAndPageCountComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.FontComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.PageCountComparator;
+import by.epam.javawebtraining.kukareko.task1.model.logic.comparator.RatingComparator;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,7 +21,10 @@ import org.junit.Test;
 public class PublicationFinderTest {
 
     private static Publication[] publications;
-    private static PublicationFinder publicationFinder;
+    private static StandardPublicationFinder publicationFinder;
+    private static RatingComparator ratingComparator;
+    private static FontComparator fontComparator;
+    private static PageCountComparator pageCountComparator;
 
     @BeforeClass
     public static void init() {
@@ -40,7 +47,10 @@ public class PublicationFinderTest {
                         "GM", 650, 4, "-", "Automotive Equipment",
                         "Beginner/Middle/Experienced", "Car instruction manual")
         };
-    }
+        ratingComparator = new RatingComparator();
+        fontComparator = new FontComparator();
+        pageCountComparator = new PageCountComparator();
+    };
 
     @Test
     public void testFindByParam() throws Exception {
@@ -54,7 +64,7 @@ public class PublicationFinderTest {
         Publication expected = publications[0];
         String sortOrder = "DESC";
 
-        assertEquals(expected, publicationFinder.findExtremumByRating(publications, sortOrder));
+        assertEquals(expected, publicationFinder.find(publications, sortOrder, ratingComparator));
     }
 
     @Test
@@ -62,7 +72,7 @@ public class PublicationFinderTest {
         Publication expected = publications[6];
         String sortOrder = "ACK";
 
-        assertEquals(expected, publicationFinder.findExtremumByRating(publications, sortOrder));
+        assertEquals(expected, publicationFinder.find(publications, sortOrder, ratingComparator));
     }
 
     @Test
@@ -70,7 +80,7 @@ public class PublicationFinderTest {
         Publication expected = publications[1];
         String sortOrder = "DESC";
 
-        assertEquals(expected, publicationFinder.findByExtremumPageCount(publications, sortOrder));
+        assertEquals(expected, publicationFinder.find(publications, sortOrder, pageCountComparator));
     }
 
     @Test
@@ -78,7 +88,7 @@ public class PublicationFinderTest {
         Publication expected = publications[2];
         String sortOrder = "ACK";
 
-        assertEquals(expected, publicationFinder.findByExtremumPageCount(publications, sortOrder));
+        assertEquals(expected, publicationFinder.find(publications, sortOrder, pageCountComparator));
     }
 
     @Test
@@ -86,7 +96,7 @@ public class PublicationFinderTest {
         Publication expected = publications[4];
         String sortOrder = "ACK";
 
-        assertEquals(expected, publicationFinder.findByExtremumFont(publications, sortOrder));
+        assertEquals(expected, publicationFinder.find(publications, sortOrder, fontComparator));
     }
 
     @Test
@@ -94,7 +104,7 @@ public class PublicationFinderTest {
         Publication expected = publications[1];
         String sortOrder = "DESC";
 
-        assertEquals(expected, publicationFinder.findByExtremumFont(publications, sortOrder));
+        assertEquals(expected, publicationFinder.find(publications, sortOrder, fontComparator));
     }
 
     @Test(expected = PublicationsEmptyException.class)
@@ -109,7 +119,7 @@ public class PublicationFinderTest {
         Publication[] publications = null;
         String sortOrder = "ACK";
 
-        assertNull(publicationFinder.findExtremumByRating(publications, sortOrder));
+        assertNull(publicationFinder.find(publications, sortOrder, ratingComparator));
     }
 
     @Test(expected = PublicationsEmptyException.class)
@@ -117,7 +127,7 @@ public class PublicationFinderTest {
         Publication[] publications = null;
         String sortOrder = "ACK";
 
-        assertNull(publicationFinder.findByExtremumPageCount(publications, sortOrder));
+        assertNull(publicationFinder.find(publications, sortOrder, pageCountComparator));
     }
 
     @Test(expected = PublicationsEmptyException.class)
@@ -125,6 +135,6 @@ public class PublicationFinderTest {
         Publication[] publications = null;
         String sortOrder = "ACK";
 
-        assertNull(publicationFinder.findByExtremumPageCount(publications, sortOrder));
+        assertNull(publicationFinder.find(publications, sortOrder, pageCountComparator));
     }
 }
