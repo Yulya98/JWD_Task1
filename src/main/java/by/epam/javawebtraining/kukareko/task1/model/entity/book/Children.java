@@ -3,14 +3,14 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 import by.epam.javawebtraining.kukareko.task1.model.entity.magazine.Science;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Children extends Book implements Serializable {
+public class Children extends Book implements Externalizable {
 
     private static final String DEFAULT_RECOMMENDED_AGE = "0+";
 
@@ -41,6 +41,18 @@ public class Children extends Book implements Serializable {
         } else {
             this.recommendedAge = DEFAULT_RECOMMENDED_AGE;
         }
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(getRecommendedAge());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        setRecommendAge(in.readUTF());
     }
 
     @Override

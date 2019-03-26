@@ -1,16 +1,24 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
+import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.IllegalKindOfMusicException;
+import org.apache.log4j.Logger;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Musical extends Magazine implements Serializable {
+public class Musical extends Magazine implements Externalizable {
+
+    public static final Logger LOGGER;
+
+    static {
+        LOGGER = Logger.getLogger(Musical.class);
+    }
 
     private static final KindMusic DEFAULT_KIND_MUSICAL = KindMusic.CLASSIC;
 
@@ -56,6 +64,24 @@ public class Musical extends Magazine implements Serializable {
 
     public boolean isHaveDisk() {
         return haveDisk;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(getKindMusical().name());
+        out.writeBoolean(isHaveDisk());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        try {
+            setKindMusical(KindMusic.valueOf(in.readUTF()));
+            haveDisk = in.readBoolean();
+        } catch (IllegalKindOfMusicException ex){
+            LOGGER.error(ex.getMessage());
+        }
     }
 
     @Override

@@ -3,14 +3,14 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Magazine extends Publication implements Serializable {
+public class Magazine extends Publication implements Externalizable {
 
     private static final int DEFAULT_COUNT_ARTICLES = 1;
 
@@ -33,6 +33,18 @@ public class Magazine extends Publication implements Serializable {
 
     public int getCountArticles() {
         return countArticles;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeInt(getCountArticles());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        countArticles = in.readInt();
     }
 
     @Override

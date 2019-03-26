@@ -1,15 +1,22 @@
 package by.epam.javawebtraining.kukareko.task1.model.entity.magazine;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
+import org.apache.log4j.Logger;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Science extends Magazine implements Serializable {
+public class Science extends Magazine implements Externalizable {
+
+    public static final Logger LOGGER;
+
+    static {
+        LOGGER = Logger.getLogger(Musical.class);
+    }
 
     private static final String DEFAULT_SUBJECT_AREA = "About everything";
 
@@ -32,6 +39,18 @@ public class Science extends Magazine implements Serializable {
 
     public String getSubjectArea() {
         return subjectArea;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(getSubjectArea());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        subjectArea = in.readUTF();
     }
 
     @Override

@@ -66,19 +66,19 @@ public class Controller {
                 library.add(publication);
             }
 
-            for(Publication collection : castArray(library.toArray())){
+            for (Publication collection : castArray(library.toArray())) {
                 consoleRender.render(collection.toString());
             }
-        
-            for(Publication publication : castArray(library.toArray())) {
+
+            for (Publication publication : castArray(library.toArray())) {
                 fileRenderer.render(BuildStringPublication.builderPublicationStr(publication));
             }
 
             String data = reader.read(ReadConfigProperties.getProp("characterFile"));
 
-            if(Validator.checkData(data)){
+            if (Validator.checkData(data)) {
                 String[] arrayData = SplitStrRegExp.splitStr(data, "\n");
-                for(String objStr : arrayData) {
+                for (String objStr : arrayData) {
                     Map<String, Object> fields = Parser.checkData(objStr);
                     Publication publication = PublicationReflectionCreatorUtil.create(fields);
                     library.add(publication);
@@ -139,23 +139,29 @@ public class Controller {
             Book book2 = new Book(book);
             consoleRender.render(book2.toString());
 
+            StringBuilder strb = new StringBuilder("Java");
+            StringBuilder stb2 = new StringBuilder("Java");
+
+            System.out.println(strb == stb2);
+            System.out.println(strb.equals(stb2));
+
         } catch (LibraryException ex) {
             Controller.LOGGER.error(ex.getMessage());
         }
     }
 
     private static String checkNull(Publication publication) {
-        return publication == null ? "Not found" :publication.toString();
+        return publication == null ? "Not found" : publication.toString();
     }
 
     private static String checkCount(int count) {
         return count == -1 ? "Not found" : String.valueOf(count);
     }
 
-    private static Publication[] castArray(Object[] array){
+    private static Publication[] castArray(Object[] array) {
         Publication[] publications = new Publication[array.length];
 
-        for(int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             publications[i] = (Publication) array[i];
         }
 

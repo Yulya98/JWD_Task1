@@ -2,14 +2,14 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Programming extends Technical implements Serializable {
+public class Programming extends Technical implements Externalizable {
 
     private static final String DEFAULT_LANGUAGE = "About programming";
 
@@ -32,6 +32,18 @@ public class Programming extends Technical implements Serializable {
 
     public String getLanguage() {
         return language;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(getLanguage());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        language = in.readUTF();
     }
 
     @Override

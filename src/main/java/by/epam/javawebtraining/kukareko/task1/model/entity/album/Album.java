@@ -3,14 +3,14 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.album;
 import by.epam.javawebtraining.kukareko.task1.model.entity.Publication;
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Album extends Publication implements Serializable {
+public class Album extends Publication implements Externalizable {
 
     private static final String DEFAULT_FORMAT = "Horizontal";
 
@@ -33,6 +33,18 @@ public class Album extends Publication implements Serializable {
 
     public String getFormat() {
         return format;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(getFormat());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        format = in.readUTF();
     }
 
     @Override

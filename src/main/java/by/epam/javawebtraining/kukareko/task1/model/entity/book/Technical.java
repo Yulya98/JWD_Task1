@@ -2,14 +2,14 @@ package by.epam.javawebtraining.kukareko.task1.model.entity.book;
 
 import by.epam.javawebtraining.kukareko.task1.model.entity.constants.PublicationConstants;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Technical extends Book implements Serializable {
+public class Technical extends Book implements Externalizable {
 
     private static final String DEFAULT_SUBJECT_AREA = "About technical";
     private static final String DEFAULT_LEVEL = "Beginner";
@@ -41,6 +41,20 @@ public class Technical extends Book implements Serializable {
 
     public String getLevel() {
         return level;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(getSubjectArea());
+        out.writeUTF(getLevel());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        subjectArea = in.readUTF();
+        level = in.readUTF();
     }
 
     @Override

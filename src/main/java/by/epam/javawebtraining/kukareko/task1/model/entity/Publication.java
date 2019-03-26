@@ -4,15 +4,22 @@ import by.epam.javawebtraining.kukareko.task1.model.entity.constants.Publication
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.CirculationNegativeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.PageCountNegativeException;
 import by.epam.javawebtraining.kukareko.task1.model.exception.logical.RatingNegativeException;
+import org.apache.log4j.Logger;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 /**
  * @author Yulya Kukareko
  * @version 1.0 15 Feb 2019
  */
-public class Publication implements Serializable {
+public class Publication implements Externalizable {
+
+    public static final Logger LOGGER;
+
+    static {
+        LOGGER = Logger.getLogger(Publication.class);
+    }
 
     private static final int DEFAULT_FONT = 1;
     private static final int DEFAULT_PAGE_COUNT = 1;
@@ -32,6 +39,9 @@ public class Publication implements Serializable {
         this.font = DEFAULT_FONT;
         this.pageCount = DEFAULT_PAGE_COUNT;
         this.circulation = DEFAULT_RATING;
+        this.rating = DEFAULT_RATING;
+        this.publishing = DEFAULT_PUBLISHING;
+        this.name = DEFAULT_NAME;
     }
 
     public Publication(long id, int pageCount, String name, int font, String publishing,
@@ -120,6 +130,33 @@ public class Publication implements Serializable {
             this.circulation = circulation;
         } else {
             throw new CirculationNegativeException("You have entered negative circulation value");
+        }
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeLong(getId());
+        out.writeInt(getPageCount());
+        out.writeUTF(getName());
+        out.writeInt(getFont());
+        out.writeUTF(getPublishing());
+        out.writeInt(getCirculation());
+        out.writeInt(getRating());
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        try {
+
+            setId(in.readLong());
+            setPageCount(in.readInt());
+            name = in.readUTF();
+            font = in.readInt();
+            publishing = in.readUTF();
+            setCirculation(in.readInt());
+            setRating(in.readInt());
+        } catch (CirculationNegativeException | PageCountNegativeException | RatingNegativeException ex) {
+            LOGGER.error(ex.getMessage());
         }
     }
 
